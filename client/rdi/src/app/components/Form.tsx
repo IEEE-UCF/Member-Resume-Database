@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from "react"
+import { ucfMajors } from "../data/majors"
 
 interface Experience {
     name: string,
@@ -33,8 +34,10 @@ interface Form {
     name: string,
     bio: string,
     resume: any,
+    resumeType?: string,
     major: string,
-    year: number,
+    schoolYear: string,
+    graduationYear: number,
     links: string[],
     clubs: Experience[],
     education: Education[],
@@ -49,8 +52,10 @@ const Form = () => {
         name: "",
         bio: "",
         resume: null,
+        resumeType: "file",
         major: "",
-        year: 0,
+        schoolYear: "",
+        graduationYear: 0,
         links: [],
         clubs: [],
         education: [],
@@ -65,8 +70,7 @@ const Form = () => {
         console.log(formData)
     }
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        console.log(formData)
+    const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const name = event.target.name
         const value = event.target.value
         setFormData((prev) => ({...prev, [name]: value}))
@@ -74,68 +78,187 @@ const Form = () => {
 
     return (
         <>
-            <form onSubmit={ handleSubmit }>
-                <div className = "input name">
+            <form onSubmit={handleSubmit}>
+                
+                <div className="input name">
                     <h3>Name</h3>
                     <input
-                        type = "text"
-                        name = "name"
-                        value = { formData.name }
-                        onChange= { handleChange }
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
                     />
                 </div>
 
-                <div className = "input bio">
-
-                </div>
-                
-                <div className = "input resume">
-
-                </div>
-
-                <div className = "input major">
-
+                <div className="input bio">
+                    <h3>Bio</h3>
+                    <textarea
+                        name="bio"
+                        value={formData.bio}
+                        onChange={handleChange}
+                        rows={5}
+                    />
                 </div>
 
-                <div className = "input year">
-
-                </div>
-
-                <div className = "input links">
-
-                </div>
-
-                <div className = "input clubs">
-
-                </div>
-
-                <div className = "input educations">
-
-                </div>
-
-                <div className = "input work experiences">
-
-                </div>
-
-                <div className = "input picture">
-
-                </div>
-
-                <div className = "input projects">
-
-                </div>
-
-                <div className = "input projects">
-
-                </div>
-
-                <div className = "input skills">
+                <div className="input resume">
+                    <h3>Resume</h3>
+                    <label>
+                        <input
+                            type="radio"
+                            name="resumeType"
+                            value="file"
+                            checked={formData.resumeType === "file"}
+                            onChange={(e) => setFormData(prev => ({...prev, resumeType: "file", resume: null}))}
+                        />
+                        Upload File
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            name="resumeType"
+                            value="link"
+                            checked={formData.resumeType === "link"}
+                            onChange={(e) => setFormData(prev => ({...prev, resumeType: "link", resume: ""}))}
+                        />
+                        Provide Link
+                    </label>
                     
+                    {formData.resumeType === "file" && (
+                        <input
+                            type="file"
+                            accept=".pdf,.docx"
+                            onChange={(e) => {
+                                const file = e.target.files?.[0]
+                                if (file) {
+                                    setFormData(prev => ({...prev, resume: file}))
+                                }
+                            }}
+                        />
+                    )}
+                    
+                    {formData.resumeType === "link" && (
+                        <input
+                            type="url"
+                            name="resume"
+                            placeholder="https://example.com/resume.pdf"
+                            value={formData.resume || ""}
+                            onChange={handleChange}
+                        />
+                    )}
                 </div>
 
-                <button
-                    type = "submit"
-                />
+                <div className="input major">
+                    <h3>Major</h3>
+                    <select
+                        name="major"
+                        value={formData.major}
+                        onChange={handleChange}
+                    >
+                        <option value="">Select Major</option>
+                        {ucfMajors.map((major, index) => (
+                            <option key={index} value={major}>
+                                {major}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
+                <div className="input year">
+                    <h3>School Year</h3>
+                    <label>
+                        <input
+                            type="radio"
+                            name="schoolYear"
+                            value="Freshman"
+                            checked={formData.schoolYear === "Freshman"}
+                            onChange={handleChange}
+                        />
+                        Freshman
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            name="schoolYear"
+                            value="Sophomore"
+                            checked={formData.schoolYear === "Sophomore"}
+                            onChange={handleChange}
+                        />
+                        Sophomore
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            name="schoolYear"
+                            value="Junior"
+                            checked={formData.schoolYear === "Junior"}
+                            onChange={handleChange}
+                        />
+                        Junior
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            name="schoolYear"
+                            value="Senior"
+                            checked={formData.schoolYear === "Senior"}
+                            onChange={handleChange}
+                        />
+                        Senior
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            name="schoolYear"
+                            value="Graduate"
+                            checked={formData.schoolYear === "Graduate"}
+                            onChange={handleChange}
+                        />
+                        Graduate
+                    </label>
+                </div>
+
+                <div className="input graduation-year">
+                    <h3>Graduation Year</h3>
+                    <input
+                        type="number"
+                        name="graduationYear"
+                        value={formData.graduationYear || ""}
+                        onChange={handleChange}
+                        min="2020"
+                        max="2035"
+                    />
+                </div>
+
+                <div className="input picture">
+                    <h3>Picture</h3>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                            const file = e.target.files?.[0]
+                            if (file) {
+                                setFormData(prev => ({...prev, picture: file}))
+                            }
+                        }}
+                    />
+                </div>
+
+                <div className="input skills">
+                    <h3>Skills</h3>
+                    <input
+                        type="text"
+                        placeholder="Python, JavaScript, React"
+                        onChange={(e) => {
+                            const skillsArray = e.target.value
+                                .split(',')
+                                .map(skill => skill.trim())
+                                .filter(skill => skill.length > 0)
+                            setFormData(prev => ({...prev, skills: skillsArray}))
+                        }}
+                    />
+                </div>
+
+                <button type="submit">Submit</button>
             </form>
         </>
     )
