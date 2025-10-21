@@ -1,11 +1,20 @@
 import { ChangeEvent, useState } from "react"
 import { ucfMajors } from "../data/majors"
 
+
 interface Experience {
     name: string,
     description: string,
     title: string,
     responsibilities: string
+}
+const createEmptyExperience = () => {
+    return {
+        name: "",
+        description: "",
+        title: "",
+        responsibilities: ""
+    }
 }
 const createEmptyExperience = () => {
     return {
@@ -21,6 +30,8 @@ interface Education {
     dates: {
         start: string,
         end: string
+        start: string,
+        end: string
     },
     degree: string,
     gpa: {
@@ -29,6 +40,22 @@ interface Education {
     },
     clubs: Experience[],
     skills: string[]
+}
+const createEmptyEducation = (): Education => {
+    return {
+        name: "",
+        dates: {
+            start: "",
+            end: ""
+        },
+        degree: "",
+        gpa: {
+            scale: 0,
+            gpa: 0
+        },
+        clubs: [createEmptyExperience()],
+        skills: [""]
+    }
 }
 const createEmptyEducation = (): Education => {
     return {
@@ -60,6 +87,15 @@ const createEmptyProject = (): Project => {
         skills: [""],
         link: ""
     }
+    link: string
+}
+const createEmptyProject = (): Project => {
+    return {
+        name: "",
+        description: "",
+        skills: [""],
+        link: ""
+    }
 }
 
 interface Form {
@@ -74,10 +110,13 @@ interface Form {
     clubs: Experience[],
     education: Education[],
     workExperience: Experience[],
+    workExperience: Experience[],
     picture: any,
     projects: Project[],
     skills: string[]
 }
+const createEmptyForm = (): Form => {
+    return {
 const createEmptyForm = (): Form => {
     return {
         name: "",
@@ -91,6 +130,10 @@ const createEmptyForm = (): Form => {
         clubs: [createEmptyExperience()],
         education: [createEmptyEducation()],
         workExperience: [createEmptyExperience()],
+        links: [""],
+        clubs: [createEmptyExperience()],
+        education: [createEmptyEducation()],
+        workExperience: [createEmptyExperience()],
         picture: null,
         projects: [createEmptyProject()],
         skills: [""]
@@ -99,6 +142,18 @@ const createEmptyForm = (): Form => {
 
 const Form = () => {
     const [formData, setFormData] = useState<Form>(createEmptyForm())
+        projects: [createEmptyProject()],
+        skills: [""]
+    }
+}
+
+const Form = () => {
+    const [formData, setFormData] = useState<Form>(createEmptyForm())
+
+    const handleSubmit = (event: React.FormEvent) => {
+        event.preventDefault()
+        console.log(formData)
+    }
 
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const name = event.target.name
@@ -203,7 +258,7 @@ const Form = () => {
                     </select>
                 </div>
 
-                <div className="input year">
+                <div className="input school-year">
                     <h3>School Year</h3>
                     <label>
                         <input
@@ -269,6 +324,22 @@ const Form = () => {
                     />
                 </div>
 
+                <div className="input links">
+                
+                </div>
+
+                <div className="input clubs">
+
+                </div>
+
+                <div className="input education">
+
+                </div>
+
+                <div className="input work-experience">
+
+                </div>
+
                 <div className="input picture">
                     <h3>Picture</h3>
                     <input
@@ -281,6 +352,10 @@ const Form = () => {
                             }
                         }}
                     />
+                </div>
+
+                <div className="input projects">
+
                 </div>
 
                 <div className="input skills">
