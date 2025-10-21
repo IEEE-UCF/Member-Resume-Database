@@ -199,7 +199,7 @@ const Form = () => {
                     </select>
                 </div>
 
-                <div className="input year">
+                <div className="input school-year">
                     <h3>School Year</h3>
                     <label>
                         <input
@@ -265,6 +265,22 @@ const Form = () => {
                     />
                 </div>
 
+                <div className="input links">
+                
+                </div>
+
+                <div className="input clubs">
+
+                </div>
+
+                <div className="input education">
+
+                </div>
+
+                <div className="input work-experience">
+
+                </div>
+
                 <div className="input picture">
                     <h3>Picture</h3>
                     <input
@@ -277,6 +293,10 @@ const Form = () => {
                             }
                         }}
                     />
+                </div>
+
+                <div className="input projects">
+
                 </div>
 
                 <div className="input skills">
