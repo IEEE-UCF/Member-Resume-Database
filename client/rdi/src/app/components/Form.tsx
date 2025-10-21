@@ -1,18 +1,27 @@
 import { ChangeEvent, useState } from "react"
 import { ucfMajors } from "../data/majors"
 
+
 interface Experience {
     name: string,
     description: string,
     title: string,
     responsibilities: string
 }
+const createEmptyExperience = () => {
+    return {
+        name: "",
+        description: "",
+        title: "",
+        responsibilities: ""
+    }
+}
 
 interface Education {
     name: string,
     dates: {
-        start: Date,
-        end: Date
+        start: string,
+        end: string
     },
     degree: string,
     gpa: {
@@ -22,12 +31,36 @@ interface Education {
     clubs: Experience[],
     skills: string[]
 }
+const createEmptyEducation = (): Education => {
+    return {
+        name: "",
+        dates: {
+            start: "",
+            end: ""
+        },
+        degree: "",
+        gpa: {
+            scale: 0,
+            gpa: 0
+        },
+        clubs: [createEmptyExperience()],
+        skills: [""]
+    }
+}
 
 interface Project {
     name: string,
     description: string,
     skills: string[],
-    link: any
+    link: string
+}
+const createEmptyProject = (): Project => {
+    return {
+        name: "",
+        description: "",
+        skills: [""],
+        link: ""
+    }
 }
 
 interface Form {
@@ -41,14 +74,13 @@ interface Form {
     links: string[],
     clubs: Experience[],
     education: Education[],
-    work_experience: Experience[],
+    workExperience: Experience[],
     picture: any,
     projects: Project[],
     skills: string[]
 }
-
-const Form = () => {
-    const [formData, setFormData] = useState<Form>({
+const createEmptyForm = (): Form => {
+    return {
         name: "",
         bio: "",
         resume: null,
@@ -56,14 +88,18 @@ const Form = () => {
         major: "",
         schoolYear: "",
         graduationYear: 0,
-        links: [],
-        clubs: [],
-        education: [],
-        work_experience: [],
+        links: [""],
+        clubs: [createEmptyExperience()],
+        education: [createEmptyEducation()],
+        workExperience: [createEmptyExperience()],
         picture: null,
-        projects: [],
-        skills: []
-    })
+        projects: [createEmptyProject()],
+        skills: [""]
+    }
+}
+
+const Form = () => {
+    const [formData, setFormData] = useState<Form>(createEmptyForm())
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault()
