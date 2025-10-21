@@ -7,13 +7,20 @@ interface Experience {
     title: string,
     responsibilities: string
 }
-
+const createEmptyExperience = () => {
+    return {
+        name: "",
+        description: "",
+        title: "",
+        responsibilities: ""
+    }
+}
 
 interface Education {
     name: string,
     dates: {
-        start: Date,
-        end: Date
+        start: string,
+        end: string
     },
     degree: string,
     gpa: {
@@ -23,12 +30,36 @@ interface Education {
     clubs: Experience[],
     skills: string[]
 }
+const createEmptyEducation = (): Education => {
+    return {
+        name: "",
+        dates: {
+            start: "",
+            end: ""
+        },
+        degree: "",
+        gpa: {
+            scale: 0,
+            gpa: 0
+        },
+        clubs: [createEmptyExperience()],
+        skills: [""]
+    }
+}
 
 interface Project {
     name: string,
     description: string,
     skills: string[],
-    link: any
+    link: string
+}
+const createEmptyProject = (): Project => {
+    return {
+        name: "",
+        description: "",
+        skills: [""],
+        link: ""
+    }
 }
 
 interface Form {
@@ -42,14 +73,13 @@ interface Form {
     links: string[],
     clubs: Experience[],
     education: Education[],
-    work_experience: Experience[],
+    workExperience: Experience[],
     picture: any,
     projects: Project[],
     skills: string[]
 }
-
-const Form = () => {
-    const [formData, setFormData] = useState<Form>({
+const createEmptyForm = (): Form => {
+    return {
         name: "",
         bio: "",
         resume: null,
@@ -57,14 +87,18 @@ const Form = () => {
         major: "",
         schoolYear: "",
         graduationYear: 0,
-        links: [],
-        clubs: [],
-        education: [],
-        work_experience: [],
+        links: [""],
+        clubs: [createEmptyExperience()],
+        education: [createEmptyEducation()],
+        workExperience: [createEmptyExperience()],
         picture: null,
-        projects: [],
-        skills: []
-    })
+        projects: [createEmptyProject()],
+        skills: [""]
+    }
+}
+
+const Form = () => {
+    const [formData, setFormData] = useState<Form>(createEmptyForm())
 
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const name = event.target.name
@@ -72,9 +106,9 @@ const Form = () => {
         setFormData((prev) => ({...prev, [name]: value}))
     }
 
-    const handleArray = (event: React.FormEvent, array: any[]) => {
-        event?.preventDefault()
-        console.log(typeof array)
+    const handleArray = (event: React.FormEvent, array: any[], input: any) => {
+        event.preventDefault()
+        array.push(input)
     }
 
     const handleSubmit = (event: React.FormEvent) => {
@@ -250,27 +284,21 @@ const Form = () => {
                 </div>
 
                 <div className="input skills">
-                    {/* <h3>Skills</h3>
-                    <input
-                        type="text"
-                        name={`skills.${formData.skills.length}`}
-                        value={formData.skills[formData.skills.length]}
-                        onChange={handleChange}
-                    />
-                    <button 
-                        onClick={()}
-                    /> */}
+                    <h3>Skills</h3>
 
                     {formData.skills.map((skill, index) => {
                         return(
                             <input
+                                key={`${index}`}
                                 type="text"
                                 name={`skills.${index}`}
-                                value={formData.skills[index]}
+                                value={skill}
                                 onChange={handleChange}
                             />
                         )
                     })}
+
+                    <button onClick={(e) => handleArray(e, formData.skills, "")}/>
                 </div>
 
                 <button type="submit">Submit</button>
