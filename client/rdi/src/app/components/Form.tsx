@@ -8,6 +8,7 @@ interface Experience {
     responsibilities: string
 }
 
+
 interface Education {
     name: string,
     dates: {
@@ -65,15 +66,20 @@ const Form = () => {
         skills: []
     })
 
-    const handleSubmit = (event: React.FormEvent) => {
-        event.preventDefault()
-        console.log(formData)
-    }
-
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const name = event.target.name
         const value = event.target.value
         setFormData((prev) => ({...prev, [name]: value}))
+    }
+
+    const handleArray = (event: React.FormEvent, array: any[]) => {
+        event?.preventDefault()
+        console.log(typeof array)
+    }
+
+    const handleSubmit = (event: React.FormEvent) => {
+        event.preventDefault()
+        // console.log(formData)
     }
 
     return (
@@ -244,18 +250,27 @@ const Form = () => {
                 </div>
 
                 <div className="input skills">
-                    <h3>Skills</h3>
+                    {/* <h3>Skills</h3>
                     <input
                         type="text"
-                        placeholder="Python, JavaScript, React"
-                        onChange={(e) => {
-                            const skillsArray = e.target.value
-                                .split(',')
-                                .map(skill => skill.trim())
-                                .filter(skill => skill.length > 0)
-                            setFormData(prev => ({...prev, skills: skillsArray}))
-                        }}
+                        name={`skills.${formData.skills.length}`}
+                        value={formData.skills[formData.skills.length]}
+                        onChange={handleChange}
                     />
+                    <button 
+                        onClick={()}
+                    /> */}
+
+                    {formData.skills.map((skill, index) => {
+                        return(
+                            <input
+                                type="text"
+                                name={`skills.${index}`}
+                                value={formData.skills[index]}
+                                onChange={handleChange}
+                            />
+                        )
+                    })}
                 </div>
 
                 <button type="submit">Submit</button>
