@@ -360,19 +360,19 @@ const Form = () => {
                     {formData.skills.map((skill, index) => {
                         return (
                             <input
-                                key={`${index}`}
+                                key={`skills[${index}]`}
                                 type="text"
                                 name={`skills[${index}]`}
                                 value={skill}
-                                onChange={(e) =>
+                                onChange={(e) => 
                                     setFormData((prev) => {
-                                        const result = [...prev.skills];
-                                        result[index] = e.target.value;
-                                        return { ...prev, skills: result };
+                                        const result = [...prev.skills]
+                                        result[index] = e.target.value
+                                        return {...prev, skills: result}
                                     })
                                 }
                             />
-                        );
+                        )
                     })}
 
                     <button
