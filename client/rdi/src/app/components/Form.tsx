@@ -1,122 +1,83 @@
-import { ChangeEvent, useState } from "react"
-import { ucfMajors } from "../data/majors"
-
+import { ChangeEvent, useState } from "react";
+import { ucfMajors } from "../data/majors";
 
 interface Experience {
-    name: string,
-    description: string,
-    title: string,
-    responsibilities: string
+    name: string;
+    description: string;
+    title: string;
+    responsibilities: string;
 }
 const createEmptyExperience = () => {
     return {
         name: "",
         description: "",
         title: "",
-        responsibilities: ""
-    }
-}
-const createEmptyExperience = () => {
-    return {
-        name: "",
-        description: "",
-        title: "",
-        responsibilities: ""
-    }
-}
+        responsibilities: "",
+    };
+};
 
 interface Education {
-    name: string,
+    name: string;
     dates: {
-        start: string,
-        end: string
-        start: string,
-        end: string
-    },
-    degree: string,
+        start: string;
+        end: string;
+    };
+    degree: string;
     gpa: {
-        scale: number,
-        gpa: number
-    },
-    clubs: Experience[],
-    skills: string[]
+        scale: number;
+        gpa: number;
+    };
+    clubs: Experience[];
+    skills: string[];
 }
 const createEmptyEducation = (): Education => {
     return {
         name: "",
         dates: {
             start: "",
-            end: ""
+            end: "",
         },
         degree: "",
         gpa: {
             scale: 0,
-            gpa: 0
+            gpa: 0,
         },
         clubs: [createEmptyExperience()],
-        skills: [""]
-    }
-}
-const createEmptyEducation = (): Education => {
-    return {
-        name: "",
-        dates: {
-            start: "",
-            end: ""
-        },
-        degree: "",
-        gpa: {
-            scale: 0,
-            gpa: 0
-        },
-        clubs: [createEmptyExperience()],
-        skills: [""]
-    }
-}
+        skills: [""],
+    };
+};
 
 interface Project {
-    name: string,
-    description: string,
-    skills: string[],
-    link: string
+    name: string;
+    description: string;
+    skills: string[];
+    link: string;
 }
 const createEmptyProject = (): Project => {
     return {
         name: "",
         description: "",
         skills: [""],
-        link: ""
-    }
-    link: string
-}
-const createEmptyProject = (): Project => {
-    return {
-        name: "",
-        description: "",
-        skills: [""],
-        link: ""
-    }
-}
+        link: "",
+    };
+};
 
 interface Form {
-    name: string,
-    bio: string,
-    resume: any,
-    resumeType?: string,
-    major: string,
-    schoolYear: string,
-    graduationYear: number,
-    links: string[],
-    clubs: Experience[],
-    education: Education[],
-    workExperience: Experience[],
-    workExperience: Experience[],
-    picture: any,
-    projects: Project[],
-    skills: string[]
+    name: string;
+    bio: string;
+    resume: any;
+    resumeType?: string;
+    major: string;
+    schoolYear: string;
+    graduationYear: number;
+    links: string[];
+    clubs: Experience[];
+    education: Education[];
+    workExperience: Experience[];
+    picture: any;
+    projects: Project[];
+    skills: string[];
 }
-const createEmptyForm = (): Form => {
-    return {
 const createEmptyForm = (): Form => {
     return {
         name: "",
@@ -130,58 +91,40 @@ const createEmptyForm = (): Form => {
         clubs: [createEmptyExperience()],
         education: [createEmptyEducation()],
         workExperience: [createEmptyExperience()],
-        links: [""],
-        clubs: [createEmptyExperience()],
-        education: [createEmptyEducation()],
-        workExperience: [createEmptyExperience()],
         picture: null,
         projects: [createEmptyProject()],
-        skills: [""]
-    }
-}
+        skills: [""],
+    };
+};
 
 const Form = () => {
-    const [formData, setFormData] = useState<Form>(createEmptyForm())
-        projects: [createEmptyProject()],
-        skills: [""]
-    }
-}
-
-const Form = () => {
-    const [formData, setFormData] = useState<Form>(createEmptyForm())
+    const [formData, setFormData] = useState<Form>(createEmptyForm());
 
     const handleSubmit = (event: React.FormEvent) => {
-        event.preventDefault()
-        console.log(formData)
-    }
-
-    const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        const name = event.target.name
-        const value = event.target.value
-        setFormData((prev) => ({...prev, [name]: value}))
-    }
+        event.preventDefault();
+        console.log(formData);
+    };
 
     const handleArray = (event: React.FormEvent, array: any[], input: any) => {
-        event.preventDefault()
-        array.push(input)
-    }
-
-    const handleSubmit = (event: React.FormEvent) => {
-        event.preventDefault()
-        // console.log(formData)
-    }
+        event.preventDefault();
+        array.push(input);
+    };
 
     return (
         <>
             <form onSubmit={handleSubmit}>
-                
                 <div className="input name">
                     <h3>Name</h3>
                     <input
                         type="text"
                         name="name"
                         value={formData.name}
-                        onChange={handleChange}
+                        onChange={(e) =>
+                            setFormData((prev) => ({
+                                ...prev,
+                                name: e.target.value,
+                            }))
+                        }
                     />
                 </div>
 
@@ -190,7 +133,12 @@ const Form = () => {
                     <textarea
                         name="bio"
                         value={formData.bio}
-                        onChange={handleChange}
+                        onChange={(e) =>
+                            setFormData((prev) => ({
+                                ...prev,
+                                bio: e.target.value,
+                            }))
+                        }
                         rows={5}
                     />
                 </div>
@@ -203,7 +151,13 @@ const Form = () => {
                             name="resumeType"
                             value="file"
                             checked={formData.resumeType === "file"}
-                            onChange={(e) => setFormData(prev => ({...prev, resumeType: "file", resume: null}))}
+                            onChange={(e) =>
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    resumeType: "file",
+                                    resume: null,
+                                }))
+                            }
                         />
                         Upload File
                     </label>
@@ -213,31 +167,45 @@ const Form = () => {
                             name="resumeType"
                             value="link"
                             checked={formData.resumeType === "link"}
-                            onChange={(e) => setFormData(prev => ({...prev, resumeType: "link", resume: ""}))}
+                            onChange={(e) =>
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    resumeType: "link",
+                                    resume: "",
+                                }))
+                            }
                         />
                         Provide Link
                     </label>
-                    
+
                     {formData.resumeType === "file" && (
                         <input
                             type="file"
                             accept=".pdf,.docx"
                             onChange={(e) => {
-                                const file = e.target.files?.[0]
+                                const file = e.target.files?.[0];
                                 if (file) {
-                                    setFormData(prev => ({...prev, resume: file}))
+                                    setFormData((prev) => ({
+                                        ...prev,
+                                        resume: file,
+                                    }));
                                 }
                             }}
                         />
                     )}
-                    
+
                     {formData.resumeType === "link" && (
                         <input
                             type="url"
                             name="resume"
                             placeholder="https://example.com/resume.pdf"
                             value={formData.resume || ""}
-                            onChange={handleChange}
+                            onChange={(e) =>
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    resume: e.target.value,
+                                }))
+                            }
                         />
                     )}
                 </div>
@@ -247,7 +215,12 @@ const Form = () => {
                     <select
                         name="major"
                         value={formData.major}
-                        onChange={handleChange}
+                        onChange={(e) =>
+                            setFormData((prev) => ({
+                                ...prev,
+                                major: e.target.value,
+                            }))
+                        }
                     >
                         <option value="">Select Major</option>
                         {ucfMajors.map((major, index) => (
@@ -266,7 +239,12 @@ const Form = () => {
                             name="schoolYear"
                             value="Freshman"
                             checked={formData.schoolYear === "Freshman"}
-                            onChange={handleChange}
+                            onChange={(e) =>
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    schoolYear: e.target.value,
+                                }))
+                            }
                         />
                         Freshman
                     </label>
@@ -276,7 +254,12 @@ const Form = () => {
                             name="schoolYear"
                             value="Sophomore"
                             checked={formData.schoolYear === "Sophomore"}
-                            onChange={handleChange}
+                            onChange={(e) =>
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    schoolYear: e.target.value,
+                                }))
+                            }
                         />
                         Sophomore
                     </label>
@@ -286,7 +269,12 @@ const Form = () => {
                             name="schoolYear"
                             value="Junior"
                             checked={formData.schoolYear === "Junior"}
-                            onChange={handleChange}
+                            onChange={(e) =>
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    schoolYear: e.target.value,
+                                }))
+                            }
                         />
                         Junior
                     </label>
@@ -296,7 +284,12 @@ const Form = () => {
                             name="schoolYear"
                             value="Senior"
                             checked={formData.schoolYear === "Senior"}
-                            onChange={handleChange}
+                            onChange={(e) =>
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    schoolYear: e.target.value,
+                                }))
+                            }
                         />
                         Senior
                     </label>
@@ -306,7 +299,12 @@ const Form = () => {
                             name="schoolYear"
                             value="Graduate"
                             checked={formData.schoolYear === "Graduate"}
-                            onChange={handleChange}
+                            onChange={(e) =>
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    schoolYear: e.target.value,
+                                }))
+                            }
                         />
                         Graduate
                     </label>
@@ -318,27 +316,24 @@ const Form = () => {
                         type="number"
                         name="graduationYear"
                         value={formData.graduationYear || ""}
-                        onChange={handleChange}
+                        onChange={(e) =>
+                            setFormData((prev) => ({
+                                ...prev,
+                                graduationYear: Number(e.target.value),
+                            }))
+                        }
                         min="2020"
                         max="2035"
                     />
                 </div>
 
-                <div className="input links">
-                
-                </div>
+                <div className="input links"></div>
 
-                <div className="input clubs">
+                <div className="input clubs"></div>
 
-                </div>
+                <div className="input education"></div>
 
-                <div className="input education">
-
-                </div>
-
-                <div className="input work-experience">
-
-                </div>
+                <div className="input work-experience"></div>
 
                 <div className="input picture">
                     <h3>Picture</h3>
@@ -346,40 +341,52 @@ const Form = () => {
                         type="file"
                         accept="image/*"
                         onChange={(e) => {
-                            const file = e.target.files?.[0]
+                            const file = e.target.files?.[0];
                             if (file) {
-                                setFormData(prev => ({...prev, picture: file}))
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    picture: file,
+                                }));
                             }
                         }}
                     />
                 </div>
 
-                <div className="input projects">
-
-                </div>
+                <div className="input projects"></div>
 
                 <div className="input skills">
                     <h3>Skills</h3>
 
                     {formData.skills.map((skill, index) => {
-                        return(
+                        return (
                             <input
                                 key={`${index}`}
                                 type="text"
-                                name={`skills.${index}`}
+                                name={`skills[${index}]`}
                                 value={skill}
-                                onChange={handleChange}
+                                onChange={(e) =>
+                                    setFormData((prev) => {
+                                        const result = [...prev.skills];
+                                        result[index] = e.target.value;
+                                        return { ...prev, skills: result };
+                                    })
+                                }
                             />
-                        )
+                        );
                     })}
 
-                    <button onClick={(e) => handleArray(e, formData.skills, "")}/>
+                    <button
+                        onClick={(e) => setFormData((prev) => ({
+                            ...prev,
+                            skills: [...prev.skills, ""]
+                        }))}
+                    />
                 </div>
 
                 <button type="submit">Submit</button>
             </form>
         </>
-    )
-}
+    );
+};
 
-export default Form
+export default Form;
