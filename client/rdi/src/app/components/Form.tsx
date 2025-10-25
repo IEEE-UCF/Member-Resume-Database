@@ -327,13 +327,264 @@ const Form = () => {
                     />
                 </div>
 
-                <div className="input links"></div>
+                <div className="input links">
+                    <h3>Links</h3>
+                    {formData.links.map((link, index) => {
+                        return (
+                            <input
+                                key={`links[${index}]`}
+                                type="url"
+                                name={`links[${index}]`}
+                                placeholder="https://example.com"
+                                value={link}
+                                onChange={(e) =>
+                                    setFormData((prev) => {
+                                        const result = [...prev.links];
+                                        result[index] = e.target.value;
+                                        return { ...prev, links: result };
+                                    })
+                                }
+                            />
+                        );
+                    })}
+                    <input
+                        type="button"
+                        value="Add Link"
+                        onClick={(e) =>
+                            setFormData((prev) => ({
+                                ...prev,
+                                links: [...prev.links, ""],
+                            }))
+                        }
+                    />  
+                </div>
 
-                <div className="input clubs"></div>
+                <div className="input clubs">
+                    <h3>Clubs</h3>
+                    {formData.clubs.map((club, index) => {
+                        return (
+                            <div key={`clubs[${index}]`} className="club">
+                                <h4>Club {index + 1}</h4>
+                                <input
+                                    type="text"
+                                    name={`clubs[${index}].name`}
+                                    placeholder="Club Name"
+                                    value={club.name}
+                                    onChange={(e) =>
+                                        setFormData((prev) => {
+                                            const result = [...prev.clubs];
+                                            result[index].name = e.target.value;
+                                            return { ...prev, clubs: result };
+                                        })
+                                    }
+                                />
+                                <textarea
+                                    name={`clubs[${index}].description`}
+                                    placeholder="Description"
+                                    value={club.description}
+                                    onChange={(e) =>
+                                        setFormData((prev) => {
+                                            const result = [...prev.clubs];
+                                            result[index].description = e.target.value;
+                                            return { ...prev, clubs: result };
+                                        })
+                                    }
+                                    rows={3}
+                                />
+                                <input
+                                    type="text"
+                                    name={`clubs[${index}].title`}
+                                    placeholder="Your Title"
+                                    value={club.title}
+                                    onChange={(e) =>
+                                        setFormData((prev) => {
+                                            const result = [...prev.clubs];
+                                            result[index].title = e.target.value;
+                                            return { ...prev, clubs: result };
+                                        })
+                                    }
+                                />
+                                <textarea
+                                    name={`clubs[${index}].responsibilities`}
+                                    placeholder="Responsibilities"
+                                    value={club.responsibilities}
+                                    onChange={(e) =>
+                                        setFormData((prev) => {
+                                            const result = [...prev.clubs];
+                                            result[index].responsibilities = e.target.value;
+                                            return { ...prev, clubs: result };
+                                        })
+                                    }
+                                    rows={3}
+                                />
+                            </div>
+                        );
+                    })}
+                    <input
+                        type="button"
+                        value="Add Club"
+                        onClick={(e) =>
+                            setFormData((prev) => ({
+                                ...prev,
+                                clubs: [...prev.clubs, createEmptyExperience()],
+                            }))
+                        }
+                    />
+                </div>
 
-                <div className="input education"></div>
+                <div className="input education">
+                    <h3>Education</h3>
+                    {formData.education.map((education, index) => {
+                        return (
+                            <div key={`education[${index}]`} className="education-entry">
+                                <h4>Education {index + 1}</h4>
+                                <input
+                                    type="text"
+                                    name={`education[${index}].name`}
+                                    placeholder="School Name"
+                                    value={education.name}
+                                    onChange={(e) =>
+                                        setFormData((prev) => {
+                                            const result = [...prev.education];
+                                            result[index].name = e.target.value;
+                                            return { ...prev, education: result };
+                                        })
+                                    }
+                                />
+                                <input
+                                    type="text"
+                                    name={`education[${index}].degree`}
+                                    placeholder="Degree"
+                                    value={education.degree}
+                                    onChange={(e) =>
+                                        setFormData((prev) => {
+                                            const result = [...prev.education];
+                                            result[index].degree = e.target.value;
+                                            return { ...prev, education: result };
+                                        })
+                                    }
+                                />
+                                <input
+                                    type="number"
+                                    name={`education[${index}].gpa.gpa`}
+                                    placeholder="GPA"
+                                    value={education.gpa.gpa || ""}
+                                    onChange={(e) =>
+                                        setFormData((prev) => {
+                                            const result = [...prev.education];
+                                            result[index].gpa.gpa = Number(e.target.value);
+                                            return { ...prev, education: result };
+                                        })
+                                    }
+                                    step="0.01"
+                                    min="0"
+                                    max={education.gpa.scale || 4}
+                                />
+                                <input
+                                    type="number"
+                                    name={`education[${index}].gpa.scale`}
+                                    placeholder="GPA Scale"
+                                    value={education.gpa.scale || ""}
+                                    onChange={(e) =>
+                                        setFormData((prev) => {
+                                            const result = [...prev.education];
+                                            result[index].gpa.scale = Number(e.target.value);
+                                            return { ...prev, education: result };
+                                        })
+                                    }
+                                    step="0.01"
+                                    min="0"
+                                />
+                            </div>
+                        );
+                    })}
+                    <input
+                        type="button"
+                        value="Add Education"
+                        onClick={(e) =>
+                            setFormData((prev) => ({
+                                ...prev,
+                                education: [...prev.education, createEmptyEducation()],
+                            }))
+                        }
+                    />
+                </div>
 
-                <div className="input work-experience"></div>
+                <div className="input work-experience">
+                    <h3>Work Experience</h3>
+                    {formData.workExperience.map((experience, index) => {
+                        return (
+                            <div key={`workExperience[${index}]`} className="experience">
+                                <h4>Experience {index + 1}</h4>
+                                <input
+                                    type="text"
+                                    name={`workExperience[${index}].name`}
+                                    placeholder="Company Name"
+                                    value={experience.name}
+                                    onChange={(e) =>
+                                        setFormData((prev) => {
+                                            const result = [...prev.workExperience];
+                                            result[index].name = e.target.value;
+                                            return { ...prev, workExperience: result };
+                                        })
+                                    }
+                                />
+                                <input
+                                    type="text"
+                                    name={`workExperience[${index}].title`}
+                                    placeholder="Job Title"
+                                    value={experience.title}
+                                    onChange={(e) =>
+                                        setFormData((prev) => {
+                                            const result = [...prev.workExperience];
+                                            result[index].title = e.target.value;
+                                            return { ...prev, workExperience: result };
+                                        })
+                                    }
+                                />
+                                <textarea
+                                    name={`workExperience[${index}].description`}
+                                    placeholder="Description"
+                                    value={experience.description}
+                                    onChange={(e) =>
+                                        setFormData((prev) => {
+                                            const result = [...prev.workExperience];
+                                            result[index].description = e.target.value;
+                                            return { ...prev, workExperience: result };
+                                        })
+                                    }
+                                    rows={3}
+                                />
+                                <textarea
+                                    name={`workExperience[${index}].responsibilities`}
+                                    placeholder="Responsibilities"
+                                    value={experience.responsibilities}
+                                    onChange={(e) =>
+                                        setFormData((prev) => {
+                                            const result = [...prev.workExperience];
+                                            result[index].responsibilities = e.target.value;
+                                            return { ...prev, workExperience: result };
+                                        })
+                                    }
+                                    rows={3}
+                                />
+                            </div>
+                        );
+                    })}
+                    <input
+                        type="button"
+                        value="Add Experience"
+                        onClick={(e) =>
+                            setFormData((prev) => ({
+                                ...prev,
+                                workExperience: [
+                                    ...prev.workExperience,
+                                    createEmptyExperience(),
+                                ],
+                            }))
+                        }
+                    />
+                </div>
 
                 <div className="input picture">
                     <h3>Picture</h3>
