@@ -14,16 +14,7 @@ const ProjectComponent = ({
 }: ProjectComponentProps) => {
     return (
         <>
-            <h3>{project.name}</h3>
 
-            <p>{project.description}</p>
-            <p>{project.link}</p>
-
-            {
-                project.skills.map((skill) => {
-                    <p>{skill}</p>
-                })
-            }
         </>
     )
 }
