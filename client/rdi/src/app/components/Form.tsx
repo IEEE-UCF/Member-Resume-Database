@@ -503,6 +503,12 @@ const Form = () => {
                                         value={education.dates.start}
                                         onChange={(e) =>
                                             setFormData((prev) => {
+                                                if (e.target.value > education.dates.end && education.dates.end !== "") {
+                                                    alert("Start date cannot be after end date.");
+                                                    document.getElementsByName(`education[${index}].dates.start`)[0].value ="";
+                                                    return prev;
+                                                }
+
                                                 const result = [...prev.education]; 
                                                 result[index].dates.start = e.target.value;
                                                 return { ...prev, education: result };
@@ -516,6 +522,11 @@ const Form = () => {
                                         value={education.dates.end}
                                         onChange={(e) =>
                                             setFormData((prev) => {
+                                                if (e.target.value < education.dates.start && education.dates.start !== "") {
+                                                    alert("Start date cannot be after end date.");
+                                                    document.getElementsByName(`education[${index}].dates.end`)[0].value ="";
+                                                    return prev;
+                                                }
                                                 const result = [...prev.education];
                                                 result[index].dates.end = e.target.value;
                                                 return { ...prev, education: result };
