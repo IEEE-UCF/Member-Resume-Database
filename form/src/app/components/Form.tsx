@@ -669,7 +669,6 @@ const Form = () => {
                                                             return { ...prev, education: result };
                                                         })
                                                     }
-                                                    rows={3}
                                                 />
                                                 <input
                                                     type="text"
