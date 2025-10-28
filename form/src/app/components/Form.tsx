@@ -577,6 +577,156 @@ const Form = () => {
                                     step="0.01"
                                     min="0"
                                 />
+                                <div className="dates">
+                                    <input
+                                        type="month"
+                                        name={`education[${index}].dates.start`}
+                                        placeholder="Start Date"
+                                        value={education.dates.start}
+                                        onChange={(e) =>
+                                            setFormData((prev) => {
+                                                if (e.target.value > education.dates.end && education.dates.end !== "") {
+                                                    alert("Start date cannot be after end date.");
+                                                    document.getElementsByName(`education[${index}].dates.start`)[0].value ="";
+                                                    return prev;
+                                                }
+
+                                                const result = [...prev.education]; 
+                                                result[index].dates.start = e.target.value;
+                                                return { ...prev, education: result };
+                                            })
+                                        }
+                                    />
+                                    <input
+                                        type="month"
+                                        name={`education[${index}].dates.end`}
+                                        placeholder="End Date"
+                                        value={education.dates.end}
+                                        onChange={(e) =>
+                                            setFormData((prev) => {
+                                                if (e.target.value < education.dates.start && education.dates.start !== "") {
+                                                    alert("Start date cannot be after end date.");
+                                                    document.getElementsByName(`education[${index}].dates.end`)[0].value ="";
+                                                    return prev;
+                                                }
+                                                const result = [...prev.education];
+                                                result[index].dates.end = e.target.value;
+                                                return { ...prev, education: result };
+                                            })
+                                        }
+                                    />
+                                </div>
+                                <div className="education-skills">
+                                    <h5>Skills</h5>
+                                    {education.skills.map((skill, skillIndex) => {
+                                        return (
+                                            <input
+                                                key={`education[${index}].skills[${skillIndex}]`}
+                                                type="text"
+                                                name={`education[${index}].skills[${skillIndex}]`}
+                                                value={skill}
+                                                onChange={(e) =>
+                                                    setFormData((prev) => {
+                                                        const result = [...prev.education];
+                                                        result[index].skills[skillIndex] =
+                                                            e.target.value;
+                                                        return { ...prev, education: result };
+                                                    })
+                                                }
+                                            />
+                                        );
+                                    })}
+                                    <input
+                                        type="button"
+                                        value="Add Skill"
+                                        onClick={(e) =>
+                                            setFormData((prev) => {
+                                                const result = [...prev.education];
+                                                result[index].skills.push("");
+                                                return { ...prev, education: result };
+                                            })
+                                        }
+                                    />
+                                </div>
+                                <div className="education-clubs">
+                                    <h5>Clubs</h5>
+                                    {education.clubs.map((club, clubIndex) => {
+                                        return (
+                                            <div
+                                                key={`education[${index}].clubs[${clubIndex}]`}
+                                                className="club"
+                                            >
+                                                <input
+                                                    type="text"
+                                                    name={`education[${index}].clubs[${clubIndex}].name`}
+                                                    placeholder="Club Name"
+                                                    value={club.name}
+                                                    onChange={(e) =>
+                                                        setFormData((prev) => {
+                                                            const result = [...prev.education];
+                                                            result[index].clubs[clubIndex].name =
+                                                                e.target.value;
+                                                            return { ...prev, education: result };
+                                                        })
+                                                    }
+                                                />
+                                                <input
+                                                    type="text"
+                                                    name={`education[${index}].clubs[${clubIndex}].title`}
+                                                    placeholder="Your Title"
+                                                    value={club.title}
+                                                    onChange={(e) =>
+                                                        setFormData((prev) => {
+                                                            const result = [...prev.education];
+                                                            result[index].clubs[clubIndex].title =
+                                                                e.target.value;
+                                                            return { ...prev, education: result };
+                                                        })
+                                                    }
+                                                />
+                                                <textarea
+                                                    name={`education[${index}].clubs[${clubIndex}].description`}
+                                                    placeholder="Description"
+                                                    value={club.description}
+                                                    onChange={(e) =>
+                                                        setFormData((prev) => {
+                                                            const result = [...prev.education];
+                                                            result[index].clubs[clubIndex].description =
+                                                                e.target.value;
+                                                            return { ...prev, education: result };
+                                                        })
+                                                    }
+                                                    rows={3}
+                                                />
+                                                <textarea
+                                                    name={`education[${index}].clubs[${clubIndex}].responsibilities`}
+                                                    placeholder="Responsibilities"
+                                                    value={club.responsibilities}
+                                                    onChange={(e) =>
+                                                        setFormData((prev) => {
+                                                            const result = [...prev.education];
+                                                            result[index].clubs[clubIndex].responsibilities =
+                                                                e.target.value;
+                                                            return { ...prev, education: result };
+                                                        })
+                                                    }
+                                                    rows={3}
+                                                />
+                                            </div>
+                                        );
+                                    })}
+                                    <input
+                                        type="button"
+                                        value="Add Club"
+                                        onClick={(e) =>
+                                            setFormData((prev) => {
+                                                const result = [...prev.education];
+                                                result[index].clubs.push(createEmptyExperience());
+                                                return { ...prev, education: result };
+                                            })
+                                        }
+                                    />
+                                </div>
                             </div>
                         );
                     })}
