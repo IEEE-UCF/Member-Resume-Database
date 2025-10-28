@@ -1,5 +1,7 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { ucfMajors } from "../data/majors";
+
+import ProjectComponent from "./ProjectComponent"
 
 interface Experience {
     name: string;
@@ -770,128 +772,16 @@ const Form = () => {
 
                 <div className="input projects">
                     <h3>Projects</h3>
-                    {formData.projects.map((project, index) => {
-                        return (
-                            <div
-                                key={`projects[${index}]`}
-                                className="project"
-                            >
-                                <h4>Project {index + 1}</h4>
-                                <input
-                                    type="text"
-                                    name={`projects[${index}].name`}
-                                    placeholder="Project Name"
-                                    value={project.name}
-                                    onChange={(e) =>
-                                        setFormData((prev) => {
-                                            const result = [
-                                                ...prev.projects,
-                                            ];
-                                            result[index].name = e.target.value;
-                                            return {
-                                                ...prev,
-                                                projects: result,
-                                            };
-                                        })
-                                    }
-                                />
-                                <textarea
-                                    name={`projects[${index}].description`}
-                                    placeholder="Project Description"
-                                    value={project.description}
-                                    onChange={(e) =>
-                                        setFormData((prev) => {
-                                            const result = [
-                                                ...prev.projects,
-                                            ];
-                                            result[index].description =
-                                                e.target.value;
-                                            return {
-                                                ...prev,
-                                                projects: result,
-                                            };
-                                        })
-                                    }
-                                    rows={3}
-                                />
-                                <div className="input skills">
-                                    <h3>Skills</h3>
+                    {formData.projects.map((project, index) => (
+                        <ProjectComponent
+                            key={index}
 
-                                    {project.skills.map(
-                                        (skill, skillsIndex) => {
-                                            return (
-                                                <input
-                                                    key={`projects[${index}].skills[${skillsIndex}]`}
-                                                    type="text"
-                                                    name={`projects[${index}].skills[${skillsIndex}]`}
-                                                    value={skill}
-                                                    onChange={(e) =>
-                                                        setFormData((prev) => {
-                                                            const updatedProjects =
-                                                                [
-                                                                    ...prev.projects,
-                                                                ];
-                                                            const updatedProject =
-                                                                {
-                                                                    ...updatedProjects[
-                                                                        index
-                                                                    ],
-                                                                };
-                                                            const updatedSkills =
-                                                                [
-                                                                    ...updatedProject.skills,
-                                                                ];
-                                                            updatedSkills[
-                                                                skillsIndex
-                                                            ] = e.target.value;
-                                                            updatedProject.skills =
-                                                                updatedSkills;
-                                                            updatedProjects[
-                                                                index
-                                                            ] =
-                                                                updatedProject;
+                            project = {project}
+                            index = {index}
 
-                                                            return {
-                                                                ...prev,
-                                                                projects:
-                                                                    updatedProjects,
-                                                            };
-                                                        })
-                                                    }
-                                                />
-                                            );
-                                        }
-                                    )}
-
-                                    <button
-                                        onClick={(e) =>
-                                            setFormData((prev) => {
-                                                const updatedProjects = [
-                                                    ...prev.projects,
-                                                ];
-                                                const updatedProject = {
-                                                    ...updatedProjects[
-                                                        index
-                                                    ],
-                                                };
-                                                updatedProject.skills = [
-                                                    ...updatedProject.skills,
-                                                    "",
-                                                ];
-                                                updatedProjects[index] =
-                                                    updatedProject;
-                                                return {
-                                                    ...prev,
-                                                    projects:
-                                                        updatedProjects,
-                                                };
-                                            })
-                                        }
-                                    />
-                                </div>
-                            </div>
-                        );
-                    })}
+                            setFormData = {setFormData}
+                        />
+                    ))}
                     <input
                         type="button"
                         value="Add Project"
