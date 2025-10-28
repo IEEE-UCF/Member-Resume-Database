@@ -5,14 +5,14 @@ interface Experience {
     name: string;
     description: string;
     title: string;
-    responsibilities: string;
+    skills: string[];
 }
 const createEmptyExperience = () => {
     return {
         name: "",
         description: "",
         title: "",
-        responsibilities: "",
+        skills: [""],
     };
 };
 
@@ -100,14 +100,21 @@ const createEmptyForm = (): Form => {
 const Form = () => {
     const [formData, setFormData] = useState<Form>(createEmptyForm());
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        console.log(formData);
-    };
+        try {
+            const response = await fetch("http://localhost:3001", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
 
-    const handleArray = (event: React.FormEvent, array: any[], input: any) => {
-        event.preventDefault();
-        array.push(input);
+            const data = await response.json();
+            console.log(data);
+            console.log(formData)
+        } catch (error) {
+            console.error("Error: ", error);
+        }
     };
 
     return (
@@ -406,20 +413,70 @@ const Form = () => {
                                         })
                                     }
                                 />
-                                <textarea
-                                    name={`clubs[${index}].responsibilities`}
-                                    placeholder="Responsibilities"
-                                    value={club.responsibilities}
-                                    onChange={(e) =>
-                                        setFormData((prev) => {
-                                            const result = [...prev.clubs];
-                                            result[index].responsibilities =
-                                                e.target.value;
-                                            return { ...prev, clubs: result };
-                                        })
-                                    }
-                                    rows={3}
-                                />
+                                <div className="input skills">
+                                    <h3>Skills</h3>
+
+                                    {club.skills.map((skill, skillsIndex) => {
+                                        return (
+                                            <input
+                                                key={`clubs[${index}].skills[${skillsIndex}]`}
+                                                type="text"
+                                                name={`clubs[${index}].skills[${skillsIndex}]`}
+                                                value={skill}
+                                                onChange={(e) =>
+                                                    setFormData((prev) => {
+                                                        const updatedClubs = [
+                                                            ...prev.clubs,
+                                                        ];
+                                                        const updatedClub = {
+                                                            ...updatedClubs[
+                                                                index
+                                                            ],
+                                                        };
+                                                        const updatedSkills = [
+                                                            ...updatedClub.skills,
+                                                        ];
+                                                        updatedSkills[
+                                                            skillsIndex
+                                                        ] = e.target.value;
+                                                        updatedClub.skills =
+                                                            updatedSkills;
+                                                        updatedClubs[index] =
+                                                            updatedClub;
+
+                                                        return {
+                                                            ...prev,
+                                                            clubs: updatedClubs,
+                                                        };
+                                                    })
+                                                }
+                                            />
+                                        );
+                                    })}
+
+                                    <button
+                                        onClick={(e) =>
+                                            setFormData((prev) => {
+                                                const updatedClubs = [
+                                                    ...prev.clubs,
+                                                ];
+                                                const updatedClub = {
+                                                    ...updatedClubs[index],
+                                                };
+                                                updatedClub.skills = [
+                                                    ...updatedClub.skills,
+                                                    "",
+                                                ];
+                                                updatedClubs[index] =
+                                                    updatedClub;
+                                                return {
+                                                    ...prev,
+                                                    clubs: updatedClubs,
+                                                };
+                                            })
+                                        }
+                                    />
+                                </div>
                             </div>
                         );
                     })}
@@ -601,25 +658,81 @@ const Form = () => {
                                     }
                                     rows={3}
                                 />
-                                <textarea
-                                    name={`workExperience[${index}].responsibilities`}
-                                    placeholder="Responsibilities"
-                                    value={experience.responsibilities}
-                                    onChange={(e) =>
-                                        setFormData((prev) => {
-                                            const result = [
-                                                ...prev.workExperience,
-                                            ];
-                                            result[index].responsibilities =
-                                                e.target.value;
-                                            return {
-                                                ...prev,
-                                                workExperience: result,
-                                            };
-                                        })
-                                    }
-                                    rows={3}
-                                />
+                                <div className="input skills">
+                                    <h3>Skills</h3>
+
+                                    {experience.skills.map(
+                                        (skill, skillsIndex) => {
+                                            return (
+                                                <input
+                                                    key={`workExperience[${index}].skills[${skillsIndex}]`}
+                                                    type="text"
+                                                    name={`workExperience[${index}].skills[${skillsIndex}]`}
+                                                    value={skill}
+                                                    onChange={(e) =>
+                                                        setFormData((prev) => {
+                                                            const updatedWorkExperiences =
+                                                                [
+                                                                    ...prev.workExperience,
+                                                                ];
+                                                            const updatedWorkExperience =
+                                                                {
+                                                                    ...updatedWorkExperiences[
+                                                                        index
+                                                                    ],
+                                                                };
+                                                            const updatedSkills =
+                                                                [
+                                                                    ...updatedWorkExperience.skills,
+                                                                ];
+                                                            updatedSkills[
+                                                                skillsIndex
+                                                            ] = e.target.value;
+                                                            updatedWorkExperience.skills =
+                                                                updatedSkills;
+                                                            updatedWorkExperiences[
+                                                                index
+                                                            ] =
+                                                                updatedWorkExperience;
+
+                                                            return {
+                                                                ...prev,
+                                                                workExperience:
+                                                                    updatedWorkExperiences,
+                                                            };
+                                                        })
+                                                    }
+                                                />
+                                            );
+                                        }
+                                    )}
+
+                                    <button
+                                        onClick={(e) =>
+                                            setFormData((prev) => {
+                                                const updatedWorkExperiences = [
+                                                    ...prev.workExperience,
+                                                ];
+                                                const updatedWorkExperience = {
+                                                    ...updatedWorkExperiences[
+                                                        index
+                                                    ],
+                                                };
+                                                updatedWorkExperience.skills = [
+                                                    ...updatedWorkExperience.skills,
+                                                    "",
+                                                ];
+                                                updatedWorkExperiences[index] =
+                                                    updatedWorkExperience;
+                                                return {
+                                                    ...prev,
+                                                    workExperience:
+                                                        updatedWorkExperiences,
+                                                };
+                                            })
+                                        }
+                                    />
+                                </div>
                             </div>
                         );
                     })}

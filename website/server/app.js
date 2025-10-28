@@ -1,9 +1,24 @@
-const express = require('express')
+import express from "express"
+
+import cors from "cors"
+import morgan from "morgan"
+
 const app = express()
-const port = 3000
+const port = 3001
+
+app.use(cors())
+app.use(express.json())
+app.use(morgan("dev"))
+
+let latestData = null
+
+app.post("/", (req, res) => {
+  latestData = req.body
+  res.json({status: "ok"})
+})
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.json(latestData)
 })
 
 app.listen(port, () => {
