@@ -356,7 +356,7 @@ const Form = () => {
                                 links: [...prev.links, ""],
                             }))
                         }
-                    />  
+                    />
                 </div>
 
                 <div className="input clubs">
@@ -385,7 +385,8 @@ const Form = () => {
                                     onChange={(e) =>
                                         setFormData((prev) => {
                                             const result = [...prev.clubs];
-                                            result[index].description = e.target.value;
+                                            result[index].description =
+                                                e.target.value;
                                             return { ...prev, clubs: result };
                                         })
                                     }
@@ -399,7 +400,8 @@ const Form = () => {
                                     onChange={(e) =>
                                         setFormData((prev) => {
                                             const result = [...prev.clubs];
-                                            result[index].title = e.target.value;
+                                            result[index].title =
+                                                e.target.value;
                                             return { ...prev, clubs: result };
                                         })
                                     }
@@ -411,7 +413,8 @@ const Form = () => {
                                     onChange={(e) =>
                                         setFormData((prev) => {
                                             const result = [...prev.clubs];
-                                            result[index].responsibilities = e.target.value;
+                                            result[index].responsibilities =
+                                                e.target.value;
                                             return { ...prev, clubs: result };
                                         })
                                     }
@@ -436,7 +439,10 @@ const Form = () => {
                     <h3>Education</h3>
                     {formData.education.map((education, index) => {
                         return (
-                            <div key={`education[${index}]`} className="education-entry">
+                            <div
+                                key={`education[${index}]`}
+                                className="education-entry"
+                            >
                                 <h4>Education {index + 1}</h4>
                                 <input
                                     type="text"
@@ -447,7 +453,10 @@ const Form = () => {
                                         setFormData((prev) => {
                                             const result = [...prev.education];
                                             result[index].name = e.target.value;
-                                            return { ...prev, education: result };
+                                            return {
+                                                ...prev,
+                                                education: result,
+                                            };
                                         })
                                     }
                                 />
@@ -459,8 +468,12 @@ const Form = () => {
                                     onChange={(e) =>
                                         setFormData((prev) => {
                                             const result = [...prev.education];
-                                            result[index].degree = e.target.value;
-                                            return { ...prev, education: result };
+                                            result[index].degree =
+                                                e.target.value;
+                                            return {
+                                                ...prev,
+                                                education: result,
+                                            };
                                         })
                                     }
                                 />
@@ -472,8 +485,13 @@ const Form = () => {
                                     onChange={(e) =>
                                         setFormData((prev) => {
                                             const result = [...prev.education];
-                                            result[index].gpa.gpa = Number(e.target.value);
-                                            return { ...prev, education: result };
+                                            result[index].gpa.gpa = Number(
+                                                e.target.value
+                                            );
+                                            return {
+                                                ...prev,
+                                                education: result,
+                                            };
                                         })
                                     }
                                     step="0.01"
@@ -488,8 +506,13 @@ const Form = () => {
                                     onChange={(e) =>
                                         setFormData((prev) => {
                                             const result = [...prev.education];
-                                            result[index].gpa.scale = Number(e.target.value);
-                                            return { ...prev, education: result };
+                                            result[index].gpa.scale = Number(
+                                                e.target.value
+                                            );
+                                            return {
+                                                ...prev,
+                                                education: result,
+                                            };
                                         })
                                     }
                                     step="0.01"
@@ -504,7 +527,10 @@ const Form = () => {
                         onClick={(e) =>
                             setFormData((prev) => ({
                                 ...prev,
-                                education: [...prev.education, createEmptyEducation()],
+                                education: [
+                                    ...prev.education,
+                                    createEmptyEducation(),
+                                ],
                             }))
                         }
                     />
@@ -514,7 +540,10 @@ const Form = () => {
                     <h3>Work Experience</h3>
                     {formData.workExperience.map((experience, index) => {
                         return (
-                            <div key={`workExperience[${index}]`} className="experience">
+                            <div
+                                key={`workExperience[${index}]`}
+                                className="experience"
+                            >
                                 <h4>Experience {index + 1}</h4>
                                 <input
                                     type="text"
@@ -523,9 +552,14 @@ const Form = () => {
                                     value={experience.name}
                                     onChange={(e) =>
                                         setFormData((prev) => {
-                                            const result = [...prev.workExperience];
+                                            const result = [
+                                                ...prev.workExperience,
+                                            ];
                                             result[index].name = e.target.value;
-                                            return { ...prev, workExperience: result };
+                                            return {
+                                                ...prev,
+                                                workExperience: result,
+                                            };
                                         })
                                     }
                                 />
@@ -536,9 +570,15 @@ const Form = () => {
                                     value={experience.title}
                                     onChange={(e) =>
                                         setFormData((prev) => {
-                                            const result = [...prev.workExperience];
-                                            result[index].title = e.target.value;
-                                            return { ...prev, workExperience: result };
+                                            const result = [
+                                                ...prev.workExperience,
+                                            ];
+                                            result[index].title =
+                                                e.target.value;
+                                            return {
+                                                ...prev,
+                                                workExperience: result,
+                                            };
                                         })
                                     }
                                 />
@@ -548,9 +588,15 @@ const Form = () => {
                                     value={experience.description}
                                     onChange={(e) =>
                                         setFormData((prev) => {
-                                            const result = [...prev.workExperience];
-                                            result[index].description = e.target.value;
-                                            return { ...prev, workExperience: result };
+                                            const result = [
+                                                ...prev.workExperience,
+                                            ];
+                                            result[index].description =
+                                                e.target.value;
+                                            return {
+                                                ...prev,
+                                                workExperience: result,
+                                            };
                                         })
                                     }
                                     rows={3}
@@ -561,9 +607,15 @@ const Form = () => {
                                     value={experience.responsibilities}
                                     onChange={(e) =>
                                         setFormData((prev) => {
-                                            const result = [...prev.workExperience];
-                                            result[index].responsibilities = e.target.value;
-                                            return { ...prev, workExperience: result };
+                                            const result = [
+                                                ...prev.workExperience,
+                                            ];
+                                            result[index].responsibilities =
+                                                e.target.value;
+                                            return {
+                                                ...prev,
+                                                workExperience: result,
+                                            };
                                         })
                                     }
                                     rows={3}
@@ -615,22 +667,24 @@ const Form = () => {
                                 type="text"
                                 name={`skills[${index}]`}
                                 value={skill}
-                                onChange={(e) => 
+                                onChange={(e) =>
                                     setFormData((prev) => {
-                                        const result = [...prev.skills]
-                                        result[index] = e.target.value
-                                        return {...prev, skills: result}
+                                        const result = [...prev.skills];
+                                        result[index] = e.target.value;
+                                        return { ...prev, skills: result };
                                     })
                                 }
                             />
-                        )
+                        );
                     })}
 
                     <button
-                        onClick={(e) => setFormData((prev) => ({
-                            ...prev,
-                            skills: [...prev.skills, ""]
-                        }))}
+                        onClick={(e) =>
+                            setFormData((prev) => ({
+                                ...prev,
+                                skills: [...prev.skills, ""],
+                            }))
+                        }
                     />
                 </div>
 
