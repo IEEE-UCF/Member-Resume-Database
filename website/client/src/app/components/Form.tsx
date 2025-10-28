@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import LinksComponent from "./LinksComponent"
 import ProjectComponent from "./ProjectComponent"
 
 interface Experience {
@@ -257,7 +258,7 @@ const Form = () => {
             <div className="output graduation-year"></div>
 
             <div className="output links"></div>
-
+                <LinksComponent links={formData.links} />
             <div className="output clubs"></div>
 
             <div className="output education"></div>

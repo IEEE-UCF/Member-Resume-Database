@@ -6,26 +6,22 @@ interface Project {
 }
 
 interface ProjectComponentProps {
-    project: Project
+    project: Project;
 }
 
-const ProjectComponent = ({
-    project
-}: ProjectComponentProps) => {
+const ProjectComponent = ({ project }: ProjectComponentProps) => {
     return (
         <>
             <h3>{project.name}</h3>
-
             <p>{project.description}</p>
             <p>{project.link}</p>
-
             {
-                project.skills.map((skill) => {
-                    <p>{skill}</p>
-                })
+                project.skills.map((skill, index) => (
+                    <p key={`skill-${index}`}>{skill}</p>
+                ))
             }
         </>
-    )
-}
+    );
+};
 
-export default ProjectComponent
+export default ProjectComponent;
