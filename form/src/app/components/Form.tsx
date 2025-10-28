@@ -669,6 +669,7 @@ const Form = () => {
                                                             return { ...prev, education: result };
                                                         })
                                                     }
+                                                    rows={3}
                                                 />
                                                 <input
                                                     type="text"
@@ -684,34 +685,70 @@ const Form = () => {
                                                         })
                                                     }
                                                 />
-                                                <textarea
-                                                    name={`education[${index}].clubs[${clubIndex}].description`}
-                                                    placeholder="Description"
-                                                    value={club.description}
-                                                    onChange={(e) =>
-                                                        setFormData((prev) => {
-                                                            const result = [...prev.education];
-                                                            result[index].clubs[clubIndex].description =
-                                                                e.target.value;
-                                                            return { ...prev, education: result };
-                                                        })
-                                                    }
-                                                    rows={3}
-                                                />
-                                                <textarea
-                                                    name={`education[${index}].clubs[${clubIndex}].responsibilities`}
-                                                    placeholder="Responsibilities"
-                                                    value={club.responsibilities}
-                                                    onChange={(e) =>
-                                                        setFormData((prev) => {
-                                                            const result = [...prev.education];
-                                                            result[index].clubs[clubIndex].responsibilities =
-                                                                e.target.value;
-                                                            return { ...prev, education: result };
-                                                        })
-                                                    }
-                                                    rows={3}
-                                                />
+                                                <div className="input skills">
+                                                    <h3>Skills</h3>
+
+                                                    {club.skills.map((skill, skillsIndex) => {
+                                                        return (
+                                                            <input
+                                                                key={`clubs[${index}].skills[${skillsIndex}]`}
+                                                                type="text"
+                                                                name={`clubs[${index}].skills[${skillsIndex}]`}
+                                                                value={skill}
+                                                                onChange={(e) =>
+                                                                    setFormData((prev) => {
+                                                                        const updatedClubs = [
+                                                                            ...prev.clubs,
+                                                                        ];
+                                                                        const updatedClub = {
+                                                                            ...updatedClubs[
+                                                                                index
+                                                                            ],
+                                                                        };
+                                                                        const updatedSkills = [
+                                                                            ...updatedClub.skills,
+                                                                        ];
+                                                                        updatedSkills[
+                                                                            skillsIndex
+                                                                        ] = e.target.value;
+                                                                        updatedClub.skills =
+                                                                            updatedSkills;
+                                                                        updatedClubs[index] =
+                                                                            updatedClub;
+
+                                                                        return {
+                                                                            ...prev,
+                                                                            clubs: updatedClubs,
+                                                                        };
+                                                                    })
+                                                                }
+                                                            />
+                                                        );
+                                                    })}
+
+                                                    <button
+                                                        onClick={(e) =>
+                                                            setFormData((prev) => {
+                                                                const updatedClubs = [
+                                                                    ...prev.clubs,
+                                                                ];
+                                                                const updatedClub = {
+                                                                    ...updatedClubs[index],
+                                                                };
+                                                                updatedClub.skills = [
+                                                                    ...updatedClub.skills,
+                                                                    "",
+                                                                ];
+                                                                updatedClubs[index] =
+                                                                    updatedClub;
+                                                                return {
+                                                                    ...prev,
+                                                                    clubs: updatedClubs,
+                                                                };
+                                                            })
+                                                        }
+                                                    />
+                                                </div>
                                             </div>
                                         );
                                     })}
