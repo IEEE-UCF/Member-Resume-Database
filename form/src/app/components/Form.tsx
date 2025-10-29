@@ -2,6 +2,10 @@ import { useState } from "react";
 import { ucfMajors } from "../data/majors";
 
 import ProjectComponent from "./ProjectComponent"
+import LinksComponent from "./LinksComponent"
+import SkillsComponent from "./SkillsComponent"
+import PictureComponent from "./PictureComponent" 
+import ResumeComponent from "./ResumeComponent"
 
 interface Experience {
     name: string;
@@ -153,70 +157,11 @@ const Form = () => {
                 </div>
 
                 <div className="input resume">
-                    <h3>Resume</h3>
-                    <label>
-                        <input
-                            type="radio"
-                            name="resumeType"
-                            value="file"
-                            checked={formData.resumeType === "file"}
-                            onChange={(e) =>
-                                setFormData((prev) => ({
-                                    ...prev,
-                                    resumeType: "file",
-                                    resume: null,
-                                }))
-                            }
-                        />
-                        Upload File
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="resumeType"
-                            value="link"
-                            checked={formData.resumeType === "link"}
-                            onChange={(e) =>
-                                setFormData((prev) => ({
-                                    ...prev,
-                                    resumeType: "link",
-                                    resume: "",
-                                }))
-                            }
-                        />
-                        Provide Link
-                    </label>
-
-                    {formData.resumeType === "file" && (
-                        <input
-                            type="file"
-                            accept=".pdf,.docx"
-                            onChange={(e) => {
-                                const file = e.target.files?.[0];
-                                if (file) {
-                                    setFormData((prev) => ({
-                                        ...prev,
-                                        resume: file,
-                                    }));
-                                }
-                            }}
-                        />
-                    )}
-
-                    {formData.resumeType === "link" && (
-                        <input
-                            type="url"
-                            name="resume"
-                            placeholder="https://example.com/resume.pdf"
-                            value={formData.resume || ""}
-                            onChange={(e) =>
-                                setFormData((prev) => ({
-                                    ...prev,
-                                    resume: e.target.value,
-                                }))
-                            }
-                        />
-                    )}
+                    <ResumeComponent 
+                        resume={formData.resume} 
+                        resumeType={formData.resumeType} 
+                        setFormData={setFormData} 
+                    />
                 </div>
 
                 <div className="input major">
@@ -337,35 +282,7 @@ const Form = () => {
                 </div>
 
                 <div className="input links">
-                    <h3>Links</h3>
-                    {formData.links.map((link, index) => {
-                        return (
-                            <input
-                                key={`links[${index}]`}
-                                type="url"
-                                name={`links[${index}]`}
-                                placeholder="https://example.com"
-                                value={link}
-                                onChange={(e) =>
-                                    setFormData((prev) => {
-                                        const result = [...prev.links];
-                                        result[index] = e.target.value;
-                                        return { ...prev, links: result };
-                                    })
-                                }
-                            />
-                        );
-                    })}
-                    <input
-                        type="button"
-                        value="Add Link"
-                        onClick={(e) =>
-                            setFormData((prev) => ({
-                                ...prev,
-                                links: [...prev.links, ""],
-                            }))
-                        }
-                    />
+                    <LinksComponent links={formData.links} setFormData={setFormData} />
                 </div>
 
                 <div className="input clubs">
@@ -940,20 +857,7 @@ const Form = () => {
                 </div>
 
                 <div className="input picture">
-                    <h3>Picture</h3>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => {
-                            const file = e.target.files?.[0];
-                            if (file) {
-                                setFormData((prev) => ({
-                                    ...prev,
-                                    picture: file,
-                                }));
-                            }
-                        }}
-                    />
+                    <PictureComponent setFormData={setFormData} />
                 </div>
 
                 <div className="input projects">
@@ -1111,34 +1015,7 @@ const Form = () => {
                 </div>
 
                 <div className="input skills">
-                    <h3>Skills</h3>
-
-                    {formData.skills.map((skill, index) => {
-                        return (
-                            <input
-                                key={`skills[${index}]`}
-                                type="text"
-                                name={`skills[${index}]`}
-                                value={skill}
-                                onChange={(e) =>
-                                    setFormData((prev) => {
-                                        const result = [...prev.skills];
-                                        result[index] = e.target.value;
-                                        return { ...prev, skills: result };
-                                    })
-                                }
-                            />
-                        );
-                    })}
-
-                    <button
-                        onClick={(e) =>
-                            setFormData((prev) => ({
-                                ...prev,
-                                skills: [...prev.skills, ""],
-                            }))
-                        }
-                    />
+                    <SkillsComponent skills={formData.skills} setFormData={setFormData} />
                 </div>
 
                 <button type="submit">Submit</button>
