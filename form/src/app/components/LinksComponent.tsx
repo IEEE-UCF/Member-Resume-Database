@@ -57,20 +57,32 @@ const LinksComponent = ({ links, setFormData }: LinksComponentProps) => {
             <h3>Links</h3>
             {links.map((link, index) => {
                 return (
-                    <input
-                        key={`links[${index}]`}
-                        type="url"
-                        name={`links[${index}]`}
-                        placeholder="https://example.com"
-                        value={link}
-                        onChange={(e) =>
-                            setFormData((prev) => {
-                                const result = [...prev.links];
-                                result[index] = e.target.value;
-                                return { ...prev, links: result };
-                            })
-                        }
-                    />
+                    <div key={`links[${index}]`}>
+                        <input
+                            type="url"
+                            name={`links[${index}]`}
+                            placeholder="https://example.com"
+                            value={link}
+                            onChange={(e) =>
+                                setFormData((prev) => {
+                                    const result = [...prev.links];
+                                    result[index] = e.target.value;
+                                    return { ...prev, links: result };
+                                })
+                            }
+                        />
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault()
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    links: prev.links.filter((_, i) => i !== index),
+                                }))
+                            }}
+                        >
+                            Remove
+                        </button>
+                    </div>
                 );
             })}
             <input
