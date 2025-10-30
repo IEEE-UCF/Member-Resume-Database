@@ -107,20 +107,20 @@ const Form = () => {
     const [formData, setFormData] = useState<Form>(createEmptyForm());
 
     const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
-        try {
-            const response = await fetch("http://localhost:3001", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
-            });
+        // event.preventDefault();
+        // try {
+        //     const response = await fetch("http://localhost:3001", {
+        //         method: "POST",
+        //         headers: { "Content-Type": "application/json" },
+        //         body: JSON.stringify(formData),
+        //     });
 
-            const data = await response.json();
-            console.log(data);
-            console.log(formData)
-        } catch (error) {
-            console.error("Error: ", error);
-        }
+        //     const data = await response.json();
+        //     console.log(data);
+        //     console.log(formData)
+        // } catch (error) {
+        //     console.error("Error: ", error);
+        // }
     };
 
     return (
@@ -333,13 +333,13 @@ const Form = () => {
                                     }
                                 />
                                 <div className="input skills">
-                                    <h3>Skills</h3>
-
+                                    <h5>Skills</h5>
                                     {club.skills.map((skill, skillsIndex) => {
                                         return (
                                             <input
                                                 key={`clubs[${index}].skills[${skillsIndex}]`}
                                                 type="text"
+                                                placeholder="Skill"
                                                 name={`clubs[${index}].skills[${skillsIndex}]`}
                                                 value={skill}
                                                 onChange={(e) =>
@@ -375,26 +375,29 @@ const Form = () => {
 
                                     <button
                                         onClick={(e) =>
-                                            setFormData((prev) => {
-                                                const updatedClubs = [
-                                                    ...prev.clubs,
-                                                ];
-                                                const updatedClub = {
-                                                    ...updatedClubs[index],
-                                                };
-                                                updatedClub.skills = [
-                                                    ...updatedClub.skills,
-                                                    "",
-                                                ];
-                                                updatedClubs[index] =
-                                                    updatedClub;
-                                                return {
-                                                    ...prev,
-                                                    clubs: updatedClubs,
-                                                };
-                                            })
+                                            {
+                                                e.preventDefault()
+                                                setFormData((prev) => {
+                                                    const updatedClubs = [
+                                                        ...prev.clubs,
+                                                    ];
+                                                    const updatedClub = {
+                                                        ...updatedClubs[index],
+                                                    };
+                                                    updatedClub.skills = [
+                                                        ...updatedClub.skills,
+                                                        "",
+                                                    ];
+                                                    updatedClubs[index] =
+                                                        updatedClub;
+                                                    return {
+                                                        ...prev,
+                                                        clubs: updatedClubs,
+                                                    };
+                                                })
+                                            }
                                         }
-                                    />
+                                    >Add Skill</button>
                                 </div>
                             </div>
                         );
@@ -402,12 +405,12 @@ const Form = () => {
                     <input
                         type="button"
                         value="Add Club"
-                        onClick={(e) =>
+                        onClick={(e) => {
                             setFormData((prev) => ({
                                 ...prev,
                                 clubs: [...prev.clubs, createEmptyExperience()],
                             }))
-                        }
+                        }}
                     />
                 </div>
 
@@ -533,38 +536,6 @@ const Form = () => {
                                         }
                                     />
                                 </div>
-                                <div className="education-skills">
-                                    <h5>Skills</h5>
-                                    {education.skills.map((skill, skillIndex) => {
-                                        return (
-                                            <input
-                                                key={`education[${index}].skills[${skillIndex}]`}
-                                                type="text"
-                                                name={`education[${index}].skills[${skillIndex}]`}
-                                                value={skill}
-                                                onChange={(e) =>
-                                                    setFormData((prev) => {
-                                                        const result = [...prev.education];
-                                                        result[index].skills[skillIndex] =
-                                                            e.target.value;
-                                                        return { ...prev, education: result };
-                                                    })
-                                                }
-                                            />
-                                        );
-                                    })}
-                                    <input
-                                        type="button"
-                                        value="Add Skill"
-                                        onClick={(e) =>
-                                            setFormData((prev) => {
-                                                const result = [...prev.education];
-                                                result[index].skills.push("");
-                                                return { ...prev, education: result };
-                                            })
-                                        }
-                                    />
-                                </div>
                                 <div className="education-clubs">
                                     <h5>Clubs</h5>
                                     {education.clubs.map((club, clubIndex) => {
@@ -602,39 +573,39 @@ const Form = () => {
                                                     }
                                                 />
                                                 <div className="input skills">
-                                                    <h3>Skills</h3>
+                                                    <h5>Skills</h5>
 
-                                                    {club.skills.map((skill, skillsIndex) => {
+                                                    {education.clubs[clubIndex].skills.map((skill, skillsIndex) => {
                                                         return (
                                                             <input
-                                                                key={`clubs[${index}].skills[${skillsIndex}]`}
+                                                                key={`education[${index}].clubs[${clubIndex}].skills[${skillsIndex}]`}
                                                                 type="text"
-                                                                name={`clubs[${index}].skills[${skillsIndex}]`}
+                                                                name={`education[${index}].clubs[${clubIndex}].skills[${skillsIndex}]`}
                                                                 value={skill}
                                                                 onChange={(e) =>
                                                                     setFormData((prev) => {
-                                                                        const updatedClubs = [
-                                                                            ...prev.clubs,
+                                                                        const updatedEducation = [
+                                                                            ...prev.education,
                                                                         ];
-                                                                        const updatedClub = {
-                                                                            ...updatedClubs[
+                                                                        const updatedSingleEducation = {
+                                                                            ...updatedEducation[
                                                                                 index
                                                                             ],
                                                                         };
+                                                                        const updatedClubs = {
+                                                                            ...updatedSingleEducation.clubs
+                                                                        }
                                                                         const updatedSkills = [
-                                                                            ...updatedClub.skills,
-                                                                        ];
-                                                                        updatedSkills[
-                                                                            skillsIndex
-                                                                        ] = e.target.value;
-                                                                        updatedClub.skills =
-                                                                            updatedSkills;
-                                                                        updatedClubs[index] =
-                                                                            updatedClub;
+                                                                            ...updatedClubs[clubIndex].skills
+                                                                        ]
+                                                                        updatedSkills[skillsIndex] = e.target.value
+                                                                        updatedClubs[clubIndex].skills = updatedSkills
+                                                                        updatedSingleEducation.clubs = updatedClubs
+                                                                        updatedEducation[index] = updatedSingleEducation
 
                                                                         return {
                                                                             ...prev,
-                                                                            clubs: updatedClubs,
+                                                                            education: updatedEducation,
                                                                         };
                                                                     })
                                                                 }
@@ -643,59 +614,46 @@ const Form = () => {
                                                     })}
 
                                                     <button
-                                                        onClick={(e) =>
+                                                        type="button"
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
                                                             setFormData((prev) => {
-                                                                const updatedClubs = [
-                                                                    ...prev.clubs,
-                                                                ];
-                                                                const updatedClub = {
-                                                                    ...updatedClubs[index],
-                                                                };
-                                                                updatedClub.skills = [
-                                                                    ...updatedClub.skills,
-                                                                    "",
-                                                                ];
-                                                                updatedClubs[index] =
-                                                                    updatedClub;
-                                                                return {
-                                                                    ...prev,
-                                                                    clubs: updatedClubs,
-                                                                };
-                                                            })
-                                                        }
-                                                    />
-                                                </div>
+                                                                const updatedEducation = [...prev.education];
+                                                                const updatedSingleEducation = { ...updatedEducation[index] };
+                                                                const updatedClubs = [...updatedSingleEducation.clubs];
+                                                                const updatedClub = { ...updatedClubs[clubIndex] };
+
+                                                                updatedClub.skills = [...updatedClub.skills, ""];
+                                                                updatedClubs[clubIndex] = updatedClub;
+                                                                updatedSingleEducation.clubs = updatedClubs;
+                                                                updatedEducation[index] = updatedSingleEducation;
+
+                                                                return { ...prev, education: updatedEducation };
+                                                            });
+                                                        }}
+                                                    >
+                                                        Add Skill
+                                                    </button>
+                                                </div>                                                
                                             </div>
                                         );
                                     })}
                                     <input
                                         type="button"
-                                        value="Add Club"
-                                        onClick={(e) =>
+                                        value="Add Education"
+                                        onClick={(e) => {
+                                            e.preventDefault()
                                             setFormData((prev) => {
                                                 const result = [...prev.education];
-                                                result[index].clubs.push(createEmptyExperience());
+                                                result.push(createEmptyEducation());
                                                 return { ...prev, education: result };
-                                            })
+                                            })}
                                         }
                                     />
                                 </div>
                             </div>
                         );
                     })}
-                    <input
-                        type="button"
-                        value="Add Education"
-                        onClick={(e) =>
-                            setFormData((prev) => ({
-                                ...prev,
-                                education: [
-                                    ...prev.education,
-                                    createEmptyEducation(),
-                                ],
-                            }))
-                        }
-                    />
                 </div>
 
                 <div className="input work-experience">
@@ -813,8 +771,9 @@ const Form = () => {
                                     )}
 
                                     <button
-                                        onClick={(e) =>
+                                        onClick={(e) => {
                                             setFormData((prev) => {
+                                                e.preventDefault()
                                                 const updatedWorkExperiences = [
                                                     ...prev.workExperience,
                                                 ];
@@ -835,7 +794,7 @@ const Form = () => {
                                                         updatedWorkExperiences,
                                                 };
                                             })
-                                        }
+                                        }}
                                     />
                                 </div>
                             </div>
@@ -844,7 +803,8 @@ const Form = () => {
                     <input
                         type="button"
                         value="Add Experience"
-                        onClick={(e) =>
+                        onClick={(e) => {
+                            e.preventDefault()
                             setFormData((prev) => ({
                                 ...prev,
                                 workExperience: [
@@ -852,7 +812,7 @@ const Form = () => {
                                     createEmptyExperience(),
                                 ],
                             }))
-                        }
+                        }}
                     />
                 </div>
 
@@ -955,7 +915,8 @@ const Form = () => {
                                 )}
 
                                 <button
-                                    onClick={(e) =>
+                                    onClick={(e) => {
+                                        e.preventDefault()
                                         setFormData((prev) => {
                                             const updatedProjects = [
                                                 ...prev.projects,
@@ -976,7 +937,7 @@ const Form = () => {
                                                 projects:
                                                     updatedProjects,
                                             };
-                                        })
+                                        })}
                                     }
                                 />
                             </div>
@@ -1002,7 +963,8 @@ const Form = () => {
                     <input
                         type="button"
                         value="Add Project"
-                        onClick={(e) =>
+                        onClick={(e) => {
+                            e.preventDefault()
                             setFormData((prev) => ({
                                 ...prev,
                                 projects: [
@@ -1010,12 +972,40 @@ const Form = () => {
                                     createEmptyProject(),
                                 ],
                             }))
-                        }
+                        }}
                     />
                 </div>
 
                 <div className="input skills">
-                    <SkillsComponent skills={formData.skills} setFormData={setFormData} />
+                    <h3>Skills</h3>
+
+                    {formData.skills.map((skill, index) => {
+                        return (
+                            <input
+                                key={`skills[${index}]`}
+                                type="text"
+                                name={`skills[${index}]`}
+                                value={skill}
+                                onChange={(e) =>
+                                    setFormData((prev) => {
+                                        const result = [...prev.skills];
+                                        result[index] = e.target.value;
+                                        return { ...prev, skills: result };
+                                    })
+                                }
+                            />
+                        );
+                    })}
+
+                    <button
+                        onClick={(e) => {
+                            e.preventDefault()
+                            setFormData((prev) => ({
+                                ...prev,
+                                skills: [...prev.skills, ""],
+                            }))
+                        }}
+                    />
                 </div>
 
                 <button type="submit">Submit</button>
