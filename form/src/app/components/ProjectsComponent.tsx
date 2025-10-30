@@ -54,15 +54,15 @@ interface Form {
     skills: string[];
 }
 
-interface ProjectComponentProps {
+interface ProjectsComponentProps {
     projects: Project[]
     setFormData: Dispatch<SetStateAction<Form>>
 }
 
-const ProjectComponent = ({
+const ProjectsComponent = ({
     projects,
     setFormData
-}: ProjectComponentProps) => {
+}: ProjectsComponentProps) => {
     return (
     <>
         <h3>Projects</h3>
@@ -222,4 +222,4 @@ const ProjectComponent = ({
     )
 }
 
-export default ProjectComponent
+export default ProjectsComponent

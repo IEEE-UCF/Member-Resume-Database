@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import LinksComponent from "./LinksComponent"
-import ProjectComponent from "./ProjectComponent"
+import ProjectsComponent from "./ProjectsComponent"
 import SkillsComponent from "./SkillsComponent" 
 import PictureComponent from "./PictureComponent"
 import ResumeComponent from "./ResumeComponent"
@@ -203,7 +203,7 @@ const dummyData = {
             name: "Five Nights at Freddy's",
             description: 
             `\
-                Written in React.js and Express.js. Implementing user sessions and login functionality to a video game with \
+                Written in React.js and Express.js. Implemented user sessions and login functionality to a video game with \
                 animations, UI, and NPCs.\
             `,
             skills: ["React.js", "Express.js", "Typescript", "Git BASH", "VS Code"],
@@ -272,11 +272,7 @@ const Form = () => {
                 <PictureComponent picture={formData.picture} />
             <div className="output projects">
                 <h2>Projects</h2>
-                {
-                    formData.projects.map((project, index) => (
-                        <ProjectComponent key = {index} project = {project} />
-                    ))
-                }
+                <ProjectsComponent projects = {formData.projects}/>
             </div>
 
             <div className="output skills">

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ucfMajors } from "../data/majors";
 
-import ProjectComponent from "./ProjectComponent"
+import ProjectsComponent from "./ProjectsComponent"
 import LinksComponent from "./LinksComponent"
 import SkillsComponent from "./SkillsComponent"
 import PictureComponent from "./PictureComponent" 
@@ -824,7 +824,7 @@ const Form = () => {
                 </div>
 
                 <div className="input projects">
-                    <ProjectComponent
+                    <ProjectsComponent
                         projects = {formData.projects}
                         setFormData = {setFormData}
                     />
