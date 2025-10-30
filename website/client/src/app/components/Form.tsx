@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import LinksComponent from "./LinksComponent"
 import ProjectComponent from "./ProjectComponent"
 import SkillsComponent from "./SkillsComponent" 
+import PictureComponent from "./PictureComponent"
+import ResumeComponent from "./ResumeComponent"
 
 interface Experience {
     name: string;
@@ -251,7 +253,7 @@ const Form = () => {
             <div className="output bio"></div>
 
             <div className="output resume"></div>
-
+                <ResumeComponent resume={formData.resume} resumeType={formData.resumeType} />
             <div className="output major"></div>
 
             <div className="output school-year"></div>
@@ -267,7 +269,7 @@ const Form = () => {
             <div className="output work-experience"></div>
 
             <div className="output picture"></div>
-
+                <PictureComponent picture={formData.picture} />
             <div className="output projects">
                 <h2>Projects</h2>
                 {
