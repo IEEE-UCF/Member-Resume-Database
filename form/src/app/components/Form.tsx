@@ -607,7 +607,7 @@ const Form = () => {
                                                 <div className="input skills">
                                                     <h5>Skills</h5>
 
-                                                    {club.skills.map((skill, skillsIndex) => {
+                                                    {education.clubs[clubIndex].skills.map((skill, skillsIndex) => {
                                                         return (
                                                             <input
                                                                 key={`education[${index}].clubs[${clubIndex}].skills[${skillsIndex}]`}
