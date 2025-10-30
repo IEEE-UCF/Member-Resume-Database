@@ -282,7 +282,6 @@ const Form = () => {
                 </div>
 
                 <div className="input links">
-<<<<<<<<< Temporary merge branch 1
                     <h3>Links</h3>
                     {formData.links.map((link, index) => {
                         return (
