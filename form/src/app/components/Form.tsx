@@ -282,7 +282,7 @@ const Form = () => {
                 </div>
 
                 <div className="input links">
-                    <LinksComponent links={formData.links} setFormData={setFormData} />
+<<<<<<<<< Temporary merge branch 1
                     <h3>Links</h3>
                     {formData.links.map((link, index) => {
                         return (
