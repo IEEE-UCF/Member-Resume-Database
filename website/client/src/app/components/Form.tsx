@@ -7,6 +7,10 @@ import ProjectsComponent from "./ProjectsComponent"
 import SkillsComponent from "./SkillsComponent" 
 import PictureComponent from "./PictureComponent"
 import ResumeComponent from "./ResumeComponent"
+import SchoolYearComponent from "./SchoolYearComponent";
+import GraduationYearComponent from "./GraduationYearComponent";
+import ClubsComponent from "./ClubsComponent";
+import WorkExperienceComponent from "./WorkExperienceComponent";
 import NameComponent from "./NameComponent"
 import BioComponent from "./BioComponent"
 import MajorComponent from "./MajorComponent"

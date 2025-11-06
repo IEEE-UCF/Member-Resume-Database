@@ -1,6 +1,19 @@
 import { useState } from "react";
 import { ucfMajors } from "../data/majors";
 
+import ProjectsComponent from "./ProjectsComponent"
+import LinksComponent from "./LinksComponent"
+import SkillsComponent from "./SkillsComponent"
+import PictureComponent from "./PictureComponent" 
+import ResumeComponent from "./ResumeComponent"
+import SchoolYearComponent from "./SchoolYearComponent";
+import GraduationYearComponent from "./GraduationYearComponent";
+import ClubsComponent from "./ClubsComponent";
+import WorkExperienceComponent from "./WorkExperienceComponent";
+
+
+
+
 import { type Form, createEmptyForm, createEmptyExperience, createEmptyEducation } from "../interfaces"
 
 import ProjectsComponent from "./ProjectsComponent";
@@ -154,6 +167,274 @@ const Form = () => {
                         setFormData={setFormData}
                     />
                 </div>
+                   
+                <div className="input education">
+                    <h3>Education</h3>
+                    {formData.education.map((education, index) => {
+                        return (
+                            <div
+                                key={`education[${index}]`}
+                                className="education-entry"
+                            >
+                                <h4>Education {index + 1}</h4>
+                                <input
+                                    type="text"
+                                    name={`education[${index}].name`}
+                                    placeholder="School Name"
+                                    value={education.name}
+                                    onChange={(e) =>
+                                        setFormData((prev) => {
+                                            const result = [...prev.education];
+                                            result[index].name = e.target.value;
+                                            return {
+                                                ...prev,
+                                                education: result,
+                                            };
+                                        })
+                                    }
+                                />
+                                <input
+                                    type="text"
+                                    name={`education[${index}].degree`}
+                                    placeholder="Degree"
+                                    value={education.degree}
+                                    onChange={(e) =>
+                                        setFormData((prev) => {
+                                            const result = [...prev.education];
+                                            result[index].degree =
+                                                e.target.value;
+                                            return {
+                                                ...prev,
+                                                education: result,
+                                            };
+                                        })
+                                    }
+                                />
+                                <input
+                                    type="number"
+                                    name={`education[${index}].gpa.gpa`}
+                                    placeholder="GPA"
+                                    value={education.gpa.gpa || ""}
+                                    onChange={(e) =>
+                                        setFormData((prev) => {
+                                            const result = [...prev.education];
+                                            result[index].gpa.gpa = Number(
+                                                e.target.value
+                                            );
+                                            return {
+                                                ...prev,
+                                                education: result,
+                                            };
+                                        })
+                                    }
+                                    step="0.01"
+                                    min="0"
+                                    max={education.gpa.scale || 4}
+                                />
+                                <input
+                                    type="number"
+                                    name={`education[${index}].gpa.scale`}
+                                    placeholder="GPA Scale"
+                                    value={education.gpa.scale || ""}
+                                    onChange={(e) =>
+                                        setFormData((prev) => {
+                                            const result = [...prev.education];
+                                            result[index].gpa.scale = Number(
+                                                e.target.value
+                                            );
+                                            return {
+                                                ...prev,
+                                                education: result,
+                                            };
+                                        })
+                                    }
+                                    step="0.01"
+                                    min="0"
+                                />
+                                <div className="dates">
+                                    <input
+                                        type="month"
+                                        name={`education[${index}].dates.start`}
+                                        placeholder="Start Date"
+                                        value={education.dates.start}
+                                        onChange={(e) =>
+                                            setFormData((prev) => {
+                                                if (e.target.value > education.dates.end && education.dates.end !== "") {
+                                                    alert("Start date cannot be after end date.");
+                                                    document.getElementsByName(`education[${index}].dates.start`)[0].value ="";
+                                                    return prev;
+                                                }
+
+                                                const result = [...prev.education]; 
+                                                result[index].dates.start = e.target.value;
+                                                return { ...prev, education: result };
+                                            })
+                                        }
+                                    />
+                                    <input
+                                        type="month"
+                                        name={`education[${index}].dates.end`}
+                                        placeholder="End Date"
+                                        value={education.dates.end}
+                                        onChange={(e) =>
+                                            setFormData((prev) => {
+                                                if (e.target.value < education.dates.start && education.dates.start !== "") {
+                                                    alert("Start date cannot be after end date.");
+                                                    document.getElementsByName(`education[${index}].dates.end`)[0].value ="";
+                                                    return prev;
+                                                }
+                                                const result = [...prev.education];
+                                                result[index].dates.end = e.target.value;
+                                                return { ...prev, education: result };
+                                            })
+                                        }
+                                    />
+                                </div>
+                                <div className="education-clubs">
+                                    <h5>Clubs</h5>
+                                    {education.clubs.map((club, clubIndex) => {
+                                        return (
+                                            <div
+                                                key={`education[${index}].clubs[${clubIndex}]`}
+                                                className="club"
+                                            >
+                                                <input
+                                                    type="text"
+                                                    name={`education[${index}].clubs[${clubIndex}].name`}
+                                                    placeholder="Club Name"
+                                                    value={club.name}
+                                                    onChange={(e) =>
+                                                        setFormData((prev) => {
+                                                            const result = [...prev.education];
+                                                            result[index].clubs[clubIndex].name =
+                                                                e.target.value;
+                                                            return { ...prev, education: result };
+                                                        })
+                                                    }
+                                                />
+                                                <input
+                                                    type="text"
+                                                    name={`education[${index}].clubs[${clubIndex}].title`}
+                                                    placeholder="Your Title"
+                                                    value={club.title}
+                                                    onChange={(e) =>
+                                                        setFormData((prev) => {
+                                                            const result = [...prev.education];
+                                                            result[index].clubs[clubIndex].title =
+                                                                e.target.value;
+                                                            return { ...prev, education: result };
+                                                        })
+                                                    }
+                                                />
+                                                <div className="input skills">
+                                                    <h5>Skills</h5>
+
+                                                    {education.clubs[clubIndex].skills.map((skill, skillsIndex) => {
+                                                        return (
+                                                            <input
+                                                                key={`education[${index}].clubs[${clubIndex}].skills[${skillsIndex}]`}
+                                                                type="text"
+                                                                name={`education[${index}].clubs[${clubIndex}].skills[${skillsIndex}]`}
+                                                                value={skill}
+                                                                onChange={(e) =>
+                                                                    setFormData((prev) => {
+                                                                        const updatedEducation = [
+                                                                            ...prev.education,
+                                                                        ];
+                                                                        const updatedSingleEducation = {
+                                                                            ...updatedEducation[
+                                                                                index
+                                                                            ],
+                                                                        };
+                                                                        const updatedClubs = {
+                                                                            ...updatedSingleEducation.clubs
+                                                                        }
+                                                                        const updatedSkills = [
+                                                                            ...updatedClubs[clubIndex].skills
+                                                                        ]
+                                                                        updatedSkills[skillsIndex] = e.target.value
+                                                                        updatedClubs[clubIndex].skills = updatedSkills
+                                                                        updatedSingleEducation.clubs = updatedClubs
+                                                                        updatedEducation[index] = updatedSingleEducation
+
+                                                                        return {
+                                                                            ...prev,
+                                                                            education: updatedEducation,
+                                                                        };
+                                                                    })
+                                                                }
+                                                            />
+                                                        );
+                                                    })}
+
+                                                    <button
+                                                        type="button"
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            setFormData((prev) => {
+                                                                const updatedEducation = [...prev.education];
+                                                                const updatedSingleEducation = { ...updatedEducation[index] };
+                                                                const updatedClubs = [...updatedSingleEducation.clubs];
+                                                                const updatedClub = { ...updatedClubs[clubIndex] };
+
+                                                                updatedClub.skills = [...updatedClub.skills, ""];
+                                                                updatedClubs[clubIndex] = updatedClub;
+                                                                updatedSingleEducation.clubs = updatedClubs;
+                                                                updatedEducation[index] = updatedSingleEducation;
+
+                                                                return { ...prev, education: updatedEducation };
+                                                            });
+                                                        }}
+                                                    >
+                                                        Add Skill
+                                                    </button>
+                                                </div>                                                
+                                            </div>
+                                        );
+                                    })}
+                                    <input
+                                        type="button"
+                                        value="Add Education"
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            setFormData((prev) => {
+                                                const result = [...prev.education];
+                                                result.push(createEmptyEducation());
+                                                return { ...prev, education: result };
+                                            })}
+                                        }
+                                    />
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+
+                <div className="input work-experience">
+                    <WorkExperienceComponent
+                        workExperience={formData.workExperience}
+                        setFormData={setFormData}
+                    />
+                </div>
+
+
+                <div className="input clubs">
+                    <ClubsComponent clubs={formData.clubs} setFormData={setFormData} />
+                </div>
+
+
+                <div className="input graduation-year">
+                    <GraduationYearComponent
+                        graduationYear={formData.graduationYear}
+                        setFormData={setFormData}
+                    />
+                </div>
+
+
+                <div className="input school-year">
+                    <SchoolYearComponent
+                        schoolYear={formData.schoolYear}
+                        setFormData={setFormData}
 
                 <EducationComponent value={formData.education} onChange={(next) => setFormData(prev => ({ ...prev, education: next }))} />
 
