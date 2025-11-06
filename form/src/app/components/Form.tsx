@@ -1,107 +1,13 @@
 import { useState } from "react";
 import { ucfMajors } from "../data/majors";
 
+import { type Form, createEmptyForm, createEmptyExperience, createEmptyEducation } from "../interfaces"
+
 import ProjectsComponent from "./ProjectsComponent";
 import LinksComponent from "./LinksComponent";
 import SkillsComponent from "./SkillsComponent";
 import PictureComponent from "./PictureComponent";
 import ResumeComponent from "./ResumeComponent";
-
-interface Experience {
-    name: string;
-    description: string;
-    title: string;
-    skills: string[];
-}
-const createEmptyExperience = () => {
-    return {
-        name: "",
-        description: "",
-        title: "",
-        skills: [""],
-    };
-};
-
-interface Education {
-    name: string;
-    dates: {
-        start: string;
-        end: string;
-    };
-    degree: string;
-    gpa: {
-        scale: number;
-        gpa: number;
-    };
-    clubs: Experience[];
-    skills: string[];
-}
-const createEmptyEducation = (): Education => {
-    return {
-        name: "",
-        dates: {
-            start: "",
-            end: "",
-        },
-        degree: "",
-        gpa: {
-            scale: 0,
-            gpa: 0,
-        },
-        clubs: [createEmptyExperience()],
-        skills: [""],
-    };
-};
-
-interface Project {
-    name: string;
-    description: string;
-    skills: string[];
-    link: string;
-}
-const createEmptyProject = (): Project => {
-    return {
-        name: "",
-        description: "",
-        skills: [""],
-        link: "",
-    };
-};
-
-interface Form {
-    name: string;
-    bio: string;
-    resume: any;
-    resumeType?: string;
-    major: string;
-    schoolYear: string;
-    graduationYear: number;
-    links: string[];
-    clubs: Experience[];
-    education: Education[];
-    workExperience: Experience[];
-    picture: any;
-    projects: Project[];
-    skills: string[];
-}
-const createEmptyForm = (): Form => {
-    return {
-        name: "",
-        bio: "",
-        resume: null,
-        resumeType: "file",
-        major: "",
-        schoolYear: "",
-        graduationYear: 0,
-        links: [""],
-        clubs: [createEmptyExperience()],
-        education: [createEmptyEducation()],
-        workExperience: [createEmptyExperience()],
-        picture: null,
-        projects: [createEmptyProject()],
-        skills: [""],
-    };
-};
 
 const Form = () => {
     const [formData, setFormData] = useState<Form>(createEmptyForm());
