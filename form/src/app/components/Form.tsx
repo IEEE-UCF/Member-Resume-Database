@@ -39,14 +39,14 @@ const Form = () => {
         <>
             <form onSubmit={handleSubmit}>
                 
-                <div>
+                <div className="input name">
                     <NameComponent 
                         name={formData.name} 
                         setFormData={setFormData} 
                     />
                 </div>
 
-                <div>
+                <div className="input bio">
                     <BioComponent 
                         bio={formData.bio} 
                         setFormData={setFormData} 
@@ -62,7 +62,7 @@ const Form = () => {
                     />
                 </div>
 
-                <div>
+                <div className="input major">
                     <MajorComponent 
                         major={formData.major} 
                         setFormData={setFormData} 
@@ -98,7 +98,12 @@ const Form = () => {
                     />
                 </div>
 
-                <EducationComponent value={formData.education} onChange={(next) => setFormData(prev => ({ ...prev, education: next }))} />
+                <div className="input education">
+                    <EducationComponent 
+                        value={formData.education} 
+                        onChange={(next) => setFormData(prev => ({ ...prev, education: next }))} 
+                    />
+                </div>
 
                 <div className="input work-experience">
                     <WorkExperienceComponent
