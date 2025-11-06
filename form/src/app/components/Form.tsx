@@ -10,22 +10,12 @@ import SchoolYearComponent from "./SchoolYearComponent";
 import GraduationYearComponent from "./GraduationYearComponent";
 import ClubsComponent from "./ClubsComponent";
 import WorkExperienceComponent from "./WorkExperienceComponent";
-
-
-
-
-import { type Form, createEmptyForm, createEmptyExperience, createEmptyEducation } from "../interfaces"
-
-import ProjectsComponent from "./ProjectsComponent";
-import LinksComponent from "./LinksComponent";
-import SkillsComponent from "./SkillsComponent";
-import PictureComponent from "./PictureComponent";
-import ResumeComponent from "./ResumeComponent";
 import NameComponent from "./NameComponent";
 import BioComponent from "./BioComponent";
 import MajorComponent from "./MajorComponent";
 import EducationComponent from "./EducationComponent";
 
+import { type Form, createEmptyForm, createEmptyExperience, createEmptyEducation } from "../interfaces"
 
 const Form = () => {
     const [formData, setFormData] = useState<Form>(createEmptyForm());
@@ -325,70 +315,7 @@ const Form = () => {
                                                             return { ...prev, education: result };
                                                         })
                                                     }
-                                                />
-                                                <div className="input skills">
-                                                    <h5>Skills</h5>
-
-                                                    {education.clubs[clubIndex].skills.map((skill, skillsIndex) => {
-                                                        return (
-                                                            <input
-                                                                key={`education[${index}].clubs[${clubIndex}].skills[${skillsIndex}]`}
-                                                                type="text"
-                                                                name={`education[${index}].clubs[${clubIndex}].skills[${skillsIndex}]`}
-                                                                value={skill}
-                                                                onChange={(e) =>
-                                                                    setFormData((prev) => {
-                                                                        const updatedEducation = [
-                                                                            ...prev.education,
-                                                                        ];
-                                                                        const updatedSingleEducation = {
-                                                                            ...updatedEducation[
-                                                                                index
-                                                                            ],
-                                                                        };
-                                                                        const updatedClubs = {
-                                                                            ...updatedSingleEducation.clubs
-                                                                        }
-                                                                        const updatedSkills = [
-                                                                            ...updatedClubs[clubIndex].skills
-                                                                        ]
-                                                                        updatedSkills[skillsIndex] = e.target.value
-                                                                        updatedClubs[clubIndex].skills = updatedSkills
-                                                                        updatedSingleEducation.clubs = updatedClubs
-                                                                        updatedEducation[index] = updatedSingleEducation
-
-                                                                        return {
-                                                                            ...prev,
-                                                                            education: updatedEducation,
-                                                                        };
-                                                                    })
-                                                                }
-                                                            />
-                                                        );
-                                                    })}
-
-                                                    <button
-                                                        type="button"
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            setFormData((prev) => {
-                                                                const updatedEducation = [...prev.education];
-                                                                const updatedSingleEducation = { ...updatedEducation[index] };
-                                                                const updatedClubs = [...updatedSingleEducation.clubs];
-                                                                const updatedClub = { ...updatedClubs[clubIndex] };
-
-                                                                updatedClub.skills = [...updatedClub.skills, ""];
-                                                                updatedClubs[clubIndex] = updatedClub;
-                                                                updatedSingleEducation.clubs = updatedClubs;
-                                                                updatedEducation[index] = updatedSingleEducation;
-
-                                                                return { ...prev, education: updatedEducation };
-                                                            });
-                                                        }}
-                                                    >
-                                                        Add Skill
-                                                    </button>
-                                                </div>                                                
+                                                />                                                
                                             </div>
                                         );
                                     })}
@@ -417,12 +344,6 @@ const Form = () => {
                     />
                 </div>
 
-
-                <div className="input clubs">
-                    <ClubsComponent clubs={formData.clubs} setFormData={setFormData} />
-                </div>
-
-
                 <div className="input graduation-year">
                     <GraduationYearComponent
                         graduationYear={formData.graduationYear}
@@ -435,6 +356,8 @@ const Form = () => {
                     <SchoolYearComponent
                         schoolYear={formData.schoolYear}
                         setFormData={setFormData}
+                    />
+                </div>
 
                 <EducationComponent value={formData.education} onChange={(next) => setFormData(prev => ({ ...prev, education: next }))} />
 

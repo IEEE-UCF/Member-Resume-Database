@@ -1,21 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 
-interface Form {
-    name: string;
-    bio: string;
-    resume: any;
-    resumeType?: string;
-    major: string;
-    schoolYear: string;
-    graduationYear: number;
-    links: string[];
-    clubs: any[];
-    education: any[];
-    workExperience: any[];
-    picture: any;
-    projects: any[];
-    skills: string[];
-}
+import {type Form } from "../interfaces"
 
 interface SchoolYearComponentProps {
     schoolYear: string;
