@@ -1,0 +1,77 @@
+export interface Experience {
+    name: string;
+    description: string;
+    title: string;
+    skills: string[];
+}
+export const createEmptyExperience = () => {
+    return {
+        name: "",
+        description: "",
+        title: "",
+        skills: [""],
+    };
+};
+
+export interface Education {
+    name: string;
+    dates: {
+        start: string;
+        end: string;
+    };
+    degree: string;
+    gpa: {
+        scale: number;
+        gpa: number;
+    };
+    clubs: Experience[];
+    skills: string[];
+}
+export const createEmptyEducation = (): Education => {
+    return {
+        name: "",
+        dates: {
+            start: "",
+            end: "",
+        },
+        degree: "",
+        gpa: {
+            scale: 0,
+            gpa: 0,
+        },
+        clubs: [createEmptyExperience()],
+        skills: [""],
+    };
+};
+
+export interface Project {
+    name: string;
+    description: string;
+    skills: string[];
+    link: string;
+}
+export const createEmptyProject = (): Project => {
+    return {
+        name: "",
+        description: "",
+        skills: [""],
+        link: "",
+    };
+};
+
+export interface Form {
+    name: string;
+    bio: string;
+    resume: any;
+    resumeType?: string;
+    major: string;
+    schoolYear: string;
+    graduationYear: number;
+    links: string[];
+    clubs: Experience[];
+    education: Education[];
+    workExperience: Experience[];
+    picture: any;
+    projects: Project[];
+    skills: string[];
+}
