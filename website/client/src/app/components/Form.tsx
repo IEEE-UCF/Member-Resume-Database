@@ -7,6 +7,10 @@ import ProjectsComponent from "./ProjectsComponent"
 import SkillsComponent from "./SkillsComponent" 
 import PictureComponent from "./PictureComponent"
 import ResumeComponent from "./ResumeComponent"
+import NameComponent from "./NameComponent"
+import BioComponent from "./BioComponent"
+import MajorComponent from "./MajorComponent"
+import EducationComponent from "./EducationComponent"
 
 const dummyData = {
     name: "Tal Avital",
@@ -120,13 +124,20 @@ const Form = () => {
 
     return (
         <>
-            <div className="output name"></div>
+            <div className="output name">
+                <NameComponent name={formData.name} />
+            </div>
 
-            <div className="output bio"></div>
+            <div className="output bio">
+                <BioComponent bio={formData.bio} />
+            </div>
 
             <div className="output resume"></div>
                 <ResumeComponent resume={formData.resume} resumeType={formData.resumeType} />
-            <div className="output major"></div>
+            
+            <div className="output major">
+                <MajorComponent major={formData.major} />
+            </div>
 
             <div className="output school-year"></div>
 
@@ -136,7 +147,9 @@ const Form = () => {
                 <LinksComponent links={formData.links} />
             <div className="output clubs"></div>
 
-            <div className="output education"></div>
+            <div className="output education">
+                <EducationComponent education={formData.education} />
+            </div>
 
             <div className="output work-experience"></div>
 

@@ -8,6 +8,11 @@ import LinksComponent from "./LinksComponent";
 import SkillsComponent from "./SkillsComponent";
 import PictureComponent from "./PictureComponent";
 import ResumeComponent from "./ResumeComponent";
+import NameComponent from "./NameComponent";
+import BioComponent from "./BioComponent";
+import MajorComponent from "./MajorComponent";
+import EducationComponent from "./EducationComponent";
+
 
 const Form = () => {
     const [formData, setFormData] = useState<Form>(createEmptyForm());
@@ -31,35 +36,11 @@ const Form = () => {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <div className="input name">
-                    <h3>Name</h3>
-                    <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={(e) =>
-                            setFormData((prev) => ({
-                                ...prev,
-                                name: e.target.value,
-                            }))
-                        }
-                    />
-                </div>
+                
+                <NameComponent name={formData.name} setFormData={setFormData} />
 
-                <div className="input bio">
-                    <h3>Bio</h3>
-                    <textarea
-                        name="bio"
-                        value={formData.bio}
-                        onChange={(e) =>
-                            setFormData((prev) => ({
-                                ...prev,
-                                bio: e.target.value,
-                            }))
-                        }
-                        rows={5}
-                    />
-                </div>
+                <BioComponent bio={formData.bio} setFormData={setFormData} />
+
 
                 <div className="input resume">
                     <ResumeComponent
@@ -69,26 +50,7 @@ const Form = () => {
                     />
                 </div>
 
-                <div className="input major">
-                    <h3>Major</h3>
-                    <select
-                        name="major"
-                        value={formData.major}
-                        onChange={(e) =>
-                            setFormData((prev) => ({
-                                ...prev,
-                                major: e.target.value,
-                            }))
-                        }
-                    >
-                        <option value="">Select Major</option>
-                        {ucfMajors.map((major, index) => (
-                            <option key={index} value={major}>
-                                {major}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                <MajorComponent major={formData.major} setFormData={setFormData} />
 
                 <div className="input school-year">
                     <h3>School Year</h3>
@@ -193,235 +155,7 @@ const Form = () => {
                     />
                 </div>
 
-                <div className="input education">
-                    <h3>Education</h3>
-                    {formData.education.map((education, index) => {
-                        return (
-                            <div
-                                key={`education[${index}]`}
-                                className="education-entry"
-                            >
-                                <h4>Education {index + 1}</h4>
-                                <input
-                                    type="text"
-                                    name={`education[${index}].name`}
-                                    placeholder="School Name"
-                                    value={education.name}
-                                    onChange={(e) =>
-                                        setFormData((prev) => {
-                                            const result = [...prev.education];
-                                            result[index].name = e.target.value;
-                                            return {
-                                                ...prev,
-                                                education: result,
-                                            };
-                                        })
-                                    }
-                                />
-                                <input
-                                    type="text"
-                                    name={`education[${index}].degree`}
-                                    placeholder="Degree"
-                                    value={education.degree}
-                                    onChange={(e) =>
-                                        setFormData((prev) => {
-                                            const result = [...prev.education];
-                                            result[index].degree =
-                                                e.target.value;
-                                            return {
-                                                ...prev,
-                                                education: result,
-                                            };
-                                        })
-                                    }
-                                />
-                                <input
-                                    type="number"
-                                    name={`education[${index}].gpa.gpa`}
-                                    placeholder="GPA"
-                                    value={education.gpa.gpa || ""}
-                                    onChange={(e) =>
-                                        setFormData((prev) => {
-                                            const result = [...prev.education];
-                                            result[index].gpa.gpa = Number(
-                                                e.target.value
-                                            );
-                                            return {
-                                                ...prev,
-                                                education: result,
-                                            };
-                                        })
-                                    }
-                                    step="0.01"
-                                    min="0"
-                                    max={education.gpa.scale || 4}
-                                />
-                                <input
-                                    type="number"
-                                    name={`education[${index}].gpa.scale`}
-                                    placeholder="GPA Scale"
-                                    value={education.gpa.scale || ""}
-                                    onChange={(e) =>
-                                        setFormData((prev) => {
-                                            const result = [...prev.education];
-                                            result[index].gpa.scale = Number(
-                                                e.target.value
-                                            );
-                                            return {
-                                                ...prev,
-                                                education: result,
-                                            };
-                                        })
-                                    }
-                                    step="0.01"
-                                    min="0"
-                                />
-                                <div className="dates">
-                                    <input
-                                        type="month"
-                                        name={`education[${index}].dates.start`}
-                                        placeholder="Start Date"
-                                        value={education.dates.start}
-                                        onChange={(e) =>
-                                            setFormData((prev) => {
-                                                if (
-                                                    e.target.value >
-                                                        education.dates.end &&
-                                                    education.dates.end !== ""
-                                                ) {
-                                                    alert(
-                                                        "Start date cannot be after end date."
-                                                    );
-                                                    document.getElementsByName(
-                                                        `education[${index}].dates.start`
-                                                    )[0].value = "";
-                                                    return prev;
-                                                }
-
-                                                const result = [
-                                                    ...prev.education,
-                                                ];
-                                                result[index].dates.start =
-                                                    e.target.value;
-                                                return {
-                                                    ...prev,
-                                                    education: result,
-                                                };
-                                            })
-                                        }
-                                    />
-                                    <input
-                                        type="month"
-                                        name={`education[${index}].dates.end`}
-                                        placeholder="End Date"
-                                        value={education.dates.end}
-                                        onChange={(e) =>
-                                            setFormData((prev) => {
-                                                if (
-                                                    e.target.value <
-                                                        education.dates.start &&
-                                                    education.dates.start !== ""
-                                                ) {
-                                                    alert(
-                                                        "Start date cannot be after end date."
-                                                    );
-                                                    document.getElementsByName(
-                                                        `education[${index}].dates.end`
-                                                    )[0].value = "";
-                                                    return prev;
-                                                }
-                                                const result = [
-                                                    ...prev.education,
-                                                ];
-                                                result[index].dates.end =
-                                                    e.target.value;
-                                                return {
-                                                    ...prev,
-                                                    education: result,
-                                                };
-                                            })
-                                        }
-                                    />
-                                </div>
-                                <div className="education-clubs">
-                                    <h5>Clubs</h5>
-                                    {education.clubs.map((club, clubIndex) => {
-                                        return (
-                                            <div
-                                                key={`education[${index}].clubs[${clubIndex}]`}
-                                                className="club"
-                                            >
-                                                <input
-                                                    type="text"
-                                                    name={`education[${index}].clubs[${clubIndex}].name`}
-                                                    placeholder="Club Name"
-                                                    value={club.name}
-                                                    onChange={(e) =>
-                                                        setFormData((prev) => {
-                                                            const result = [
-                                                                ...prev.education,
-                                                            ];
-                                                            result[index].clubs[
-                                                                clubIndex
-                                                            ].name =
-                                                                e.target.value;
-                                                            return {
-                                                                ...prev,
-                                                                education:
-                                                                    result,
-                                                            };
-                                                        })
-                                                    }
-                                                />
-                                                <input
-                                                    type="text"
-                                                    name={`education[${index}].clubs[${clubIndex}].title`}
-                                                    placeholder="Your Title"
-                                                    value={club.title}
-                                                    onChange={(e) =>
-                                                        setFormData((prev) => {
-                                                            const result = [
-                                                                ...prev.education,
-                                                            ];
-                                                            result[index].clubs[
-                                                                clubIndex
-                                                            ].title =
-                                                                e.target.value;
-                                                            return {
-                                                                ...prev,
-                                                                education:
-                                                                    result,
-                                                            };
-                                                        })
-                                                    }
-                                                />
-                                            </div>
-                                        );
-                                    })}
-                                    <input
-                                        type="button"
-                                        value="Add Education"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            setFormData((prev) => {
-                                                const result = [
-                                                    ...prev.education,
-                                                ];
-                                                result.push(
-                                                    createEmptyEducation()
-                                                );
-                                                return {
-                                                    ...prev,
-                                                    education: result,
-                                                };
-                                            });
-                                        }}
-                                    />
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
+                <EducationComponent value={formData.education} onChange={(next) => setFormData(prev => ({ ...prev, education: next }))} />
 
                 <div className="input work-experience">
                     <h3>Work Experience</h3>
