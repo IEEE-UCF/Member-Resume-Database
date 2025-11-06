@@ -12,6 +12,8 @@ import BioComponent from "./BioComponent"
 import MajorComponent from "./MajorComponent"
 import EducationComponent from "./EducationComponent"
 
+import formStyles from "../styles/form.module.css"
+
 const dummyData = {
     name: "Tal Avital",
     bio: "Seeking internships related to software engineering and fullstack development.",
@@ -124,27 +126,24 @@ const Form = () => {
 
     return (
         <>
-            <div className="output name">
-                <NameComponent name={formData.name} />
-            </div>
+            <div className="output name"></div>
 
             <div className="output bio">
                 <BioComponent bio={formData.bio} />
             </div>
 
-            <div className="output resume"></div>
+            <div className="output resume">
                 <ResumeComponent resume={formData.resume} resumeType={formData.resumeType} />
-            
-            <div className="output major">
-                <MajorComponent major={formData.major} />
-            </div>
+            <div className="output major"></div>
 
             <div className="output school-year"></div>
 
             <div className="output graduation-year"></div>
 
-            <div className="output links"></div>
+            <div className="output links">
                 <LinksComponent links={formData.links} />
+            </div>
+            
             <div className="output clubs"></div>
 
             <div className="output education">
@@ -153,17 +152,18 @@ const Form = () => {
 
             <div className="output work-experience"></div>
 
-            <div className="output picture"></div>
+            <div className="output picture">
                 <PictureComponent picture={formData.picture} />
-            <div className="output projects">
-                <h2>Projects</h2>
+            </div>
+
+            <div className={`${formStyles.child} ${formStyles.projects}`}>
                 <ProjectsComponent projects = {formData.projects}/>
             </div>
 
             <div className="output skills">
                 <SkillsComponent skills={formData.skills} />
             </div>
-        </>
+        </div>
     );
 };
 
