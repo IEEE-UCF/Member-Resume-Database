@@ -2,14 +2,12 @@ export interface Experience {
     name: string;
     description: string;
     title: string;
-    skills: string[];
 }
 export const createEmptyExperience = () => {
     return {
         name: "",
         description: "",
         title: "",
-        skills: [""],
     };
 };
 
@@ -25,7 +23,6 @@ export interface Education {
         gpa: number;
     };
     clubs: Experience[];
-    skills: string[];
 }
 export const createEmptyEducation = (): Education => {
     return {
@@ -40,21 +37,18 @@ export const createEmptyEducation = (): Education => {
             gpa: 0,
         },
         clubs: [createEmptyExperience()],
-        skills: [""],
     };
 };
 
 export interface Project {
     name: string;
     description: string;
-    skills: string[];
     link: string;
 }
 export const createEmptyProject = (): Project => {
     return {
         name: "",
         description: "",
-        skills: [""],
         link: "",
     };
 };

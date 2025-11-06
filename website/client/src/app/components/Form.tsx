@@ -51,8 +51,7 @@ const dummyData = {
                         slightly less centralized. There is a lot more for me to say about my time at Knights Experimental \
                         Rocketry, and I am eager to discuss my experience with you further.
                     `,
-                    title: "developer",
-                    skills: ["c, python, embedded systems, databases, agile work environment"]
+                    title: "developer"
                 },
                 {
                     name: "Institude of Electrical and Electronics Engineers",
@@ -66,11 +65,9 @@ const dummyData = {
                         like integration with deployment tools, testing, and documentation. Essentially, I make it easier for the \
                         programmers to get their work done quickly, efficiently, and with clear direction.
                     `,
-                    title: "Project Manager",
-                    skills: ["js fullstack", "agile work environment", "team building", "technical writing"]
+                    title: "Project Manager"
                 }
-            ],
-            skills: ["data structures", "embedded systems", "networking", "algorithms", "team building"]
+            ]
         }
     ],
     workExperience: [createEmptyExperience()],
@@ -83,7 +80,6 @@ const dummyData = {
                 Written in React.js and Express.js. Implemented user sessions and login functionality to a video game with \
                 animations, UI, and NPCs.\
             `,
-            skills: ["React.js", "Express.js", "Typescript", "Git BASH", "VS Code"],
             link: "https://github.com/TAvital04/Five-Nights-at-Freddy-s"
         },
         {
@@ -93,7 +89,6 @@ const dummyData = {
                 Created an interpreter in C, running pseudo-assembly code line-by-line. Reduced latency by 5x by avoiding dynamic \
                 memory allocation and helper functions.\
             `,
-            skills: ["C", "time complexity", "systems software"],
             link: "https://github.com/TAvital04/Psudo-Assembly-Interpreter"
         }
     ],
