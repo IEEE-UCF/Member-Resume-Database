@@ -68,7 +68,6 @@ export interface Form {
     schoolYear: string;
     graduationYear: number;
     links: string[];
-    clubs: Experience[];
     education: Education[];
     workExperience: Experience[];
     picture: any;
