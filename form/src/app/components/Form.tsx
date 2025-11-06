@@ -70,102 +70,6 @@ const Form = () => {
                     />
                 </div>
 
-                <div className="input school-year">
-                    <h3>School Year</h3>
-                    <label>
-                        <input
-                            type="radio"
-                            name="schoolYear"
-                            value="Freshman"
-                            checked={formData.schoolYear === "Freshman"}
-                            onChange={(e) =>
-                                setFormData((prev) => ({
-                                    ...prev,
-                                    schoolYear: e.target.value,
-                                }))
-                            }
-                        />
-                        Freshman
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="schoolYear"
-                            value="Sophomore"
-                            checked={formData.schoolYear === "Sophomore"}
-                            onChange={(e) =>
-                                setFormData((prev) => ({
-                                    ...prev,
-                                    schoolYear: e.target.value,
-                                }))
-                            }
-                        />
-                        Sophomore
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="schoolYear"
-                            value="Junior"
-                            checked={formData.schoolYear === "Junior"}
-                            onChange={(e) =>
-                                setFormData((prev) => ({
-                                    ...prev,
-                                    schoolYear: e.target.value,
-                                }))
-                            }
-                        />
-                        Junior
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="schoolYear"
-                            value="Senior"
-                            checked={formData.schoolYear === "Senior"}
-                            onChange={(e) =>
-                                setFormData((prev) => ({
-                                    ...prev,
-                                    schoolYear: e.target.value,
-                                }))
-                            }
-                        />
-                        Senior
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="schoolYear"
-                            value="Graduate"
-                            checked={formData.schoolYear === "Graduate"}
-                            onChange={(e) =>
-                                setFormData((prev) => ({
-                                    ...prev,
-                                    schoolYear: e.target.value,
-                                }))
-                            }
-                        />
-                        Graduate
-                    </label>
-                </div>
-
-                <div className="input graduation-year">
-                    <h3>Graduation Year</h3>
-                    <input
-                        type="number"
-                        name="graduationYear"
-                        value={formData.graduationYear || ""}
-                        onChange={(e) =>
-                            setFormData((prev) => ({
-                                ...prev,
-                                graduationYear: Number(e.target.value),
-                            }))
-                        }
-                        min="2020"
-                        max="2035"
-                    />
-                </div>
-
                 <div className="input links">
                     <LinksComponent
                         links={formData.links}
@@ -190,8 +94,8 @@ const Form = () => {
 
                 <div className="input school-year">
                     <SchoolYearComponent
-                        schoolYear={formData.schoolYear}
-                        setFormData={setFormData}
+                        schoolYear = { formData.schoolYear }
+                        setFormData = { setFormData }
                     />
                 </div>
 

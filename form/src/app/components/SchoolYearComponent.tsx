@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 
-import {type Form } from "../interfaces"
+import { type Form } from "../interfaces"
 
 interface SchoolYearComponentProps {
     schoolYear: string;
