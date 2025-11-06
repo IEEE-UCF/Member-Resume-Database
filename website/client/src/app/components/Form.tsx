@@ -134,6 +134,8 @@ const Form = () => {
 
             <div className="output resume">
                 <ResumeComponent resume={formData.resume} resumeType={formData.resumeType} />
+            </div>
+
             <div className="output major"></div>
 
             <div className="output school-year"></div>
@@ -163,7 +165,7 @@ const Form = () => {
             <div className="output skills">
                 <SkillsComponent skills={formData.skills} />
             </div>
-        </div>
+        </>
     );
 };
 
