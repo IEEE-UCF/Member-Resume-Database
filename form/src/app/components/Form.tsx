@@ -6,6 +6,14 @@ import LinksComponent from "./LinksComponent"
 import SkillsComponent from "./SkillsComponent"
 import PictureComponent from "./PictureComponent" 
 import ResumeComponent from "./ResumeComponent"
+import SchoolYearComponent from "./SchoolYearComponent";
+import GraduationYearComponent from "./GraduationYearComponent";
+import ClubsComponent from "./ClubsComponent";
+import WorkExperienceComponent from "./WorkExperienceComponent";
+
+
+
+
 
 interface Experience {
     name: string;
@@ -184,102 +192,7 @@ const Form = () => {
                         ))}
                     </select>
                 </div>
-
-                <div className="input school-year">
-                    <h3>School Year</h3>
-                    <label>
-                        <input
-                            type="radio"
-                            name="schoolYear"
-                            value="Freshman"
-                            checked={formData.schoolYear === "Freshman"}
-                            onChange={(e) =>
-                                setFormData((prev) => ({
-                                    ...prev,
-                                    schoolYear: e.target.value,
-                                }))
-                            }
-                        />
-                        Freshman
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="schoolYear"
-                            value="Sophomore"
-                            checked={formData.schoolYear === "Sophomore"}
-                            onChange={(e) =>
-                                setFormData((prev) => ({
-                                    ...prev,
-                                    schoolYear: e.target.value,
-                                }))
-                            }
-                        />
-                        Sophomore
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="schoolYear"
-                            value="Junior"
-                            checked={formData.schoolYear === "Junior"}
-                            onChange={(e) =>
-                                setFormData((prev) => ({
-                                    ...prev,
-                                    schoolYear: e.target.value,
-                                }))
-                            }
-                        />
-                        Junior
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="schoolYear"
-                            value="Senior"
-                            checked={formData.schoolYear === "Senior"}
-                            onChange={(e) =>
-                                setFormData((prev) => ({
-                                    ...prev,
-                                    schoolYear: e.target.value,
-                                }))
-                            }
-                        />
-                        Senior
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="schoolYear"
-                            value="Graduate"
-                            checked={formData.schoolYear === "Graduate"}
-                            onChange={(e) =>
-                                setFormData((prev) => ({
-                                    ...prev,
-                                    schoolYear: e.target.value,
-                                }))
-                            }
-                        />
-                        Graduate
-                    </label>
-                </div>
-
-                <div className="input graduation-year">
-                    <h3>Graduation Year</h3>
-                    <input
-                        type="number"
-                        name="graduationYear"
-                        value={formData.graduationYear || ""}
-                        onChange={(e) =>
-                            setFormData((prev) => ({
-                                ...prev,
-                                graduationYear: Number(e.target.value),
-                            }))
-                        }
-                        min="2020"
-                        max="2035"
-                    />
-                </div>
+                
 
                 <div className="input links">
                     <LinksComponent
@@ -287,136 +200,7 @@ const Form = () => {
                         setFormData = {setFormData} 
                     />
                 </div>
-
-                <div className="input clubs">
-                    <h3>Clubs</h3>
-                    {formData.clubs.map((club, index) => {
-                        return (
-                            <div key={`clubs[${index}]`} className="club">
-                                <h4>Club {index + 1}</h4>
-                                <input
-                                    type="text"
-                                    name={`clubs[${index}].name`}
-                                    placeholder="Club Name"
-                                    value={club.name}
-                                    onChange={(e) =>
-                                        setFormData((prev) => {
-                                            const result = [...prev.clubs];
-                                            result[index].name = e.target.value;
-                                            return { ...prev, clubs: result };
-                                        })
-                                    }
-                                />
-                                <textarea
-                                    name={`clubs[${index}].description`}
-                                    placeholder="Description"
-                                    value={club.description}
-                                    onChange={(e) =>
-                                        setFormData((prev) => {
-                                            const result = [...prev.clubs];
-                                            result[index].description =
-                                                e.target.value;
-                                            return { ...prev, clubs: result };
-                                        })
-                                    }
-                                    rows={3}
-                                />
-                                <input
-                                    type="text"
-                                    name={`clubs[${index}].title`}
-                                    placeholder="Your Title"
-                                    value={club.title}
-                                    onChange={(e) =>
-                                        setFormData((prev) => {
-                                            const result = [...prev.clubs];
-                                            result[index].title =
-                                                e.target.value;
-                                            return { ...prev, clubs: result };
-                                        })
-                                    }
-                                />
-                                <div className="input skills">
-                                    <h5>Skills</h5>
-                                    {club.skills.map((skill, skillsIndex) => {
-                                        return (
-                                            <input
-                                                key={`clubs[${index}].skills[${skillsIndex}]`}
-                                                type="text"
-                                                placeholder="Skill"
-                                                name={`clubs[${index}].skills[${skillsIndex}]`}
-                                                value={skill}
-                                                onChange={(e) =>
-                                                    setFormData((prev) => {
-                                                        const updatedClubs = [
-                                                            ...prev.clubs,
-                                                        ];
-                                                        const updatedClub = {
-                                                            ...updatedClubs[
-                                                                index
-                                                            ],
-                                                        };
-                                                        const updatedSkills = [
-                                                            ...updatedClub.skills,
-                                                        ];
-                                                        updatedSkills[
-                                                            skillsIndex
-                                                        ] = e.target.value;
-                                                        updatedClub.skills =
-                                                            updatedSkills;
-                                                        updatedClubs[index] =
-                                                            updatedClub;
-
-                                                        return {
-                                                            ...prev,
-                                                            clubs: updatedClubs,
-                                                        };
-                                                    })
-                                                }
-                                            />
-                                        );
-                                    })}
-
-                                    <button
-                                        onClick={(e) =>
-                                            {
-                                                e.preventDefault()
-                                                setFormData((prev) => {
-                                                    const updatedClubs = [
-                                                        ...prev.clubs,
-                                                    ];
-                                                    const updatedClub = {
-                                                        ...updatedClubs[index],
-                                                    };
-                                                    updatedClub.skills = [
-                                                        ...updatedClub.skills,
-                                                        "",
-                                                    ];
-                                                    updatedClubs[index] =
-                                                        updatedClub;
-                                                    return {
-                                                        ...prev,
-                                                        clubs: updatedClubs,
-                                                    };
-                                                })
-                                            }
-                                        }
-                                    >Add Skill</button>
-                                </div>
-                            </div>
-                        );
-                    })}
-                    <input
-                        type="button"
-                        value="Add Club"
-                        onClick={(e) => {
-                            setFormData((prev) => ({
-                                ...prev,
-                                clubs: [...prev.clubs, createEmptyExperience()],
-                            }))
-                        }}
-                    />
-                </div>
-
+                   
                 <div className="input education">
                     <h3>Education</h3>
                     {formData.education.map((education, index) => {
@@ -660,162 +444,30 @@ const Form = () => {
                 </div>
 
                 <div className="input work-experience">
-                    <h3>Work Experience</h3>
-                    {formData.workExperience.map((experience, index) => {
-                        return (
-                            <div
-                                key={`workExperience[${index}]`}
-                                className="experience"
-                            >
-                                <h4>Experience {index + 1}</h4>
-                                <input
-                                    type="text"
-                                    name={`workExperience[${index}].name`}
-                                    placeholder="Company Name"
-                                    value={experience.name}
-                                    onChange={(e) =>
-                                        setFormData((prev) => {
-                                            const result = [
-                                                ...prev.workExperience,
-                                            ];
-                                            result[index].name = e.target.value;
-                                            return {
-                                                ...prev,
-                                                workExperience: result,
-                                            };
-                                        })
-                                    }
-                                />
-                                <input
-                                    type="text"
-                                    name={`workExperience[${index}].title`}
-                                    placeholder="Job Title"
-                                    value={experience.title}
-                                    onChange={(e) =>
-                                        setFormData((prev) => {
-                                            const result = [
-                                                ...prev.workExperience,
-                                            ];
-                                            result[index].title =
-                                                e.target.value;
-                                            return {
-                                                ...prev,
-                                                workExperience: result,
-                                            };
-                                        })
-                                    }
-                                />
-                                <textarea
-                                    name={`workExperience[${index}].description`}
-                                    placeholder="Description"
-                                    value={experience.description}
-                                    onChange={(e) =>
-                                        setFormData((prev) => {
-                                            const result = [
-                                                ...prev.workExperience,
-                                            ];
-                                            result[index].description =
-                                                e.target.value;
-                                            return {
-                                                ...prev,
-                                                workExperience: result,
-                                            };
-                                        })
-                                    }
-                                    rows={3}
-                                />
-                                <div className="input skills">
-                                    <h3>Skills</h3>
+                    <WorkExperienceComponent
+                        workExperience={formData.workExperience}
+                        setFormData={setFormData}
+                    />
+                </div>
 
-                                    {experience.skills.map(
-                                        (skill, skillsIndex) => {
-                                            return (
-                                                <input
-                                                    key={`workExperience[${index}].skills[${skillsIndex}]`}
-                                                    type="text"
-                                                    name={`workExperience[${index}].skills[${skillsIndex}]`}
-                                                    value={skill}
-                                                    onChange={(e) =>
-                                                        setFormData((prev) => {
-                                                            const updatedWorkExperiences =
-                                                                [
-                                                                    ...prev.workExperience,
-                                                                ];
-                                                            const updatedWorkExperience =
-                                                                {
-                                                                    ...updatedWorkExperiences[
-                                                                        index
-                                                                    ],
-                                                                };
-                                                            const updatedSkills =
-                                                                [
-                                                                    ...updatedWorkExperience.skills,
-                                                                ];
-                                                            updatedSkills[
-                                                                skillsIndex
-                                                            ] = e.target.value;
-                                                            updatedWorkExperience.skills =
-                                                                updatedSkills;
-                                                            updatedWorkExperiences[
-                                                                index
-                                                            ] =
-                                                                updatedWorkExperience;
 
-                                                            return {
-                                                                ...prev,
-                                                                workExperience:
-                                                                    updatedWorkExperiences,
-                                                            };
-                                                        })
-                                                    }
-                                                />
-                                            );
-                                        }
-                                    )}
+                <div className="input clubs">
+                    <ClubsComponent clubs={formData.clubs} setFormData={setFormData} />
+                </div>
 
-                                    <button
-                                        onClick={(e) => {
-                                            setFormData((prev) => {
-                                                e.preventDefault()
-                                                const updatedWorkExperiences = [
-                                                    ...prev.workExperience,
-                                                ];
-                                                const updatedWorkExperience = {
-                                                    ...updatedWorkExperiences[
-                                                        index
-                                                    ],
-                                                };
-                                                updatedWorkExperience.skills = [
-                                                    ...updatedWorkExperience.skills,
-                                                    "",
-                                                ];
-                                                updatedWorkExperiences[index] =
-                                                    updatedWorkExperience;
-                                                return {
-                                                    ...prev,
-                                                    workExperience:
-                                                        updatedWorkExperiences,
-                                                };
-                                            })
-                                        }}
-                                    />
-                                </div>
-                            </div>
-                        );
-                    })}
-                    <input
-                        type="button"
-                        value="Add Experience"
-                        onClick={(e) => {
-                            e.preventDefault()
-                            setFormData((prev) => ({
-                                ...prev,
-                                workExperience: [
-                                    ...prev.workExperience,
-                                    createEmptyExperience(),
-                                ],
-                            }))
-                        }}
+
+                <div className="input graduation-year">
+                    <GraduationYearComponent
+                        graduationYear={formData.graduationYear}
+                        setFormData={setFormData}
+                    />
+                </div>
+
+
+                <div className="input school-year">
+                    <SchoolYearComponent
+                        schoolYear={formData.schoolYear}
+                        setFormData={setFormData}
                     />
                 </div>
 
