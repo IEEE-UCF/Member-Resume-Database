@@ -18,12 +18,14 @@ The first bits of code this document will describe are of the name field.
 
 The following is the code that calls NameComponent.tsx, the component for the name field, in Form.tsx:
 
+```javascript
 <div className={`${formStyles.child} ${formStyles.name}`}>
     <NameComponent 
         name={formData.name} 
         setFormData={setFormData} 
     />
 </div>
+```
 
 This code comprises of a div tag that isolates the component and connects it to the form's stylesheet. Inside the div tag is a call to the component NameComponent.tsx. It is passed the name field in the formData object and setFormData- the useState function that sets the contents of formData.
 
