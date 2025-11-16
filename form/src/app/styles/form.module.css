@@ -1,0 +1,16 @@
+.child {
+    border: 1px solid black;
+}
+
+@media (max-width: 1000px) {
+    .child {
+        margin: 2%;
+        padding: 2%;
+    }
+}
+@media (min-width: 1000px) {
+    .child {
+        margin: 5%;
+        padding: 5%;
+    }
+}

@@ -16,6 +16,8 @@ import EducationComponent from "./EducationComponent";
 
 import { type Form, createEmptyForm, createEmptyExperience, createEmptyEducation } from "../interfaces"
 
+import formStyles from "../styles/form.module.css"
+
 const Form = () => {
     const [formData, setFormData] = useState<Form>(createEmptyForm());
 
@@ -39,7 +41,7 @@ const Form = () => {
         <>
             <form onSubmit={handleSubmit}>
                 
-                <div className="input name">
+                <div className={`${formStyles.child} ${formStyles.name}`}>
                     <NameComponent 
                         name={formData.name} 
                         setFormData={setFormData} 
