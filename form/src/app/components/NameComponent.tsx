@@ -1,12 +1,12 @@
 import React from "react";
 import type { Form } from "../interfaces";
 
-type Props = {
+type NameComponentProps = {
     name: string;
     setFormData: React.Dispatch<React.SetStateAction<Form>>;
 };
 
-const NameComponent = ({ name, setFormData }: Props) => {
+const NameComponent = ({ name, setFormData }: NameComponentProps) => {
     return (
         <div className="input name">
             <h3>Name</h3>
@@ -23,4 +23,3 @@ const NameComponent = ({ name, setFormData }: Props) => {
 };
 
 export default NameComponent;
-

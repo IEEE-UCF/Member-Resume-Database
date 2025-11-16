@@ -125,7 +125,7 @@ const Form = () => {
                     />
                 </div>
 
-                <div className="input skills">
+                <div className={`${formStyles.child} ${formStyles.skills}`}>
                     <SkillsComponent
                         skills={formData.skills}
                         setFormData={setFormData}
