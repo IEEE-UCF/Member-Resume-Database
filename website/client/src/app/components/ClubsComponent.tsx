@@ -20,11 +20,6 @@ interface Experience {
                         <h3>{club.name}</h3>
                         <p><strong>Title:</strong> {club.title}</p>
                         <p>{club.description}</p>
-                        {
-                            club.skills.map((skill, skillsIndex) => (
-                                <p key={`skill-${skillsIndex}`}>{skill}</p>
-                            ))
-                        }
                     </div>
                 ))
             }

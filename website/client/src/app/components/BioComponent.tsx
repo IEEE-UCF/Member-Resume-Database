@@ -1,10 +1,10 @@
 import type { FC } from "react";
 
-type Props = {
+type BioProps = {
     bio: string;
 };
 
-const BioComponent: FC<Props> = ({ bio }) => {
+const BioComponent = ({ bio }: BioProps) => {
     return (
         <div className="output bio">
             <h2>Bio</h2>

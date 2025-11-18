@@ -25,7 +25,7 @@ const dummyData = {
     resumeType: "link",
     major: "Computer Science",
     schoolYear: "Senior",
-    graduationYear: "2027",
+    graduationYear: 2027,
     links: [
         "https://www.linkedin.com/in/tal-avital-profile/",
         "https://github.com/TAvital04",
@@ -104,7 +104,9 @@ const Form = () => {
 
     return (
         <>
-            <div className="output name"></div>
+            <div className="output name">
+                <NameComponent name={formData.name} />
+            </div>
 
             <div className="output bio">
                 <BioComponent bio={formData.bio} />
@@ -114,11 +116,17 @@ const Form = () => {
                 <ResumeComponent resume={formData.resume} resumeType={formData.resumeType} />
             </div>
 
-            <div className="output major"></div>
+            <div className="output major">
+                <MajorComponent major={formData.major} />
+            </div>
 
-            <div className="output school-year"></div>
+            <div className="output school-year">
+                <SchoolYearComponent schoolYear={formData.schoolYear} />
+            </div>
 
-            <div className="output graduation-year"></div>
+            <div className="output graduation-year">
+                <GraduationYearComponent graduationYear={formData.graduationYear} />
+            </div>
 
             <div className="output links">
                 <LinksComponent links={formData.links} />

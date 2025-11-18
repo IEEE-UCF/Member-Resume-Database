@@ -44,6 +44,7 @@ export default function EducationComponent({ value, onChange }: Props) {
 
     return (
         <>
+            <h3>Education</h3>
             {value.map((education, index) => {
                 return (
                     <div key={`education[${index}]`} className="education-entry">

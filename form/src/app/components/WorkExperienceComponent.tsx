@@ -1,30 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 
-// Local interface for a single work experience entry
-interface Experience {
-    name: string;
-    description: string;
-    title: string;
-    skills: string[];
-}
-
-// Local interface for the form state
-interface Form {
-    name: string;
-    bio: string;
-    resume: any;
-    resumeType?: string;
-    major: string;
-    schoolYear: string;
-    graduationYear: number;
-    links: string[];
-    clubs: any[];
-    education: any[];
-    workExperience: Experience[];
-    picture: any;
-    projects: any[];
-    skills: string[];
-}
+import { type Form, type Experience } from "../interfaces"
 
 interface WorkExperienceComponentProps {
     workExperience: Experience[];
@@ -35,7 +11,6 @@ const createEmptyExperience = (): Experience => ({
     name: "",
     description: "",
     title: "",
-    skills: [""],
 });
 
 const WorkExperienceComponent = ({
@@ -87,49 +62,6 @@ const WorkExperienceComponent = ({
                         }
                         rows={3}
                     />
-                    <div className="input skills">
-                        <h5>Skills</h5>
-                        {experience.skills.map((skill, skillsIndex) => (
-                            <input
-                                key={`workExperience[${index}].skills[${skillsIndex}]`}
-                                type="text"
-                                name={`workExperience[${index}].skills[${skillsIndex}]`}
-                                value={skill}
-                                onChange={e =>
-                                    setFormData(prev => {
-                                        const updatedWorkExperiences = [...prev.workExperience];
-                                        const updatedWorkExperience = {
-                                            ...updatedWorkExperiences[index],
-                                        };
-                                        const updatedSkills = [...updatedWorkExperience.skills];
-                                        updatedSkills[skillsIndex] = e.target.value;
-                                        updatedWorkExperience.skills = updatedSkills;
-                                        updatedWorkExperiences[index] = updatedWorkExperience;
-                                        return { ...prev, workExperience: updatedWorkExperiences };
-                                    })
-                                }
-                            />
-                        ))}
-                        <button
-                            onClick={e => {
-                                e.preventDefault();
-                                setFormData(prev => {
-                                    const updatedWorkExperiences = [...prev.workExperience];
-                                    const updatedWorkExperience = {
-                                        ...updatedWorkExperiences[index],
-                                    };
-                                    updatedWorkExperience.skills = [
-                                        ...updatedWorkExperience.skills,
-                                        "",
-                                    ];
-                                    updatedWorkExperiences[index] = updatedWorkExperience;
-                                    return { ...prev, workExperience: updatedWorkExperiences };
-                                });
-                            }}
-                        >
-                            Add Skill
-                        </button>
-                    </div>
                     <button
                         onClick={e => {
                             e.preventDefault();
