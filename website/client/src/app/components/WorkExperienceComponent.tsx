@@ -1,9 +1,4 @@
-interface Experience {
-    name: string;
-    description: string;
-    title: string;
-    skills: string[];
-}
+import { type Experience } from "../interfaces"
 
 interface WorkExperienceComponentProps {
     experiences: Experience[];
@@ -17,9 +12,6 @@ const WorkExperienceComponent: React.FC<WorkExperienceComponentProps> = ({ exper
                     <h3>{exp.name}</h3>
                     <p><strong>Title:</strong> {exp.title}</p>
                     <p>{exp.description}</p>
-                    {exp.skills?.map((skill, skillsIndex) => (
-                        <p key={`skill-${skillsIndex}`}>{skill}</p>
-                    ))}
                 </div>
             ))}
         </>
