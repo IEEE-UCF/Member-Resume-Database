@@ -1,9 +1,9 @@
-import React from "react";
+import { Dispatch, SetStateAction } from "react";
 import type { Form } from "../interfaces";
 
 type BioComponentProps = {
     bio: string;
-    setFormData: React.Dispatch<React.SetStateAction<Form>>;
+    setFormData: Dispatch<SetStateAction<Form>>;
 };
 
 const BioComponent = ({ 

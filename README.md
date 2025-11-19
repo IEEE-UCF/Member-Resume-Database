@@ -7,17 +7,15 @@ The following document describes the structure of the code of version 1 of the R
 This section will assist devs in finding and editing the program.
 
 ### 2.1 Run the Program
-Navigate to the parent folder of the IEEE website (./)
-Type the command: npm run dev
-Navigate to the form's address: :dashboard/resume
+Navigate to a folder that contains a src folder
 
-### 2.2 Find the Components in the Repository
-page.tsx: ./src/app/dashboard/resume
-All other components: ./src/components/dashboard/resume
+Type the command: npm i
+
+Type the command: npm run dev
 
 ## 3. Goal
 
-This version serves as the foundation of a website that will undergo many changes over the span of many years, so the main goal for it is to be as easily accessible as possible. This is done in two ways. First, the code that represents each field in the database is isolated and clearly labeled. If one wants to make a change to any field, they can simply look for the component that shares its name, and the change will not interfere with any other components in the form. Second, the code that represents each field was written to be as similar to the code all other fields as possible. If one wants to understand the structure of a field, they can learn that of a simpler one, and the understanding will translate well. While Future versions do not need to maintain this symmetry.
+This version serves as the foundation of a website that will undergo many changes over the span of many years, so the main goal for it is to be as easily accessible as possible. This is done in two ways. First, the code that represents each field in the database is isolated and clearly labeled. If one wants to make a change to any field, they can simply look for the component that shares its name. Also, the change will not interfere with any other component in the form. Second, the code that represents each field was written to be as similar to the code all other fields as possible. If one wants to understand the structure of a field, they can learn that of a simpler one, and the understanding will translate well. Future versions do not need to maintain this symmetry.
 
 ## 4. Form Structure
 

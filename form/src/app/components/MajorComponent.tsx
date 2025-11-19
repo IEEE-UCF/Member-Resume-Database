@@ -1,10 +1,10 @@
-import React from "react";
+import { Dispatch, SetStateAction } from "react";
 import { ucfMajors } from "../data/majors";
 import type { Form } from "../interfaces";
 
 type MajorComponentProps = {
     major: string;
-    setFormData: React.Dispatch<React.SetStateAction<Form>>;
+    setFormData: Dispatch<SetStateAction<Form>>;
 };
 
 const MajorComponent = ({ 
