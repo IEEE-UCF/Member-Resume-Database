@@ -2,11 +2,59 @@
 
 The following document describes the structure of the code of version 1 of the Resume Database Infrastructure (RDI).
 
-## 1. Access the Program (for devs)
+## Contents
+<ul>
+    <li>1. Run the Program (for devs)</li>
+    <li>2. Goal</li>
+    <li>
+        3. Form Structure
+        <ul>
+            <li>
+                3.1. The Name Section
+                <ul>
+                    <li>3.1.1. The Name Section Call in Form.tsx</li>
+                    <li>3.1.2. The Name Section as a Component</li>                    
+                </ul>
+            </li>
+            <li>
+                3.2. The Skills Section
+                <ul>
+                    <li>3.2.1. The Skills Section Call in Form.tsx</li>
+                    <li>3.2.2. The Skills Section as a Component</li>                    
+                </ul>
+            </li>
+            <li>
+                3.3. The Clubs Section
+                <ul>
+                    <li>3.3.1. The Clubs Section in Form.tsx</li>
+                    <li>3.3.2. The Clubs Section as a Component</li>                    
+                </ul>
+            </li>
+            <li>3.4 CSS</li>
+        </ul>
+    </li>
+    <li>
+        4. Website Structure
+        <ul>
+            <li>4.1. Website Form</li>
+            <li>4.2 Website CSS</li>                    
+        </ul>
+    </li>
+    <li>5. Conclusion</li>
+    <li>
+        6. Future Versions
+        <ul>
+            <li>6.1. Deploy the Form</li>
+            <li>6.2. Error Handling for Improper Inputs</li>
+            <li>6.3. CSS</li>      
+            <li>6.4. Majors</li>      
+            <li>6.5 Master Lists</li>      
+        </ul>
+    </li>
+</ul>
 
-This section will assist devs in finding and editing the program.
+## 1. Run the Program (for devs)
 
-### 1.1 Run the Program
 Navigate to a folder that contains a src folder
 
 Type the command: npm i
@@ -396,7 +444,7 @@ There is not a single change between the CSS in the website and the CSS in the i
 
 Every decision in this program had one idea in mind: make the code serve as a solid and accessible foundation that can be easily updated for years to come. If you have any questions, comments, or concerns, please reach out to the team by filling out this form: https://forms.gle/RLmoxYHrUsUDQebK7.
 
-## 6. Version 2
+## 6. Future Versions
 
 A watchful eye may notice that there are many elements of this project that need to be refined. This section states everything RDI is working on for version two of the project.
 
