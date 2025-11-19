@@ -54,7 +54,7 @@ export const createEmptyProject = (): Project => {
 export interface Form {
     name: string;
     bio: string;
-    resume: any;
+    resume: string;
     major: string;
     schoolYear: string;
     graduationYear: number;
@@ -70,7 +70,7 @@ export const createEmptyForm = (): Form => {
     return {
         name: "",
         bio: "",
-        resume: null,
+        resume: "",
         major: "",
         schoolYear: "",
         graduationYear: 0,

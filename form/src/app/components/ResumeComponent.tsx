@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from "react";
 import { type Form } from "../interfaces"
 
 interface ResumeComponentProps {
-    resume: any;
+    resume: string;
     setFormData: Dispatch<SetStateAction<Form>>;
 }
 
