@@ -13,6 +13,7 @@ import NameComponent from "./NameComponent";
 import BioComponent from "./BioComponent";
 import MajorComponent from "./MajorComponent";
 import EducationComponent from "./EducationComponent";
+import ClubsComponent from "./ClubsComponent"
 
 import { type Form, createEmptyForm, createEmptyExperience, createEmptyEducation } from "../interfaces"
 
@@ -59,7 +60,6 @@ const Form = () => {
                 <div className="input resume">
                     <ResumeComponent
                         resume={formData.resume}
-                        resumeType={formData.resumeType}
                         setFormData={setFormData}
                     />
                 </div>
@@ -107,6 +107,13 @@ const Form = () => {
                     />
                 </div>
 
+                <div className="input clubs">
+                    <ClubsComponent
+                        clubs = {formData.clubs}
+                        setFormData = {setFormData}
+                    />
+                </div>
+
                 <div className="input work-experience">
                     <WorkExperienceComponent
                         workExperience = {formData.workExperience}
@@ -114,6 +121,7 @@ const Form = () => {
                     />
                 </div>
 
+                {/* Look to simplify */}
                 <div className="input picture">
                     <PictureComponent setFormData={setFormData} />
                 </div>

@@ -8,11 +8,13 @@ import {
 
 interface ClubsComponentProps {
     clubs: Experience[];
-    index: number;
     setFormData: Dispatch<SetStateAction<Form>>;
 }
 
-const ClubsComponent = ({ clubs, index, setFormData }: ClubsComponentProps) => {
+const ClubsComponent = ({ 
+    clubs, 
+    setFormData 
+}: ClubsComponentProps) => {
     return (
         <>
             <h3>Clubs</h3>
@@ -27,7 +29,7 @@ const ClubsComponent = ({ clubs, index, setFormData }: ClubsComponentProps) => {
                         onChange={(e) =>
                             setFormData((prev) => {
                                 const updated = [
-                                    ...prev.education[index].clubs,
+                                    ...prev.clubs,
                                 ];
                                 updated[clubsIndex].name = e.target.value;
                                 return { ...prev, clubs: updated };
@@ -40,7 +42,7 @@ const ClubsComponent = ({ clubs, index, setFormData }: ClubsComponentProps) => {
                         value={club.description}
                         onChange={(e) =>
                             setFormData((prev) => {
-                                const updated = [...prev.education[index].clubs];
+                                const updated = [...prev.clubs];
                                 updated[clubsIndex].description = e.target.value;
                                 return { ...prev, clubs: updated };
                             })
@@ -54,7 +56,7 @@ const ClubsComponent = ({ clubs, index, setFormData }: ClubsComponentProps) => {
                         value={club.title}
                         onChange={(e) =>
                             setFormData((prev) => {
-                                const updated = [...prev.education[index].clubs];
+                                const updated = [...prev.clubs];
                                 updated[clubsIndex].title = e.target.value;
                                 return { ...prev, clubs: updated };
                             })
@@ -65,7 +67,7 @@ const ClubsComponent = ({ clubs, index, setFormData }: ClubsComponentProps) => {
                             e.preventDefault();
                             setFormData((prev) => ({
                                 ...prev,
-                                clubs: prev.education[index].clubs.filter((_, i) => i !== clubsIndex),
+                                clubs: prev.clubs.filter((_, i) => i !== clubsIndex),
                             }));
                         }}
                     >
@@ -79,7 +81,7 @@ const ClubsComponent = ({ clubs, index, setFormData }: ClubsComponentProps) => {
                 onClick={(e) =>
                     setFormData((prev) => ({
                         ...prev,
-                        clubs: [...prev.education[index].clubs, createEmptyExperience()],
+                        clubs: [...prev.clubs, createEmptyExperience()],
                     }))
                 }
             />

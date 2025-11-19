@@ -1,15 +1,15 @@
-import type { FC } from "react";
-
-type BioProps = {
+type BioComponentProps = {
     bio: string;
 };
 
-const BioComponent = ({ bio }: BioProps) => {
+const BioComponent = ({ 
+    bio 
+}: BioComponentProps) => {
     return (
-        <div className="output bio">
+        <>
             <h2>Bio</h2>
-            <p>{bio || "No bio provided."}</p>
-        </div>
+            <p>{bio}</p>
+        </>
     );
 };
 

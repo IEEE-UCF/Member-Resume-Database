@@ -7,7 +7,10 @@ interface SkillsComponentProps {
     setFormData: Dispatch<SetStateAction<Form>>;
 }
 
-const SkillsComponent = ({ skills, setFormData }: SkillsComponentProps) => {
+const SkillsComponent = ({ 
+    skills, 
+    setFormData 
+}: SkillsComponentProps) => {
     return (
         <>
             <h3>Skills</h3>

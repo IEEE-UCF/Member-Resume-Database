@@ -2,14 +2,17 @@ import React from "react";
 import { ucfMajors } from "../data/majors";
 import type { Form } from "../interfaces";
 
-type Props = {
+type MajorComponentProps = {
     major: string;
     setFormData: React.Dispatch<React.SetStateAction<Form>>;
 };
 
-const MajorComponent = ({ major, setFormData }: Props) => {
+const MajorComponent = ({ 
+    major, 
+    setFormData 
+}: MajorComponentProps) => {
     return (
-        <div className="input major">
+        <>
             <h3>Major</h3>
             <select
                 name="major"
@@ -25,7 +28,7 @@ const MajorComponent = ({ major, setFormData }: Props) => {
                     </option>
                 ))}
             </select>
-        </div>
+        </>
     );
 };
 

@@ -1,15 +1,15 @@
-import type { FC } from "react";
-
-type Props = {
+type MajorComponentProps = {
     major: string;
 };
 
-const MajorComponent: FC<Props> = ({ major }) => {
+const MajorComponent = ({ 
+    major 
+}: MajorComponentProps) => {
     return (
-        <div className="output major">
+        <>
             <h3>Major</h3>
-            <p>{major || "Undeclared"}</p>
-        </div>
+            <p>{major}</p>
+        </>
     );
 };
 

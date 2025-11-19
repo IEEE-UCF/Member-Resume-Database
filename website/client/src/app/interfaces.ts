@@ -3,13 +3,6 @@ export interface Experience {
     description: string;
     title: string;
 }
-export const createEmptyExperience = () => {
-    return {
-        name: "",
-        description: "",
-        title: "",
-    };
-};
 
 export interface Education {
     name: string;
@@ -22,47 +15,24 @@ export interface Education {
         scale: number;
         gpa: number;
     };
-    clubs: Experience[];
 }
-export const createEmptyEducation = (): Education => {
-    return {
-        name: "",
-        dates: {
-            start: "",
-            end: "",
-        },
-        degree: "",
-        gpa: {
-            scale: 0,
-            gpa: 0,
-        },
-        clubs: [createEmptyExperience()],
-    };
-};
 
 export interface Project {
     name: string;
     description: string;
     link: string;
 }
-export const createEmptyProject = (): Project => {
-    return {
-        name: "",
-        description: "",
-        link: "",
-    };
-};
 
 export interface Form {
     name: string;
     bio: string;
     resume: any;
-    resumeType?: string;
     major: string;
     schoolYear: string;
     graduationYear: number;
     links: string[];
     education: Education[];
+    clubs: Experience[];
     workExperience: Experience[];
     picture: any;
     projects: Project[];

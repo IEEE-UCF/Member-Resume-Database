@@ -1,15 +1,17 @@
 import React from "react";
 import type { Form } from "../interfaces";
 
-type Props = {
+type BioComponentProps = {
     bio: string;
     setFormData: React.Dispatch<React.SetStateAction<Form>>;
-    rows?: number;
 };
 
-const BioComponent = ({ bio, setFormData, rows = 5 }: Props) => {
+const BioComponent = ({ 
+    bio, 
+    setFormData, 
+}: BioComponentProps) => {
     return (
-        <div className="input bio">
+        <>
             <h3>Bio</h3>
             <textarea
                 name="bio"
@@ -17,9 +19,9 @@ const BioComponent = ({ bio, setFormData, rows = 5 }: Props) => {
                 onChange={(e) =>
                     setFormData((prev) => ({ ...prev, bio: e.target.value }))
                 }
-                rows={rows}
+                rows={5}
             />
-        </div>
+        </>
     );
 };
 

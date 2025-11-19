@@ -22,7 +22,6 @@ export interface Education {
         scale: number;
         gpa: number;
     };
-    clubs: Experience[];
 }
 export const createEmptyEducation = (): Education => {
     return {
@@ -36,7 +35,6 @@ export const createEmptyEducation = (): Education => {
             scale: 0,
             gpa: 0,
         },
-        clubs: [createEmptyExperience()],
     };
 };
 
@@ -57,12 +55,12 @@ export interface Form {
     name: string;
     bio: string;
     resume: any;
-    resumeType?: string;
     major: string;
     schoolYear: string;
     graduationYear: number;
     links: string[];
     education: Education[];
+    clubs: Experience[];
     workExperience: Experience[];
     picture: any;
     projects: Project[];
@@ -73,12 +71,12 @@ export const createEmptyForm = (): Form => {
         name: "",
         bio: "",
         resume: null,
-        resumeType: "file",
         major: "",
         schoolYear: "",
         graduationYear: 0,
         links: [""],
         education: [createEmptyEducation()],
+        clubs: [createEmptyExperience()],
         workExperience: [createEmptyExperience()],
         picture: null,
         projects: [createEmptyProject()],

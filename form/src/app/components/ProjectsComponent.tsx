@@ -27,9 +27,7 @@ const ProjectsComponent = ({
                     value={project.name}
                     onChange={(e) =>
                         setFormData((prev) => {
-                            const result = [
-                                ...prev.projects,
-                            ];
+                            const result = [...prev.projects];
                             result[index].name = e.target.value;
                             return {
                                 ...prev,
@@ -44,18 +42,15 @@ const ProjectsComponent = ({
                     value={project.description}
                     onChange={(e) =>
                         setFormData((prev) => {
-                            const result = [
-                                ...prev.projects,
-                            ];
-                            result[index].description =
-                                e.target.value;
+                            const result = [...prev.projects];
+                            result[index].description = e.target.value;
                             return {
                                 ...prev,
                                 projects: result,
                             };
                         })
                     }
-                    rows={3}
+                    rows={5}
                 />
                 <input
                     type="text"
@@ -63,9 +58,7 @@ const ProjectsComponent = ({
                     value={project.link}
                     onChange={(e) =>
                         setFormData((prev) => {
-                            const result = [
-                                ...prev.projects,
-                            ];
+                            const result = [...prev.projects];
                             result[index].link = e.target.value;
                             return {
                                 ...prev,
@@ -74,6 +67,17 @@ const ProjectsComponent = ({
                         })
                     }
                 />
+                <button
+                    onClick={(e) => {
+                        e.preventDefault()
+                        setFormData((prev) => ({
+                            ...prev,
+                            projects: prev.projects.filter((_, i) => i !== index),
+                        }))
+                    }}
+                >
+                    Remove
+                </button>
             </div>
         ))}
         <input

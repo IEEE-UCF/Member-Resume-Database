@@ -8,7 +8,10 @@ interface LinksComponentProps {
     setFormData: Dispatch<SetStateAction<Form>>;
 }
 
-const LinksComponent = ({ links, setFormData }: LinksComponentProps) => {
+const LinksComponent = ({ 
+    links, 
+    setFormData 
+}: LinksComponentProps) => {
     return (
         <>
             <h3>Links</h3>

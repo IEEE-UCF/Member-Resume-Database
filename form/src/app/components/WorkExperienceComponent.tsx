@@ -1,17 +1,11 @@
 import { Dispatch, SetStateAction } from "react";
 
-import { type Form, type Experience } from "../interfaces"
+import { type Form, type Experience, createEmptyExperience } from "../interfaces"
 
 interface WorkExperienceComponentProps {
     workExperience: Experience[];
     setFormData: Dispatch<SetStateAction<Form>>;
 }
-
-const createEmptyExperience = (): Experience => ({
-    name: "",
-    description: "",
-    title: "",
-});
 
 const WorkExperienceComponent = ({
     workExperience,

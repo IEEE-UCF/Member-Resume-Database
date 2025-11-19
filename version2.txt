@@ -1,0 +1,7 @@
+error handling for improper inputs
+max sizes
+remove empty components
+css
+add undeclared in major dropdown, generally clean it up
+rename clubs to professional experience
+master lists

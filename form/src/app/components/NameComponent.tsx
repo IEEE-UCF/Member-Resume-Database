@@ -6,9 +6,12 @@ type NameComponentProps = {
     setFormData: React.Dispatch<React.SetStateAction<Form>>;
 };
 
-const NameComponent = ({ name, setFormData }: NameComponentProps) => {
+const NameComponent = ({ 
+    name, 
+    setFormData 
+}: NameComponentProps) => {
     return (
-        <div className="input name">
+        <>
             <h3>Name</h3>
             <input
                 type="text"
@@ -18,7 +21,7 @@ const NameComponent = ({ name, setFormData }: NameComponentProps) => {
                     setFormData((prev) => ({ ...prev, name: e.target.value }))
                 }
             />
-        </div>
+        </>
     );
 };
 

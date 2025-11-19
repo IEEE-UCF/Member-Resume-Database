@@ -15,7 +15,10 @@ const schoolYearOptions = [
     "Graduate"
 ];
 
-const SchoolYearComponent = ({ schoolYear, setFormData }: SchoolYearComponentProps) => {
+const SchoolYearComponent = ({ 
+    schoolYear, 
+    setFormData 
+}: SchoolYearComponentProps) => {
     return (
         <div>
             <h3>School Year</h3>

@@ -4,7 +4,9 @@ interface WorkExperienceComponentProps {
     experiences: Experience[];
 }
 
-const WorkExperienceComponent: React.FC<WorkExperienceComponentProps> = ({ experiences }) => {
+const WorkExperienceComponent = ({ 
+    experiences 
+}: WorkExperienceComponentProps) => {
     return (
         <>
             {experiences.map((exp, index) => (

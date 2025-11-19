@@ -1,14 +1,16 @@
 import type { FC } from "react";
 
-type Props = {
+type NameComponentProps = {
     name: string;
 };
 
-const NameComponent: FC<Props> = ({ name }) => {
+const NameComponent = ({ 
+    name 
+}: NameComponentProps) => {
     return (
-        <div className="output name">
-            <h2>{name || "Name"}</h2>
-        </div>
+        <>
+            <h1>{name}</h1>
+        </>
     );
 };
 
