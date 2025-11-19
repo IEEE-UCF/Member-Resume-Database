@@ -2,7 +2,9 @@ interface PictureComponentProps {
     picture: any;
 }
 
-const PictureComponent = ({ picture }: PictureComponentProps) => {
+const PictureComponent = ({ 
+    picture 
+}: PictureComponentProps) => {
     return (
         <>
             <h3>Picture</h3>

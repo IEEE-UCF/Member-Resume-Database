@@ -1,13 +1,14 @@
 interface GraduationYearComponentProps {
     graduationYear: number;
-  }
-   const GraduationYearComponent = ({ graduationYear }: GraduationYearComponentProps) => {
+}
+const GraduationYearComponent = ({
+    graduationYear,
+}: GraduationYearComponentProps) => {
     return (
-      <>
-        <h3>Graduation Year</h3>
-        <p>{graduationYear}</p>
-      </>
+        <>
+            <h3>Graduation Year</h3>
+            <p>{graduationYear}</p>
+        </>
     );
-  };
-   export default GraduationYearComponent;
- 
+};
+export default GraduationYearComponent;

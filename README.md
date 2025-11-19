@@ -326,30 +326,75 @@ This CSS was not written to decorate the form, it was written to clearly isolate
 
 Every element of the form is the child of something, so they are all isolated as children of their parents. They have a black boarder, some margin, and some padding. The margin and padding change depending on the size of the window. They are smaller for mobile formats and bigger for desktop formats. There is room here for increased complexity in a way that is incredibly easy to implement. It works by isolating any screen size bigger or smaller than a specific value and changing the CSS within those values. Global CSS can be written outside the media tags. The media tags will overwrite any global CSS.
 
-## 5. Conclusion
+## 5. Website Structure
+
+This section will be breezed through as everything is pretty much the same as the Form, except that it outputs fields instead of inputting them.
+
+### 5.1. Website Form
+
+```javascript
+<div className={`${formStyles.child} ${formStyles.projects}`}>
+    <ProjectsComponent projects={formData.projects} />
+</div>
+```
+
+The only difference in the call for the projects section is that it no longer passes setFormData, as the website does not perform create, update, or delete operations.
+
+```javascript
+import { type Project } from "../interfaces"
+
+import formStyles from "../styles/form.module.css"
+
+interface ProjectsComponentProps {
+    projects: Project[];
+}
+
+const ProjectsComponent = ({ 
+    projects 
+}: ProjectsComponentProps) => {
+    return (
+        <>
+            <h3>Projects</h3>
+            {projects.map((project, index) => (
+                <div key = {`${index}`} className={`${formStyles.child}`}>
+                    <h3>{project.name}</h3>
+                    <p>{project.description}</p>
+                    <p>{project.link}</p>            
+                </div>
+            ))}        
+        </>
+    );
+};
+
+export default ProjectsComponent;
+```
+
+The only difference in the call for the projects component is that all <input/> tags are replaced with <p/> tags. Other components are more complicated, but the point is that the code was written to be as similar as possible to that of the input form.
+
+## 6. Conclusion
 
 Every decision in this program had one idea in mind: make the code serve as a solid and accessible foundation that can be easily updated for years to come. If you have any questions, comments, or concerns, please reach out to the team by filling out this form: https://forms.gle/RLmoxYHrUsUDQebK7.
 
-## 6. Version 2
+## 7. Version 2
 
 A watchful eye may notice that there are many elements of this project that need to be refined. This section states everything RDI is working on for version two of the project.
 
-### 6.1. Error Handling for Improper Inputs
+### 7.1. Deploy the Form
+
+The form will not be deployed until it is connected to the database and RDI is confident that it is completely refined and has gone through extensive tests against user abuse. This may take a while, so to alleviate pressure, the team will not set any expectations for when the form will be officially deployed.
+
+### 7.2. Error Handling for Improper Inputs
 
 This addresses three issues. The first is that there are no required elements. This will change in version 2. Second, empty elements may be added with no issues. A check will filter these submissions. Finally, the user can add as many elements to the arrays as they want, which can overload the database. Version two will have a cap on the number of elements a user can add.
 
-### 6.2. CSS
+### 7.3. CSS
 
 The CSS of version 1 mainly serves to help users debug the program by clearly, visually separating each component in the code and on display, but it does not look presentable. The form will be styled in version 2.
 
-### 6.3. Majors
+### 7.4. Majors
 
 The majors dropdown list in the form is the entire UCF major catalogue copied and pasted into a text file. Version two will have cherry-picked majors formatted more properly. The input field will also have a search feature so that users will not have to manually look for their major. Finally, the majors will be listed in alphabetical order.
 
-### 6.3 Master Lists
+### 7.5 Master Lists
 
 This may not be implemented until version three, but there is an intention to make a master list of some fields. For example, if a user gathered some skills while working on a project, they may add those skills directly into the project's field, and it would still be added to the master list of all the skills they gathered.
-
-### 6.4. Deploy the Form
-
-The form will not be deployed until it is connected to the database and RDI is confident that it is completely refined and has gone through extensive tests against user abuse. This may take a while, so to alleviate pressure, the team will not set any expectations for when the form will be officially deployed.
