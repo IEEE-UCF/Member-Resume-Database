@@ -1,5 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
+import formStyles from "../styles/form.module.css"
+
 import {
     type Experience,
     type Form,
@@ -19,7 +21,7 @@ const ClubsComponent = ({
         <>
             <h3>Clubs</h3>
             {clubs.map((club, index) => (
-                <div key={`clubs[${index}]`} className="club">
+                <div key={`clubs[${index}]`} className={`${formStyles.child} ${formStyles.club}`}>
                     <h4>Club {index + 1}</h4>
                     <input
                         type="text"

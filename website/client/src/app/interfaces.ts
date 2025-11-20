@@ -31,9 +31,9 @@ export interface Form {
     schoolYear: string;
     graduationYear: number;
     links: string[];
-    education: Education[];
+    educations: Education[];
     clubs: Experience[];
-    workExperience: Experience[];
+    workExperiences: Experience[];
     picture: any;
     projects: Project[];
     skills: string[];

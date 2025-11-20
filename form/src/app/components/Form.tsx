@@ -8,11 +8,11 @@ import PictureComponent from "./PictureComponent"
 import ResumeComponent from "./ResumeComponent"
 import SchoolYearComponent from "./SchoolYearComponent";
 import GraduationYearComponent from "./GraduationYearComponent";
-import WorkExperienceComponent from "./WorkExperienceComponent";
+import WorkExperiencesComponent from "./WorkExperiencesComponent";
 import NameComponent from "./NameComponent";
 import BioComponent from "./BioComponent";
 import MajorComponent from "./MajorComponent";
-import EducationComponent from "./EducationComponent";
+import EducationsComponent from "./EducationsComponent";
 import ClubsComponent from "./ClubsComponent"
 
 import { type Form, createEmptyForm, createEmptyExperience, createEmptyEducation } from "../interfaces"
@@ -40,7 +40,7 @@ const Form = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={`${formStyles.form}`}>
                 
                 <div className={`${formStyles.child} ${formStyles.name}`}>
                     <NameComponent 
@@ -78,13 +78,6 @@ const Form = () => {
                     />
                 </div>
 
-                <div className={`${formStyles.child} ${formStyles.workExperience}`}>
-                    <WorkExperienceComponent
-                        workExperience={formData.workExperience}
-                        setFormData={setFormData}
-                    />
-                </div>
-
                 <div className={`${formStyles.child} ${formStyles.graduationYear}`}>
                     <GraduationYearComponent
                         graduationYear={formData.graduationYear}
@@ -100,9 +93,9 @@ const Form = () => {
                     />
                 </div>
 
-                <div className={`${formStyles.child} ${formStyles.education}`}>
-                    <EducationComponent 
-                        educations={formData.education} 
+                <div className={`${formStyles.child} ${formStyles.educations}`}>
+                    <EducationsComponent 
+                        educations={formData.educations} 
                         setFormData={setFormData} 
                     />
                 </div>
@@ -114,14 +107,13 @@ const Form = () => {
                     />
                 </div>
 
-                <div className={`${formStyles.child} ${formStyles.workExperience}`}>
-                    <WorkExperienceComponent
-                        workExperience = {formData.workExperience}
+                <div className={`${formStyles.child} ${formStyles.workExperiences}`}>
+                    <WorkExperiencesComponent
+                        workExperiences = {formData.workExperiences}
                         setFormData = {setFormData}
                     />
                 </div>
 
-                {/* Look to simplify */}
                 <div className={`${formStyles.child} ${formStyles.picture}`}>
                     <PictureComponent setFormData={setFormData} />
                 </div>

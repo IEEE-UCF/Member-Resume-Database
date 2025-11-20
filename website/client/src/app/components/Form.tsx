@@ -10,11 +10,11 @@ import ResumeComponent from "./ResumeComponent";
 import SchoolYearComponent from "./SchoolYearComponent";
 import GraduationYearComponent from "./GraduationYearComponent";
 import ClubsComponent from "./ClubsComponent";
-import WorkExperienceComponent from "./WorkExperienceComponent";
+import WorkExperiencesComponent from "./WorkExperiencesComponent";
 import NameComponent from "./NameComponent";
 import BioComponent from "./BioComponent";
 import MajorComponent from "./MajorComponent";
-import EducationComponent from "./EducationComponent";
+import EducationsComponent from "./EducationsComponent";
 
 import formStyles from "../styles/form.module.css";
 
@@ -30,7 +30,7 @@ const dummyData = {
         "https://www.linkedin.com/in/tal-avital-profile/",
         "https://github.com/TAvital04",
     ],
-    education: [
+    educations: [
         {
             name: "University of Central Florida",
             dates: {
@@ -49,24 +49,16 @@ const dummyData = {
             name: "Knights Experimental Rocketry",
             description:
                 `I have some experience working at a software engineering position following my time with the Launch and Test Infrastructure (LTI) team at Knights Experimental Rocketry (KXR). There, I worked on software architecture to gather and assemble sensor data inside a rocket to a front end that displays the data and enables queries and mid-flight corrections. A significant responsibility of LTI is to be the backbone of sensitive launches. For the software team to ensure that the data captured was accurate, we had to create test cases for the embedded software. To ensure safety, we created a redundancy in our data storage, sending time series data from two different end points across a wireless network. To make sure the data was carried out quickly, we considered the run times for multiple implementations. In following these tasks, I had to participate in all phases of the software development life cycle, including code and architecture design and analysis, implementation, integration, maintenance, and testing. The work environment at LTI was Agile, although slightly less centralized. There is a lot more for me to say about my time at Knights Experimental Rocketry, and I am eager to discuss my experience with you further.`,
-            title: "developer",
-            skills: ["C", "Python", "Embedded Systems", "Software Architecture"]
+            title: "Developer",
         },
         {
             name: "Institute of Electrical and Electronics Engineers",
             description:
                 `A project that I am incredibly excited about is with the Institute of Electrical and Electronics Engineers (IEEE), where I am the project manager for a resume database system and web app that IEEE will use to connect recruiters with active members, called Resume Database Integration (RDI). My role in RDI is to develop bi-weekly meetings where I discuss progress, expectations, and updates so that I can provide clarity and direction for my team. I also relay current progress with the Software Committee Chair, and manage overhead, like integration with deployment tools, testing, and documentation. Essentially, I make it easier for the programmers to get their work done quickly, efficiently, and with clear direction.`,
             title: "Project Manager",
-            skills: ["Project Management", "Team Leadership", "Agile Methodology", "Database Design"]
         }
     ],
-    workExperience: [
-        {
-            name: "IEEE",
-            title: "Software Engineer",
-            description: "Worked on various projects..."
-        }
-    ],
+    workExperiences: [],
     picture: null,
     projects: [
         {
@@ -109,7 +101,7 @@ const Form = () => {
     }, []);
 
     return (
-        <>
+        <div className={`${formStyles.form}`}>
             <div className={`${formStyles.child} ${formStyles.name}`}>
                 <NameComponent name={formData.name} />
             </div>
@@ -138,16 +130,16 @@ const Form = () => {
                 <LinksComponent links={formData.links} />
             </div>
     
-            <div className={`${formStyles.child} ${formStyles.education}`}>
-                <EducationComponent education={formData.education} />
+            <div className={`${formStyles.child} ${formStyles.educations}`}>
+                <EducationsComponent educations={formData.educations} />
             </div>
     
             <div className={`${formStyles.child} ${formStyles.clubs}`}>
                 <ClubsComponent clubs={formData.clubs} />
             </div>
     
-            <div className={`${formStyles.child} ${formStyles.workExperience}`}>
-                <WorkExperienceComponent experiences={formData.workExperience} />
+            <div className={`${formStyles.child} ${formStyles.workExperiences}`}>
+                <WorkExperiencesComponent experiences={formData.workExperiences} />
             </div>
     
             <div className={`${formStyles.child} ${formStyles.picture}`}>
@@ -161,7 +153,7 @@ const Form = () => {
             <div className={`${formStyles.child} ${formStyles.skills}`}>
                 <SkillsComponent skills={formData.skills} />
             </div>
-        </>
+        </div>
     );
     };
     

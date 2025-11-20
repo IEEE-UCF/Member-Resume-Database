@@ -1,5 +1,4 @@
 # Member-Resume-Database
-
 The following document describes the structure of the code of version 1 of the Resume Database Infrastructure (RDI).
 
 ## Contents
@@ -366,7 +365,7 @@ This CSS was not written to decorate the form, it was written to clearly isolate
 ```
 
 ```css
-// ./form/src/app/styles/form.module.css
+/* ./form/src/app/styles/form.module.css */
 .child {
     border: 1px solid black;
 }
@@ -441,7 +440,7 @@ export default ProjectsComponent;
 There is not a single change between the CSS in the website and the CSS in the input form.
 
 ```css
-// ./website/client/src/app/styles/form.module.css
+/* ./website/client/src/app/styles/form.module.css */
 
 .child {
     border: 1px solid black;

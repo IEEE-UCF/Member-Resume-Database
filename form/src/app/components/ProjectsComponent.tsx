@@ -2,6 +2,8 @@ import { Dispatch, SetStateAction } from "react";
 
 import { type Form, type Project, createEmptyProject } from "../interfaces"
 
+import formStyles from "../styles/form.module.css"
+
 interface ProjectsComponentProps {
     projects: Project[]
     setFormData: Dispatch<SetStateAction<Form>>
@@ -17,7 +19,7 @@ const ProjectsComponent = ({
         {projects.map((project, index) => (
             <div
                 key={`projects[${index}]`}
-                className="project"
+                className={`${formStyles.child} ${formStyles.project}`}
             >
                 <h4>Project {index + 1}</h4>
                 <input

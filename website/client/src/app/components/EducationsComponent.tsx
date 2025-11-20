@@ -2,18 +2,18 @@ import type { Education } from "../interfaces";
 
 import formStyles from "../styles/form.module.css"
 
-type EducationComponentProps = {
-    education: Education[];
+type EducationsComponentProps = {
+    educations: Education[];
 };
 
-const EducationComponent = ({ 
-    education 
-}: EducationComponentProps) => {
+const EducationsComponent = ({ 
+    educations 
+}: EducationsComponentProps) => {
     return (
         <>
             <h2>Education</h2>
-            {education.map((ed, i) => (
-                <div key={i} className={formStyles.child}>
+            {educations.map((ed, i) => (
+                <div key={i} className={`${formStyles.child} ${formStyles.education}`}>
                     <h3>{ed.name}</h3>
                     <p>{ed.degree}</p>
                     <p>GPA: {ed.gpa.gpa}/{ed.gpa.scale}</p>
@@ -24,4 +24,4 @@ const EducationComponent = ({
     );
 };
 
-export default EducationComponent;
+export default EducationsComponent;

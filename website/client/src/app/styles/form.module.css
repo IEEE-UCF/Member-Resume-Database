@@ -1,26 +1,35 @@
 .form {
-    border: 1px solid rgb(0, 0, 0);
-    margin-top: 5rem;
-    margin-bottom: 3rem;
-    margin-left: 20rem;
-    margin-right: 20rem;
+    border: 1px solid black;
+}
+@media (max-width: 1000px) {
+    .form {
+        margin: 5rem;
+        padding: 1rem;
+    }
+}
+@media (min-width: 1000px) {
+    .form {
+        margin: 10rem;
+        padding: 5rem;
+    }
 }
 
 .child {
-    border: 1px solid rgb(0, 0, 0);
+    border: 1px solid black;
 }
 
 @media (max-width: 1000px) {
     .child {
-        margin: 2%;
-        padding: 2%;
+        padding: 2rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
     }
 }
-
 @media (min-width: 1000px) {
     .child {
-        margin: 5%;
-        padding: 5%;
+        padding: 4rem;
+        margin-top: 4rem;
+        margin-bottom: 4rem;
     }
 }
 

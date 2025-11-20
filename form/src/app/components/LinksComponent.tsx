@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 
 import { type Form } from "../interfaces"
 
+import formStyles from "../styles/form.module.css"
 
 interface LinksComponentProps {
     links: string[];
@@ -17,7 +18,7 @@ const LinksComponent = ({
             <h3>Links</h3>
             {links.map((link, index) => {
                 return (
-                    <div key={`links[${index}]`}>
+                    <div key={`links[${index}]`} className={`${formStyles.child} ${formStyles.link}`}>
                         <input
                             type="url"
                             name={`links[${index}]`}

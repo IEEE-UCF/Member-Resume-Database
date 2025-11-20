@@ -1,22 +1,25 @@
 import { Dispatch, SetStateAction } from "react"
+
 import type { Education, Form } from "../interfaces";
 import { createEmptyEducation } from "../interfaces";
 
-type EducationComponentProps = {
+import formStyles from "../styles/form.module.css"
+
+type EducationsComponentProps = {
     educations: Education[];
     setFormData: Dispatch<SetStateAction<Form>>;
 };
 
-const EducationComponent = ({ 
+const EducationsComponent = ({ 
     educations, 
     setFormData 
-}: EducationComponentProps) => {
+}: EducationsComponentProps) => {
     return (
         <>
             <h3>Education</h3>
             {educations.map((education, index) => {
                 return (
-                    <div key={`education[${index}]`} className="education-entry">
+                    <div key={`educations[${index}]`} className={`${formStyles.child} ${formStyles.education}`}>
                         <h4>Education {index + 1}</h4>
                         <input
                             type="text"
@@ -25,35 +28,35 @@ const EducationComponent = ({
                             value={education.name}
                             onChange={(e) =>
                                 setFormData((prev) => {
-                                    const updated = [...prev.education];
+                                    const updated = [...prev.educations];
                                     updated[index].name = e.target.value;
-                                    return { ...prev, education: updated };
+                                    return { ...prev, educations: updated };
                                 })
                             }
                         />
                         <input
                             type="text"
-                            name={`education[${index}].degree`}
+                            name={`educations[${index}].degree`}
                             placeholder="Degree"
                             value={education.degree}
                             onChange={(e) =>
                                 setFormData((prev) => {
-                                    const updated = [...prev.education];
+                                    const updated = [...prev.educations];
                                     updated[index].degree = e.target.value;
-                                    return { ...prev, education: updated };
+                                    return { ...prev, educations: updated };
                                 })                            
                             }
                         />
                         <input
                             type="number"
-                            name={`education[${index}].gpa.gpa`}
+                            name={`educations[${index}].gpa.gpa`}
                             placeholder="GPA"
                             value={education.gpa.gpa}
                             onChange={(e) =>
                                 setFormData((prev) => {
-                                    const updated = [...prev.education];
+                                    const updated = [...prev.educations];
                                     updated[index].gpa.gpa = Number(e.target.value);
-                                    return { ...prev, education: updated };
+                                    return { ...prev, educations: updated };
                                 })
                             }
                             step="0.01"
@@ -62,14 +65,14 @@ const EducationComponent = ({
                         />
                         <input
                             type="number"
-                            name={`education[${index}].gpa.scale`}
+                            name={`educations[${index}].gpa.scale`}
                             placeholder="GPA Scale"
                             value={education.gpa.scale || ""}
                             onChange={(e) =>
                                 setFormData((prev) => {
-                                    const updated = [...prev.education];
+                                    const updated = [...prev.educations];
                                     updated[index].gpa.scale = Number(e.target.value);
-                                    return { ...prev, education: updated };
+                                    return { ...prev, educations: updated };
                                 })  
                             }
                             step="0.01"
@@ -78,39 +81,39 @@ const EducationComponent = ({
                         <div className="dates">
                             <input
                                 type="month"
-                                name={`education[${index}].dates.start`}
+                                name={`educations[${index}].dates.start`}
                                 placeholder="Start Date"
                                 value={education.dates.start}
                                 onChange={(e) => {
                                     setFormData((prev) => {
-                                        const updated = [...prev.education];
+                                        const updated = [...prev.educations];
                                         updated[index].dates.start = e.target.value;
-                                        return { ...prev, education: updated };
+                                        return { ...prev, educations: updated };
                                     })  
                                 }}
                             />
                             <input
                                 type="month"
-                                name={`education[${index}].dates.end`}
+                                name={`educations[${index}].dates.end`}
                                 placeholder="End Date"
                                 value={education.dates.end}
                                 onChange={(e) => {
                                     setFormData((prev) => {
-                                        const updated = [...prev.education];
+                                        const updated = [...prev.educations];
                                         updated[index].dates.end = e.target.value;
-                                        return { ...prev, education: updated };
+                                        return { ...prev, educations: updated };
                                     })  
                                 }}
                             />
                             <textarea
-                                name={`education[${index}].description`}
+                                name={`educations[${index}].description`}
                                 placeholder="Description"
                                 value={education.description}
                                 onChange={(e) =>
                                     setFormData((prev) => {
-                                        const updated = [...prev.education];
+                                        const updated = [...prev.educations];
                                         updated[index].description = e.target.value;
-                                        return { ...prev, education: updated };
+                                        return { ...prev, educations: updated };
                                     })
                                 }
                                 rows={3}
@@ -121,7 +124,7 @@ const EducationComponent = ({
                                 e.preventDefault();
                                 setFormData((prev) => ({
                                     ...prev,
-                                    education: prev.education.filter((_, i) => i !== index),
+                                    educations: prev.educations.filter((_, i) => i !== index),
                                 }));
                             }}
                         >
@@ -137,7 +140,7 @@ const EducationComponent = ({
                     e.preventDefault()
                     setFormData((prev) => ({
                         ...prev,
-                        education: [...prev.education, createEmptyEducation()],
+                        educations: [...prev.educations, createEmptyEducation()],
                     }))
                 }}
             />
@@ -145,4 +148,4 @@ const EducationComponent = ({
     );
 }
 
-export default EducationComponent;
+export default EducationsComponent;

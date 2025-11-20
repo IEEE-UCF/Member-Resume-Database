@@ -2,29 +2,31 @@ import { Dispatch, SetStateAction } from "react";
 
 import { type Form, type Experience, createEmptyExperience } from "../interfaces"
 
+import formStyles from "../styles/form.module.css"
+
 interface WorkExperienceComponentProps {
-    workExperience: Experience[];
+    workExperiences: Experience[];
     setFormData: Dispatch<SetStateAction<Form>>;
 }
 
 const WorkExperienceComponent = ({
-    workExperience,
+    workExperiences,
     setFormData,
 }: WorkExperienceComponentProps) => {
     return (
         <>
             <h3>Work Experience</h3>
-            {workExperience.map((experience, index) => (
-                <div key={`workExperience[${index}]`} className="experience">
+            {workExperiences.map((experience, index) => (
+                <div key={`workExperiences[${index}]`} className={`${formStyles.child} ${formStyles.workExperience}`}>
                     <h4>Experience {index + 1}</h4>
                     <input
                         type="text"
-                        name={`workExperience[${index}].name`}
+                        name={`workExperiences[${index}].name`}
                         placeholder="Company Name"
                         value={experience.name}
                         onChange={e =>
                             setFormData(prev => {
-                                const result = [...prev.workExperience];
+                                const result = [...prev.workExperiences];
                                 result[index].name = e.target.value;
                                 return { ...prev, workExperience: result };
                             })
@@ -32,26 +34,26 @@ const WorkExperienceComponent = ({
                     />
                     <input
                         type="text"
-                        name={`workExperience[${index}].title`}
+                        name={`workExperiences[${index}].title`}
                         placeholder="Job Title"
                         value={experience.title}
                         onChange={e =>
                             setFormData(prev => {
-                                const result = [...prev.workExperience];
+                                const result = [...prev.workExperiences];
                                 result[index].title = e.target.value;
-                                return { ...prev, workExperience: result };
+                                return { ...prev, workExperiences: result };
                             })
                         }
                     />
                     <textarea
-                        name={`workExperience[${index}].description`}
+                        name={`workExperiences[${index}].description`}
                         placeholder="Description"
                         value={experience.description}
                         onChange={e =>
                             setFormData(prev => {
-                                const result = [...prev.workExperience];
+                                const result = [...prev.workExperiences];
                                 result[index].description = e.target.value;
-                                return { ...prev, workExperience: result };
+                                return { ...prev, workExperiences: result };
                             })
                         }
                         rows={3}
@@ -61,7 +63,7 @@ const WorkExperienceComponent = ({
                             e.preventDefault();
                             setFormData(prev => ({
                                 ...prev,
-                                workExperience: prev.workExperience.filter((_, i) => i !== index),
+                                workExperiences: prev.workExperiences.filter((_, i) => i !== index),
                             }));
                         }}
                     >
@@ -75,7 +77,7 @@ const WorkExperienceComponent = ({
                 onClick={e =>
                     setFormData(prev => ({
                         ...prev,
-                        workExperience: [...prev.workExperience, createEmptyExperience()],
+                        workExperiences: [...prev.workExperiences, createEmptyExperience()],
                     }))
                 }
             />
