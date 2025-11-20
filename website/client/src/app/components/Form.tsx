@@ -104,60 +104,62 @@ const Form = () => {
 
     return (
         <>
-            <div className="output name">
+            <div className={`${formStyles.child} ${formStyles.name}`}>
                 <NameComponent name={formData.name} />
             </div>
-
-            <div className="output bio">
+    
+            <div className={`${formStyles.child} ${formStyles.bio}`}>
                 <BioComponent bio={formData.bio} />
             </div>
-
-            <div className="output resume">
+    
+            <div className={`${formStyles.child} ${formStyles.resume}`}>
                 <ResumeComponent resume={formData.resume} />
             </div>
-
-            <div className="output major">
+    
+            <div className={`${formStyles.child} ${formStyles.major}`}>
                 <MajorComponent major={formData.major} />
             </div>
-
-            <div className="output school-year">
+    
+            <div className={`${formStyles.child} ${formStyles.schoolYear}`}>
                 <SchoolYearComponent schoolYear={formData.schoolYear} />
             </div>
-
-            <div className="output graduation-year">
+    
+            <div className={`${formStyles.child} ${formStyles.graduationYear}`}>
                 <GraduationYearComponent graduationYear={formData.graduationYear} />
             </div>
-
-            <div className="output links">
+    
+            <div className={`${formStyles.child} ${formStyles.links}`}>
                 <LinksComponent links={formData.links} />
             </div>
-
+    
             <div className={`${formStyles.child} ${formStyles.education}`}>
                 <EducationComponent education={formData.education} />
             </div>
-
+    
             <div className={`${formStyles.child} ${formStyles.clubs}`}>
                 <ClubsComponent clubs={formData.clubs} />
             </div>
-
+    
             <div className={`${formStyles.child} ${formStyles.workExperience}`}>
                 <WorkExperienceComponent experiences={formData.workExperience} />
             </div>
-
-            <div className="output picture">
+    
+            <div className={`${formStyles.child} ${formStyles.picture}`}>
                 <PictureComponent picture={formData.picture} />
             </div>
-
+    
             <div className={`${formStyles.child} ${formStyles.projects}`}>
                 <ProjectsComponent projects={formData.projects} />
             </div>
-
+    
             <div className={`${formStyles.child} ${formStyles.skills}`}>
                 <SkillsComponent skills={formData.skills} />
             </div>
-
         </>
     );
-};
-
-export default Form;
+    };
+    
+    export default Form;
+    
+ 
+ 
