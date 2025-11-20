@@ -18,32 +18,30 @@ const ClubsComponent = ({
     return (
         <>
             <h3>Clubs</h3>
-            {clubs.map((club, clubsIndex) => (
-                <div key={`clubs[${clubsIndex}]`} className="club">
-                    <h4>Club {clubsIndex + 1}</h4>
+            {clubs.map((club, index) => (
+                <div key={`clubs[${index}]`} className="club">
+                    <h4>Club {index + 1}</h4>
                     <input
                         type="text"
-                        name={`clubs[${clubsIndex}].name`}
+                        name={`clubs[${index}].name`}
                         placeholder="Club Name"
                         value={club.name}
                         onChange={(e) =>
                             setFormData((prev) => {
-                                const updated = [
-                                    ...prev.clubs,
-                                ];
-                                updated[clubsIndex].name = e.target.value;
+                                const updated = [...prev.clubs];
+                                updated[index].name = e.target.value;
                                 return { ...prev, clubs: updated };
                             })
                         }
                     />
                     <textarea
-                        name={`clubs[${clubsIndex}].description`}
+                        name={`clubs[${index}].description`}
                         placeholder="Description"
                         value={club.description}
                         onChange={(e) =>
                             setFormData((prev) => {
                                 const updated = [...prev.clubs];
-                                updated[clubsIndex].description = e.target.value;
+                                updated[index].description = e.target.value;
                                 return { ...prev, clubs: updated };
                             })
                         }
@@ -51,13 +49,13 @@ const ClubsComponent = ({
                     />
                     <input
                         type="text"
-                        name={`clubs[${clubsIndex}].title`}
+                        name={`clubs[${index}].title`}
                         placeholder="Your Title"
                         value={club.title}
                         onChange={(e) =>
                             setFormData((prev) => {
                                 const updated = [...prev.clubs];
-                                updated[clubsIndex].title = e.target.value;
+                                updated[index].title = e.target.value;
                                 return { ...prev, clubs: updated };
                             })
                         }
@@ -67,7 +65,7 @@ const ClubsComponent = ({
                             e.preventDefault();
                             setFormData((prev) => ({
                                 ...prev,
-                                clubs: prev.clubs.filter((_, i) => i !== clubsIndex),
+                                clubs: prev.clubs.filter((_, i) => i !== index),
                             }));
                         }}
                     >
@@ -78,12 +76,13 @@ const ClubsComponent = ({
             <input
                 type="button"
                 value="Add Club"
-                onClick={(e) =>
+                onClick={(e) =>{
+                    e.preventDefault()                    
                     setFormData((prev) => ({
                         ...prev,
                         clubs: [...prev.clubs, createEmptyExperience()],
                     }))
-                }
+                }}
             />
         </>
     );

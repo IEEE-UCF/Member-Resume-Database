@@ -22,6 +22,7 @@ export interface Education {
         scale: number;
         gpa: number;
     };
+    description: string;
 }
 export const createEmptyEducation = (): Education => {
     return {
@@ -35,6 +36,7 @@ export const createEmptyEducation = (): Education => {
             scale: 0,
             gpa: 0,
         },
+        description: ""
     };
 };
 
