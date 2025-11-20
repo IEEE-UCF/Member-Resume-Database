@@ -78,6 +78,8 @@ The first bits of code this document will describe belong to the name section.
 The following is the code that calls NameComponent.tsx, the component for the name field, in Form.tsx:
 
 ```javascript
+// Form.tsx
+
 <div className={`${formStyles.child} ${formStyles.name}`}>
     <NameComponent 
         name={formData.name} 
@@ -93,6 +95,8 @@ This code comprises of a div tag that isolates the component and connects it to 
 The following is the code inside NameComponent.tsx.
 
 ```javascript
+//NameComponent.tsx
+
 import { Dispatch, SetStateAction } from "react";
 import type { Form } from "../interfaces";
 
@@ -138,6 +142,8 @@ The code of the skills section is nearly identical to the code of the name secti
 The following is the code inside Form.tsx:
 
 ```javascript
+// Form.tsx
+
 <div className={`${formStyles.child} ${formStyles.skills}`}>
     <SkillsComponent
         skills={formData.skills}
@@ -153,6 +159,8 @@ This code is nearly identical to that of the name section call in Form.tsx. Its 
 The following is the code inside SkillsComponent.tsx:
 
 ```javascript
+SkillsComponent.tsx
+
 import { Dispatch, SetStateAction } from "react";
 
 import { type Form } from "../interfaces"
@@ -229,6 +237,8 @@ The code of the clubs section has the exact same structure as the code of the sk
 To maintain consistancy, the clubs component call in Form.tsx is the same as every other component in Form.tsx.
 
 ```javascript
+Form.tsx
+
 <div className={`${formStyles.child} ${formStyles.clubs}`}>
     <ClubsComponent
         schoolYear = { formData.clubs }
@@ -242,6 +252,8 @@ To maintain consistancy, the clubs component call in Form.tsx is the same as eve
 The following is the code inside ClubsComponent.tsx:
 
 ```javascript
+// ClubsComponent.tsx
+
 import { Dispatch, SetStateAction } from "react";
 
 import {
@@ -343,6 +355,8 @@ There is no doubt that this component is more complicated than the last one, but
 This CSS was not written to decorate the form, it was written to clearly isolate components to make debugging much easier. The code looks like this.
 
 ```javascript
+// Form.tsx
+
 <div className={`${formStyles.child} ${formStyles.name}`}>
     <NameComponent 
         name={formData.name} 
@@ -352,6 +366,7 @@ This CSS was not written to decorate the form, it was written to clearly isolate
 ```
 
 ```css
+// form.module.css
 .child {
     border: 1px solid black;
 }
@@ -381,6 +396,8 @@ This section will be breezed through as everything is pretty much the same as th
 The only difference in the call for the projects section is that it no longer passes setFormData, as the website does not perform create, update, or delete operations.
 
 ```javascript
+// Form.tsx
+
 <div className={`${formStyles.child} ${formStyles.projects}`}>
     <ProjectsComponent projects={formData.projects} />
 </div>
@@ -389,6 +406,8 @@ The only difference in the call for the projects section is that it no longer pa
 The only difference in the call for the projects component is that all input tags are replaced with text tags. Other components are more complicated, but the point is that the code was written to be as similar as possible to that of the input form.
 
 ```javascript
+// ProjectsComponent.tsx
+
 import { type Project } from "../interfaces"
 
 import formStyles from "../styles/form.module.css"
@@ -422,6 +441,8 @@ export default ProjectsComponent;
 There is not a single change between the CSS in the website and the CSS in the input form.
 
 ```css
+// form.module.css
+
 .child {
     border: 1px solid black;
 }
