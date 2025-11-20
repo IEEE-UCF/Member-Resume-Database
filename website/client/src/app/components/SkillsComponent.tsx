@@ -8,7 +8,7 @@ const SkillsComponent = ({
     return (
         <>
             <h3>Skills</h3>
-            <p>{skills.join('   ')}</p>
+            <p>{skills.join('  |  ')}</p>
         </>
     );
 };
