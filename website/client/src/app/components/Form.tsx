@@ -60,7 +60,13 @@ const dummyData = {
             skills: ["Project Management", "Team Leadership", "Agile Methodology", "Database Design"]
         }
     ],
-    workExperience: [],
+    workExperience: [
+        {
+            name: "IEEE",
+            title: "Software Engineer",
+            description: "Worked on various projects..."
+        }
+    ],
     picture: null,
     projects: [
         {

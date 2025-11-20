@@ -49,7 +49,7 @@ const Form = () => {
                     />
                 </div>
 
-                <div className="input bio">
+                <div className={`${formStyles.child} ${formStyles.bio}`}>
                     <BioComponent 
                         bio={formData.bio} 
                         setFormData={setFormData} 
@@ -57,35 +57,35 @@ const Form = () => {
                 </div>
 
 
-                <div className="input resume">
+                <div className={`${formStyles.child} ${formStyles.resume}`}>
                     <ResumeComponent
                         resume={formData.resume}
                         setFormData={setFormData}
                     />
                 </div>
 
-                <div className="input major">
+                <div className={`${formStyles.child} ${formStyles.major}`}>
                     <MajorComponent 
                         major={formData.major} 
                         setFormData={setFormData} 
                     />
                 </div>
 
-                <div className="input links">
+                <div className={`${formStyles.child} ${formStyles.links}`}>
                     <LinksComponent
                         links={formData.links}
                         setFormData={setFormData}
                     />
                 </div>
 
-                <div className="input work-experience">
+                <div className={`${formStyles.child} ${formStyles.workExperience}`}>
                     <WorkExperienceComponent
                         workExperience={formData.workExperience}
                         setFormData={setFormData}
                     />
                 </div>
 
-                <div className="input graduation-year">
+                <div className={`${formStyles.child} ${formStyles.graduationYear}`}>
                     <GraduationYearComponent
                         graduationYear={formData.graduationYear}
                         setFormData={setFormData}
@@ -93,28 +93,28 @@ const Form = () => {
                 </div>
 
 
-                <div className="input school-year">
+                <div className={`${formStyles.child} ${formStyles.schoolYear}`}>
                     <SchoolYearComponent
                         schoolYear = { formData.schoolYear }
                         setFormData = { setFormData }
                     />
                 </div>
 
-                <div className="input education">
+                <div className={`${formStyles.child} ${formStyles.education}`}>
                     <EducationComponent 
                         educations={formData.education} 
                         setFormData={setFormData} 
                     />
                 </div>
 
-                <div className="input clubs">
+                <div className={`${formStyles.child} ${formStyles.clubs}`}>
                     <ClubsComponent
                         clubs = {formData.clubs}
                         setFormData = {setFormData}
                     />
                 </div>
 
-                <div className="input work-experience">
+                <div className={`${formStyles.child} ${formStyles.workExperience}`}>
                     <WorkExperienceComponent
                         workExperience = {formData.workExperience}
                         setFormData = {setFormData}
@@ -122,11 +122,11 @@ const Form = () => {
                 </div>
 
                 {/* Look to simplify */}
-                <div className="input picture">
+                <div className={`${formStyles.child} ${formStyles.picture}`}>
                     <PictureComponent setFormData={setFormData} />
                 </div>
 
-                <div className="input projects">
+                <div className={`${formStyles.child} ${formStyles.project}`}>
                     <ProjectsComponent
                         projects={formData.projects}
                         setFormData={setFormData}
