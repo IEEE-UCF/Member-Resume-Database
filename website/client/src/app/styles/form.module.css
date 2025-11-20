@@ -8,8 +8,20 @@
 
 .child {
     border: 1px solid rgb(0, 0, 0);
-    margin: 5rem;
-    padding: 3rem;
+}
+
+@media (max-width: 1000px) {
+    .child {
+        margin: 2%;
+        padding: 2%;
+    }
+}
+
+@media (min-width: 1000px) {
+    .child {
+        margin: 5%;
+        padding: 5%;
+    }
 }
 
 .club-section {
@@ -69,10 +81,10 @@
 }
 
 .skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 1rem;
+    /*display: flex;
+    /*flex-wrap: wrap;
+    /*gap: 1rem;
+    margin-top: 1rem;*/
 }
 
 .skills li {
